@@ -2,7 +2,7 @@ body {
   text-align: center;
   margin: 0px;
   padding: 0px;
-  
+
   /*FUENTES*/
   font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -25,8 +25,8 @@ body {
 }
 
 .clearfix {
- clear: both; 
- float: none;
+  clear: both;
+  float: none;
 }
 
 
@@ -50,6 +50,7 @@ body {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -103,8 +104,8 @@ body {
   text-shadow: 0px 0px 5px #444;
 
   /* Fondo en Degradado */
-  background: rgb(97,218,251);
-  background: linear-gradient(45deg, rgba(97,218,251,1) 0%, rgba(9,92,121,1) 35%, rgba(0,129,255,1) 68%, rgba(97,218,251,1) 100%);
+  background: rgb(97, 218, 251);
+  background: linear-gradient(45deg, rgba(97, 218, 251, 1) 0%, rgba(9, 92, 121, 1) 35%, rgba(0, 129, 255, 1) 68%, rgba(97, 218, 251, 1) 100%);
 }
 
 #slider h1 {
@@ -136,4 +137,13 @@ body {
 .btn-white:hover {
   background: #444;
   color: white;
+}
+
+
+#slider.slider-small {
+  height: 150px;
+}
+
+#slider.slider-small h1{
+  padding-top: 53px;
 }
