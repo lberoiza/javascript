@@ -43,7 +43,19 @@ body {
   height: 50px;
   margin-top: -10px;
   margin-right: 10px;
+  animation: girar infinite 20s linear;
 }
+
+@keyframes girar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
 
 #brand {
   display: block;
