@@ -41,16 +41,32 @@ body {
   height: 50px;
   margin-top: -10px;
   margin-right: 10px;
-  animation: girar infinite 20s linear;
+  animation: latir infinite 2s linear;
 }
 
-@keyframes girar {
-  from {
-    transform: rotate(0deg);
+@keyframes latir {
+  0% {
+    transform: scale(1,1);
   }
 
-  to {
-    transform: rotate(360deg);
+  45% {
+    transform: scale(1.1,1.1);
+  }
+
+  55% {
+    transform: scale(0.9,0.9);
+  }
+
+  70% {
+    transform: scale(1.15,1.15);
+  }
+
+  90% {
+    transform: scale(1,1);
+  }
+
+  100% {
+    transform: scale(1,1);
   }
 }
 
