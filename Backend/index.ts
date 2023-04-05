@@ -1,19 +1,17 @@
-'use strict'
+import mongoose from 'mongoose';
+import application from './app';
+import express from 'express';
 
-let mongoose = require('mongoose');
+const url: string = 'mongodb://localhost:27017/api_rest_blog';
+const port: number = 3900;
 
-
-let url: string = 'mongodb://localhost:27017/api_rest_blog';
-let opciones = {
-    useNewUrlParser: true
-};
-
-// Opcion invalida
-// mongoose.set('useFindAndModify', false);
-mongoose.Promise = global.Promise;
-mongoose.connect(url, opciones)
+mongoose.connect(url)
 .then(() => {
-    console.log("La conexion a la Base de Datos se ha realizado correctamente!!!");
-});
+  console.log("La conexion a la Base de Datos se ha realizado correctamente!!!");
 
+  application.listen(port, () => {
+    console.log(`Servidor corriendo http://localhost:${3900}`);
+  });
+
+});
 
