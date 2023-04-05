@@ -3,7 +3,7 @@
 let mongoose = require('mongoose');
 
 
-let url = 'mongodb://localhost:27017/api_rest_blog';
+let url: string = 'mongodb://localhost:27017/api_rest_blog';
 let opciones = {
     useNewUrlParser: true
 };
