@@ -36,10 +36,15 @@ class ArticleService {
   }
 
 
-  public async all(): Promise<IArticle[]> {
+  public async all(getParams: any): Promise<IArticle[]> {
     console.log("Obteniendo la lista de articulos.")
     try {
-      const articles = await Article.find().sort('-_id');
+      const lastParams: string = getParams.last;
+
+      const query = Article.find();
+      if(articleValidation.isValidLastParams(lastParams)) query.limit(parseInt(lastParams));
+
+      const articles = await query.sort('-_id');
       console.log("Lista de Articulos obtenida exitosamente.")
       return articles;
     } catch(error) {
@@ -47,9 +52,6 @@ class ArticleService {
     }
 
   }
-
-
-
 
 
 }

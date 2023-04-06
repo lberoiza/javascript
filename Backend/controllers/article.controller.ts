@@ -45,7 +45,7 @@ class ArticleController {
   public async allArticles(req: Request, res: Response) {
     const response = new WsResponse();
     try{
-      const articles = await articleService.all();
+      const articles = await articleService.all(req.params);
       response.addResponse(articles);
     } catch(err: unknown) {
       const serviceError: ServiceError = ServiceError.fromError(err);
