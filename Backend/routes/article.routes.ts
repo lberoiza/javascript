@@ -5,5 +5,6 @@ const router = Router();
 
 // rutas para controlador articulos
 router.get('/article/datos-curso', articleController.datosCurso);
+router.post('/article/save', articleController.saveArticle);
 
 export default router;

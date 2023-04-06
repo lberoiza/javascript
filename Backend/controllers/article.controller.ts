@@ -1,5 +1,9 @@
 import WsResponse from '../models/ws_response';
 import { Request, Response } from 'express';
+import { IArticle } from '../models/article';
+import articleValidation from '../validations/article_validation';
+import articleService from '../services/article_service'
+import ServiceError from '../models/service_error';
 
 class ArticleController {
 
@@ -15,15 +19,29 @@ class ArticleController {
         mensaje
       });
 
-      return res.status(200).send(response.toJson());
-
     } catch(error) {
       const errorMessage: string = 'Error interno del servidor';
       response.addError(errorMessage)
-      return res.status(500).send(response.toJson());
     }
 
+    return res.status(200).send(response.toJson());
+  }
+
+
+  public async saveArticle(req: Request, res: Response) {
+    const response = new WsResponse();
+    try{
+      const article: IArticle = articleService.save(req.body);
+      response.addResponse(article);
+    } catch(err: unknown) {
+      const serviceError: ServiceError = ServiceError.fromError(err);
+      response.addError(serviceError.getErrorMessage());
     }
+
+    return res.status(200).send(response.toJson());
+  }
+
+
 }
 
 export default new ArticleController();
