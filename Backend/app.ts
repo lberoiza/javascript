@@ -8,6 +8,7 @@ const app = express();
 
 
 // 3.- Cargar Ficheros rutas
+import routesArticle from './routes/article.routes';
 
 
 // 4.- Middlewares (se ejecutan antes de cargar las rutas )
@@ -18,23 +19,9 @@ app.use(bodyParser.json());
 // 5.- CORS (permite peticiones del frontend)
 
 
-// 6.- Agregar prefijos a las rutas
+// 6.- Agregar prefijos a las rutas y cargar rutas
+app.use('/api', routesArticle);
 
 
-// 7.- Rutas
-app.get('/datos-curso', (req: Request, res: Response) => {
-
-  console.log("llamando datos-curso")
-  let mensaje: string = req.query.mensaje as string;
-   
-  return res.status(200).send({
-    curso: 'Master en Frameworks JS',
-    autor: 'Luis Beroiza',
-    mensaje
-  });
-});
-
-
-
-// 8.- Exportar modulo (fichero actual)
+// 7.- Exportar modulo (fichero actual)
 export default app;
