@@ -33,10 +33,25 @@ class ArticleService {
       throw new Error('Error al guardar el articulo en la base de datos.')
     }
 
+  }
 
 
+  public async all(): Promise<IArticle[]> {
+    console.log("Obteniendo la lista de articulos.")
+    try {
+      const articles = await Article.find().sort('-_id');
+      console.log("Lista de Articulos obtenida exitosamente.")
+      return articles;
+    } catch(error) {
+      throw new Error('Error al obtener la lista de articulos.')
+    }
 
   }
+
+
+
+
+
 }
 
 export default new ArticleService();

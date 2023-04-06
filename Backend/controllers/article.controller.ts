@@ -42,6 +42,20 @@ class ArticleController {
   }
 
 
+  public async allArticles(req: Request, res: Response) {
+    const response = new WsResponse();
+    try{
+      const articles = await articleService.all();
+      response.addResponse(articles);
+    } catch(err: unknown) {
+      const serviceError: ServiceError = ServiceError.fromError(err);
+      response.addError(serviceError.getErrorMessage());
+    }
+
+    return res.status(200).send(response.toJson());
+  }
+
+
 }
 
 export default new ArticleController();
