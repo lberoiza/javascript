@@ -31,7 +31,7 @@ class ArticleController {
   public async saveArticle(req: Request, res: Response) {
     const response = new WsResponse();
     try{
-      const article: IArticle = articleService.save(req.body);
+      const article = await articleService.save(req.body);
       response.addResponse(article);
     } catch(err: unknown) {
       const serviceError: ServiceError = ServiceError.fromError(err);

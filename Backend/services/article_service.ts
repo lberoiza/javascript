@@ -22,10 +22,20 @@ class ArticleService {
   }
 
 
-  public save(bodyParams: any): IArticle {
+  public async save(bodyParams: any): Promise<IArticle> {
     const article: IArticle = this.createArticleFromRequest(bodyParams);
     console.log("El Articulo será guardado en la base de datos.")
-    return article;
+    try {
+      await article.save();
+      console.log("Articulo guardado exitosamente.")
+      return article;
+    } catch(error) {
+      throw new Error('Error al guardar el articulo en la base de datos.')
+    }
+
+
+
+
   }
 }
 
