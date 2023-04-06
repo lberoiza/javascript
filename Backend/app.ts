@@ -25,10 +25,12 @@ app.use(bodyParser.json());
 app.get('/datos-curso', (req: Request, res: Response) => {
 
   console.log("llamando datos-curso")
+  let mensaje: string = req.query.mensaje as string;
    
   return res.status(200).send({
     curso: 'Master en Frameworks JS',
-    autor: 'Luis Beroiza'
+    autor: 'Luis Beroiza',
+    mensaje
   });
 });
 
