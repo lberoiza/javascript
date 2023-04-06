@@ -13,6 +13,11 @@ class ArticleValidation {
   public isValid(title: string, content: string, imageUrl: string): boolean {
     return this.isTitleValid(title) && this.isContentValid(content);
   }
+
+  public isValidLastParams(last: string) {
+    return validator.isNumeric(last);
+  }
+
 }
 
 export default new ArticleValidation();
