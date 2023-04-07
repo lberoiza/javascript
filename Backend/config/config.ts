@@ -5,7 +5,8 @@ interface Config {
   readonly DB_URL: string;
   readonly DB_PORT: number;
   readonly DB_NAME: string;
-  readonly UPLOAD_DIR: string;
+  readonly TMP_DIR: string;
+  readonly RESOURCE_DIR: string;
   //...otras variables de configuración
 }
 
@@ -16,7 +17,8 @@ const config: Config = {
   DB_URL: 'localhost',
   DB_PORT: 27017,
   DB_NAME: 'api_rest_blog',
-  UPLOAD_DIR: './uploads/tmp'
+  TMP_DIR: './tmp',
+  RESOURCE_DIR: './resources'
 };
 
 export default config;
