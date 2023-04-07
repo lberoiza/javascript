@@ -1,3 +1,5 @@
+import config from './config/config';
+
 // 1.- Cargar Modulos para crear el servidor
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
@@ -20,7 +22,7 @@ app.use(bodyParser.json());
 
 
 // 6.- Agregar prefijos a las rutas y cargar rutas
-app.use('/api', routesArticle);
+app.use(config.APP_API_PREFIX, routesArticle);
 
 
 // 7.- Exportar modulo (fichero actual)
