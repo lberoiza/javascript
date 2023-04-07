@@ -10,12 +10,20 @@ class ArticleValidation {
     return !validator.isEmpty(content);
   }
 
-  public isValid(title: string, content: string, imageUrl: string): boolean {
-    return this.isTitleValid(title) && this.isContentValid(content);
+
+  public isLastParamsValid(last: string) {
+    return validator.isNumeric(last);
   }
 
-  public isValidLastParams(last: string) {
-    return validator.isNumeric(last);
+  public isIdValid(id: string) {
+    if(validator.isMongoId(id)) {
+      return true;
+    }
+    throw new Error('El Id del articulo no es válido');
+  }
+
+  public isValid(title: string, content: string, imageUrl: string): boolean {
+    return this.isTitleValid(title) && this.isContentValid(content);
   }
 
 }
