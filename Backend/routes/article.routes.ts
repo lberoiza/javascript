@@ -9,5 +9,6 @@ router.post('/article/save', articleController.saveArticle);
 router.get('/article/all/:last?', articleController.allArticles);
 router.get('/article/:id', articleController.findArticle);
 router.put('/article/:id', articleController.updateArticle);
+router.delete('/article/:id', articleController.deleteArticle);
 
 export default router;

@@ -53,7 +53,7 @@ class ArticleService {
 
 
   public async getArticle(id: string): Promise<IArticle> {
-    console.log("Obteniendo la lista de articulos.")
+    console.log("Obteniendo el articulo.")
     try {
       articleValidation.isIdValid(id);
       const article = await Article.findById(id);
@@ -71,7 +71,7 @@ class ArticleService {
 
 
   public async update(articleId: string, articleData: IArticleData): Promise<IArticle> {
-    console.log("Obteniendo la lista de articulos.")
+    console.log("Obteniendo el articulo a actualizar.")
     try {
       articleValidation.isIdValid(articleId);
       articleValidation.isValid(articleData);
@@ -82,6 +82,24 @@ class ArticleService {
       }
 
       console.log(`Articulo con id: ${articleId} actualizado exitosamente.`);
+      return article;
+    } catch(error) {
+      throw error;
+    }
+
+  }
+
+  public async delete(articleId: string): Promise<IArticle> {
+    console.log("Obteniendo el articulo a eliminar.")
+    try {
+      articleValidation.isIdValid(articleId);
+
+      const article = await Article.findOneAndDelete({_id: articleId});
+      if(!article){
+        throw new Error(`Articulo con id: ${articleId} no encontrado.`);
+      }
+
+      console.log(`Articulo con id: ${articleId} eliminado exitosamente.`);
       return article;
     } catch(error) {
       throw error;
