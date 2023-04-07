@@ -7,7 +7,7 @@ class ArticleService {
 
     const { title, content, image } = bodyParams;
     try {
-      articleValidation.isValid(title, content, image)
+      articleValidation.isValid(title, content, image);
       // Crear una nueva instancia del modelo Article con los datos recibidos
       const newArticle: IArticle = new Article({
         title,
@@ -15,7 +15,7 @@ class ArticleService {
         image,
         date: new Date()
       });
-      return newArticle
+      return newArticle;
     }catch(error){
       throw new Error('Los datos para el Articulo estan incompletos');
     }
@@ -24,13 +24,13 @@ class ArticleService {
 
   public async save(bodyParams: any): Promise<IArticle> {
     const article: IArticle = this.createArticleFromRequest(bodyParams);
-    console.log("El Articulo será guardado en la base de datos.")
+    console.log("El Articulo será guardado en la base de datos.");
     try {
       await article.save();
-      console.log("Articulo guardado exitosamente.")
+      console.log("Articulo guardado exitosamente.");
       return article;
     } catch(error) {
-      throw new Error('Error al guardar el articulo en la base de datos.')
+      throw new Error('Error al guardar el articulo en la base de datos.');
     }
 
   }
@@ -42,16 +42,37 @@ class ArticleService {
       const lastParams: string = getParams.last;
 
       const query = Article.find();
-      if(articleValidation.isValidLastParams(lastParams)) query.limit(parseInt(lastParams));
+      if(articleValidation.isLastParamsValid(lastParams)) query.limit(parseInt(lastParams));
 
       const articles = await query.sort('-_id');
-      console.log("Lista de Articulos obtenida exitosamente.")
+      console.log("Lista de Articulos obtenida exitosamente.");
       return articles;
     } catch(error) {
-      throw new Error('Error al obtener la lista de articulos.')
+      throw new Error('Error al obtener la lista de articulos.');
     }
 
   }
+
+
+  public async getArticle(getParams: any): Promise<IArticle> {
+    console.log("Obteniendo la lista de articulos.")
+    try {
+      const id: string = getParams.id;
+
+      articleValidation.isIdValid(id);
+      const article = await Article.findById(id);
+      if(!article){
+        throw new Error(`Articulo con id: ${id} no encontrado.`);
+      }
+
+      console.log(`Articulo con id: ${id} obtenida exitosamente.`);
+      return article;
+    } catch(error) {
+      throw error;
+    }
+
+  }
+
 
 
 }
