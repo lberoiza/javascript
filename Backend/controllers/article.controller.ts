@@ -1,7 +1,6 @@
 import WsResponse from '../models/ws_response';
 import { Request, Response } from 'express';
-import { IArticle } from '../models/article';
-import articleValidation from '../validations/article_validation';
+import { IArticleData } from '../models/article';
 import articleService from '../services/article_service'
 import ServiceError from '../models/service_error';
 
@@ -31,7 +30,14 @@ class ArticleController {
   public async saveArticle(req: Request, res: Response) {
     const response = new WsResponse();
     try{
-      const article = await articleService.save(req.body);
+
+      const articleData: IArticleData = {
+        title: req.body.title,
+        content: req.body.content,
+        image: req.body.image
+      };
+
+      const article = await articleService.save(articleData);
       response.addResponse(article);
     } catch(err: unknown) {
       const serviceError: ServiceError = ServiceError.fromError(err);
@@ -45,7 +51,7 @@ class ArticleController {
   public async allArticles(req: Request, res: Response) {
     const response = new WsResponse();
     try{
-      const articles = await articleService.all(req.params);
+      const articles = await articleService.all(req.params.last);
       response.addResponse(articles);
     } catch(err: unknown) {
       const serviceError: ServiceError = ServiceError.fromError(err);
@@ -59,7 +65,27 @@ class ArticleController {
   public async findArticle(req: Request, res: Response) {
     const response = new WsResponse();
     try{
-      const article = await articleService.getArticle(req.params);
+      const article = await articleService.getArticle(req.params.id);
+      response.addResponse(article);
+    } catch(err: unknown) {
+      const serviceError: ServiceError = ServiceError.fromError(err);
+      response.addError(serviceError.getErrorMessage());
+    }
+
+    return res.status(200).send(response.toJson());
+  }
+
+
+  public async updateArticle(req: Request, res: Response) {
+    const response = new WsResponse();
+    try{
+      const articleData: IArticleData = {
+        title: req.body.title,
+        content: req.body.content,
+        image: req.body.image
+      };
+
+      const article = await articleService.update(req.params.id, articleData);
       response.addResponse(article);
     } catch(err: unknown) {
       const serviceError: ServiceError = ServiceError.fromError(err);

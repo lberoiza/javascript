@@ -1,18 +1,18 @@
-import Article, { IArticle } from '../models/article';
+import { Request } from 'express';
+import Article, { IArticleData, IArticle } from '../models/article';
 import articleValidation from "../validations/article_validation";
 
 class ArticleService {
 
-  private createArticleFromRequest(bodyParams: any): IArticle {
+  private createArticleFromRequest(articleData: IArticleData): IArticle {
 
-    const { title, content, image } = bodyParams;
     try {
-      articleValidation.isValid(title, content, image);
+      articleValidation.isValid(articleData);
       // Crear una nueva instancia del modelo Article con los datos recibidos
       const newArticle: IArticle = new Article({
-        title,
-        content,
-        image,
+        title: articleData.title,
+        content: articleData.content,
+        image: articleData.image,
         date: new Date()
       });
       return newArticle;
@@ -22,8 +22,8 @@ class ArticleService {
   }
 
 
-  public async save(bodyParams: any): Promise<IArticle> {
-    const article: IArticle = this.createArticleFromRequest(bodyParams);
+  public async save(articleData: IArticleData): Promise<IArticle> {
+    const article: IArticle = this.createArticleFromRequest(articleData);
     console.log("El Articulo será guardado en la base de datos.");
     try {
       await article.save();
@@ -36,11 +36,9 @@ class ArticleService {
   }
 
 
-  public async all(getParams: any): Promise<IArticle[]> {
+  public async all(lastParams: string): Promise<IArticle[]> {
     console.log("Obteniendo la lista de articulos.")
     try {
-      const lastParams: string = getParams.last;
-
       const query = Article.find();
       if(articleValidation.isLastParamsValid(lastParams)) query.limit(parseInt(lastParams));
 
@@ -54,11 +52,9 @@ class ArticleService {
   }
 
 
-  public async getArticle(getParams: any): Promise<IArticle> {
+  public async getArticle(id: string): Promise<IArticle> {
     console.log("Obteniendo la lista de articulos.")
     try {
-      const id: string = getParams.id;
-
       articleValidation.isIdValid(id);
       const article = await Article.findById(id);
       if(!article){
@@ -66,6 +62,26 @@ class ArticleService {
       }
 
       console.log(`Articulo con id: ${id} obtenida exitosamente.`);
+      return article;
+    } catch(error) {
+      throw error;
+    }
+
+  }
+
+
+  public async update(articleId: string, articleData: IArticleData): Promise<IArticle> {
+    console.log("Obteniendo la lista de articulos.")
+    try {
+      articleValidation.isIdValid(articleId);
+      articleValidation.isValid(articleData);
+
+      const article = await Article.findOneAndUpdate({_id: articleId}, articleData, {new: true});
+      if(!article){
+        throw new Error(`Articulo con id: ${articleId} no encontrado.`);
+      }
+
+      console.log(`Articulo con id: ${articleId} actualizado exitosamente.`);
       return article;
     } catch(error) {
       throw error;

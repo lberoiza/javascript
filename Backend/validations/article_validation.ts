@@ -1,13 +1,23 @@
+import { IArticleData } from '../models/article';
 import validator from 'validator';
 
 class ArticleValidation {
 
   private isTitleValid(title: string): boolean {
-    return !validator.isEmpty(title);
+    try {
+      return !validator.isEmpty(title);
+    }catch {
+      throw new Error('El titulo del Articulo no pasó la validacion');
+    }
+    
   }
 
   private isContentValid(content: string): boolean {
-    return !validator.isEmpty(content);
+    try {
+      return !validator.isEmpty(content);
+    }catch {
+      throw new Error('El Contenido del Articulo no pasó la validacion');
+    }
   }
 
 
@@ -15,15 +25,21 @@ class ArticleValidation {
     return validator.isNumeric(last);
   }
 
+
   public isIdValid(id: string) {
-    if(validator.isMongoId(id)) {
-      return true;
-    }
+    if(validator.isMongoId(id)) return true;
     throw new Error('El Id del articulo no es válido');
   }
 
-  public isValid(title: string, content: string, imageUrl: string): boolean {
-    return this.isTitleValid(title) && this.isContentValid(content);
+
+  public isValid(articleData: IArticleData): boolean {
+    try {
+      this.isTitleValid(articleData.title);
+      this.isContentValid(articleData.content);
+      return true;
+    }catch (error) {
+      throw error;
+    }
   }
 
 }
