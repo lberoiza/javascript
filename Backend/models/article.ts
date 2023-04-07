@@ -1,11 +1,14 @@
 import mongoose, { Document, Model, Schema } from 'mongoose';
 
-// Definición de la interfaz IArticle que extiende la interfaz Document de Mongoose
-export interface IArticle extends Document {
+export interface IArticleData {
   title: string;
   content: string;
-  date: Date;
   image: string;
+}
+
+// Definición de la interfaz IArticle que extiende la interfaz Document de Mongoose
+export interface IArticle extends IArticleData, Document {
+  date: Date,
   getFormattedDate: () => string;
 }
 
