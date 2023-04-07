@@ -1,4 +1,3 @@
-import { Request } from 'express';
 import Article, { IArticleData, IArticle } from '../models/article';
 import articleValidation from "../validations/article_validation";
 
