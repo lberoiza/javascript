@@ -88,7 +88,25 @@ class ArticleService {
 
   }
 
+
   public async delete(articleId: string): Promise<IArticle> {
+    console.log("Obteniendo el articulo a eliminar.")
+    try {
+      articleValidation.isIdValid(articleId);
+
+      const article = await Article.findOneAndDelete({_id: articleId});
+      if(!article){
+        throw new Error(`Articulo con id: ${articleId} no encontrado.`);
+      }
+
+      console.log(`Articulo con id: ${articleId} eliminado exitosamente.`);
+      return article;
+    } catch(error) {
+      throw error;
+    }
+
+  }
+  public async uploadImage(articleId: string): Promise<IArticle> {
     console.log("Obteniendo el articulo a eliminar.")
     try {
       articleValidation.isIdValid(articleId);
