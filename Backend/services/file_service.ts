@@ -1,14 +1,10 @@
-import { warn } from 'console';
-import config from '../config/config';
 import { IUploadedFile } from '../models/uploaded_file';
 import fs from 'fs';
 
 
 class FileService {
 
-  // private readonly IMAGE_DIR: string = `${config.RESOURCE_DIR}/images`;
-
-  public async conserveFirstFileAndDeleteRest(fileList: IUploadedFile[], destinationDir: string) : Promise<IUploadedFile>{
+  public async conserveFirstFileAndDeleteRest(fileList: IUploadedFile[]) : Promise<IUploadedFile>{
     const firstFile = fileList[0];
     if(fileList.length > 1) {
       for( const fileToDelete of fileList.slice(1) ){
@@ -16,7 +12,6 @@ class FileService {
       }
     }
 
-    await this.moveFile(firstFile, destinationDir);
     return firstFile;
   }
 
@@ -43,8 +38,6 @@ class FileService {
       throw new Error(`Error al mover el archivo: ${fileToMove.filename}`);
     }
   }
-
-
 
 }
 
