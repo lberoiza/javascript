@@ -26,7 +26,6 @@ class UploadFileValidation {
       throw new Error("Validacion UploadedFile incorrecta, path está vacío");
     }
 
-    console.log(data.size)
     if(Number.isNaN(data.size)){
       throw new Error("Validacion UploadedFile incorrecta, size no es un numero");
     }
