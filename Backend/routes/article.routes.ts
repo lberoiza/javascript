@@ -1,4 +1,3 @@
-import config from '../config/config';
 import { Router } from 'express';
 import articleController from '../controllers/article.controller';
 import uploadMiddleware from '../middleware/upload_files';
