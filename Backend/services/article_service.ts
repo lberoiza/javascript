@@ -1,5 +1,10 @@
 import Article, { IArticleData, IArticle } from '../models/article';
 import articleValidation from "../validations/article_validation";
+import { IUploadedFile } from '../models/uploaded_file';
+import config from '../config/config';
+import fileService from './file_service';
+import imageValidation from '../validations/image_validation'
+
 
 class ArticleService {
 
@@ -106,17 +111,22 @@ class ArticleService {
     }
 
   }
-  public async uploadImage(articleId: string): Promise<IArticle> {
-    console.log("Obteniendo el articulo a eliminar.")
+  public async addImage(article: IArticle, uploadedFile: IUploadedFile): Promise<IArticle> {
+    console.log("Obteniendo el articulo a para agregar imagen.");
+    const destinationDir = `${config.RESOURCE_DIR}/images`;
     try {
-      articleValidation.isIdValid(articleId);
 
-      const article = await Article.findOneAndDelete({_id: articleId});
-      if(!article){
-        throw new Error(`Articulo con id: ${articleId} no encontrado.`);
+      if(!imageValidation.isValid(uploadedFile)) {
+        fileService.deleteFile(uploadedFile.path);
+        throw new Error('Extension de Imagen no válida');
       }
 
-      console.log(`Articulo con id: ${articleId} eliminado exitosamente.`);
+      await fileService.moveFile(uploadedFile, destinationDir);
+      const oldImage = article.image;
+      article.image = uploadedFile.filename;
+      await fileService.deleteFile(`${destinationDir}/${oldImage}`);
+      await article.save();
+      console.log(`Imagen agregada exitosamente a articulo con id: ${article._id}.`);
       return article;
     } catch(error) {
       throw error;

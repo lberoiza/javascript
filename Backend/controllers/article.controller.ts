@@ -5,7 +5,7 @@ import articleService from '../services/article_service'
 import ServiceError from '../models/service_error';
 import UploadedFile, { IUploadedFile } from '../models/uploaded_file';
 import fileService from '../services/file_service';
-import config from '../config/config';
+
 
 class ArticleController {
 
@@ -115,7 +115,6 @@ class ArticleController {
 
   public async uploadImage(req: Request, res: Response) {
     const response = new WsResponse();
-    const destination = `${config.RESOURCE_DIR}/images`;
 
     try{
       const article = await articleService.getArticle(req.params.id);
@@ -124,11 +123,9 @@ class ArticleController {
       
       const files = req.files as Express.Multer.File[];
       const uploadedFileList: IUploadedFile[] = files.map((file) => new UploadedFile(file));
-      const uploadedFile: IUploadedFile = await fileService.conserveFirstFileAndDeleteRest(uploadedFileList, destination);
-      const oldImage = article.image;
-      article.image = uploadedFile.filename;
-      await fileService.deleteFile(`${destination}/${oldImage}`);
-      await articleService.update(req.params.id, article);
+      const uploadedFile: IUploadedFile = await fileService.conserveFirstFileAndDeleteRest(uploadedFileList);
+      await articleService.addImage(article, uploadedFile);
+
       response.addResponse(article);
     } catch(err: unknown) {
       const serviceError: ServiceError = ServiceError.fromError(err);
