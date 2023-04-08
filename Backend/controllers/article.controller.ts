@@ -4,7 +4,6 @@ import { IArticleData } from '../models/article';
 import articleService from '../services/article_service'
 import ServiceError from '../models/service_error';
 import UploadedFile, { IUploadedFile } from '../models/uploaded_file';
-import fileService from '../services/file_service';
 
 
 class ArticleController {
