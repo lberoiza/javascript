@@ -7,20 +7,28 @@ class ArticleValidation {
     try {
       return !validator.isEmpty(title);
     }catch {
-      throw new Error('El titulo del Articulo no pasó la validacion');
+      throw new Error('El titulo del Articulo no pasó la validacion.');
     }
-    
   }
 
   private isContentValid(content: string): boolean {
     try {
       return !validator.isEmpty(content);
     }catch {
-      throw new Error('El Contenido del Articulo no pasó la validacion');
+      throw new Error('El Contenido del Articulo no pasó la validacion.');
     }
   }
 
 
+  public isSearchParamValid(title: string): boolean {
+    try {
+      return !validator.isEmpty(title);
+    }catch {
+      throw new Error('El criterio de Busqueda no es Válido.');
+    }
+  }
+
+  
   public isLastParamsValid(last: string) {
     return validator.isNumeric(last);
   }
@@ -28,7 +36,7 @@ class ArticleValidation {
 
   public isIdValid(id: string) {
     if(validator.isMongoId(id)) return true;
-    throw new Error('El Id del articulo no es válido');
+    throw new Error('El Id del articulo no es válido.');
   }
 
 
