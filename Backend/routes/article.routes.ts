@@ -12,6 +12,8 @@ router.get('/article/all/:last?', articleController.allArticles);
 router.get('/article/:id', articleController.findArticle);
 router.put('/article/:id', articleController.updateArticle);
 router.delete('/article/:id', articleController.deleteArticle);
+router.get('/article/search/:search',articleController.searchArticles);
 router.post('/article/upload_image/:id', uploadMiddleware.any(), articleController.uploadImage);
+
 
 export default router;
