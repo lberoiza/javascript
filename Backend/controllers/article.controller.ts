@@ -123,8 +123,7 @@ class ArticleController {
       
       const files = req.files as Express.Multer.File[];
       const uploadedFileList: IUploadedFile[] = files.map((file) => new UploadedFile(file));
-      const uploadedFile: IUploadedFile = await fileService.conserveFirstFileAndDeleteRest(uploadedFileList);
-      await articleService.addImage(article, uploadedFile);
+      await articleService.addImage(article, uploadedFileList);
 
       response.addResponse(article);
     } catch(err: unknown) {

@@ -4,15 +4,8 @@ import fs from 'fs';
 
 class FileService {
 
-  public async conserveFirstFileAndDeleteRest(fileList: IUploadedFile[]) : Promise<IUploadedFile>{
-    const firstFile = fileList[0];
-    if(fileList.length > 1) {
-      for( const fileToDelete of fileList.slice(1) ){
-        await this.deleteFile(fileToDelete.path);
-      }
-    }
-
-    return firstFile;
+  public deleteFiles(listOfPaths: string[]) {
+    listOfPaths.forEach(path => this.deleteFile(path));
   }
 
 

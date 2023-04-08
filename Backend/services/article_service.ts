@@ -3,7 +3,7 @@ import articleValidation from "../validations/article_validation";
 import { IUploadedFile } from '../models/uploaded_file';
 import config from '../config/config';
 import fileService from './file_service';
-import imageValidation from '../validations/image_validation'
+import imageService from './image_service';
 
 
 class ArticleService {
@@ -111,16 +111,12 @@ class ArticleService {
     }
 
   }
-  public async addImage(article: IArticle, uploadedFile: IUploadedFile): Promise<IArticle> {
+  public async addImage(article: IArticle, uploadedFileList: IUploadedFile[]): Promise<IArticle> {
     console.log("Obteniendo el articulo a para agregar imagen.");
     const destinationDir = `${config.RESOURCE_DIR}/images`;
     try {
 
-      if(!imageValidation.isValid(uploadedFile)) {
-        fileService.deleteFile(uploadedFile.path);
-        throw new Error('Extension de Imagen no válida');
-      }
-
+      const uploadedFile = imageService.conserveFirstImageAndDeleteRest(uploadedFileList);
       await fileService.moveFile(uploadedFile, destinationDir);
       const oldImage = article.image;
       article.image = uploadedFile.filename;
