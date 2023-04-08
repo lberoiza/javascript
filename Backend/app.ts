@@ -20,6 +20,14 @@ app.use(bodyParser.json());
 
 
 // 5.- CORS (permite peticiones del frontend)
+// Se Agrega como si fuese un Middleware
+// CORS significa "Cross-Origin Resource Sharing"
+// y se refiere a una política de seguridad en navegadores web
+// que limita el acceso de una página web a los recursos
+// de otra página web que se encuentre en un dominio diferente.
+import customCors from './middleware/custom_cors';
+app.use(customCors.cors);
+
 
 
 // 6.- Agregar prefijos a las rutas y cargar rutas
