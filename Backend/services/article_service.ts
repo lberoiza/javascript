@@ -2,7 +2,6 @@ import Article, { IArticleData, IArticle } from '../models/article';
 import articleValidation from "../validations/article_validation";
 import { IUploadedFile } from '../models/uploaded_file';
 import config from '../config/config';
-import fileService from './file_service';
 import imageService from './image_service';
 
 
@@ -117,10 +116,10 @@ class ArticleService {
     try {
 
       const uploadedFile = imageService.conserveFirstImageAndDeleteRest(uploadedFileList);
-      await fileService.moveFile(uploadedFile, destinationDir);
+      await imageService.moveImageToResources(uploadedFile);
       const oldImage = article.image;
       article.image = uploadedFile.filename;
-      await fileService.deleteFile(`${destinationDir}/${oldImage}`);
+      await imageService.deleteImagefromResources(oldImage);
       await article.save();
       console.log(`Imagen agregada exitosamente a articulo con id: ${article._id}.`);
       return article;
