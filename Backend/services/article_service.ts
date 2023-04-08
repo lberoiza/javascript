@@ -1,9 +1,8 @@
 import Article, { IArticleData, IArticle } from '../models/article';
 import articleValidation from "../validations/article_validation";
 import { IUploadedFile } from '../models/uploaded_file';
-import config from '../config/config';
 import imageService from './image_service';
-
+import { SortOrder } from 'mongoose';
 
 class ArticleService {
 
@@ -55,7 +54,7 @@ class ArticleService {
   }
 
 
-  public async getArticle(id: string): Promise<IArticle> {
+  public async get(id: string): Promise<IArticle> {
     console.log("Obteniendo el articulo.")
     try {
       articleValidation.isIdValid(id);
@@ -108,11 +107,11 @@ class ArticleService {
     } catch(error) {
       throw error;
     }
-
   }
+
+
   public async addImage(article: IArticle, uploadedFileList: IUploadedFile[]): Promise<IArticle> {
     console.log("Obteniendo el articulo a para agregar imagen.");
-    const destinationDir = `${config.RESOURCE_DIR}/images`;
     try {
 
       const uploadedFile = imageService.conserveFirstImageAndDeleteRest(uploadedFileList);
@@ -130,6 +129,27 @@ class ArticleService {
   }
 
 
+  public async search(search: string): Promise<IArticle[]> {
+    console.log(`Buscando Articulos segun critero de búsqueda : '${search}'.`);
+    try {
+      articleValidation.isSearchParamValid(search);
+      const queryOptions = {'$or': [
+        {'title': { '$regex': search, '$options': 'i'}},
+        {'content': { '$regex': search, '$options': 'i'}}
+      ]};
+      const sortOptions : [string, SortOrder][] = [['date', 'descending']];
+      const articles = await Article.find(queryOptions).sort(sortOptions).exec()
+
+      const numberOfArticleFound = articles.length
+      if( numberOfArticleFound== 0)
+        throw new Error(`Ningun Articulo coincide con los parametros de busqueda: '${search}'`);
+      console.log(`Se encontraron ${numberOfArticleFound} Articulos con el criterio de busqueda: '${search}'.`);
+      return articles;
+    } catch(error) {
+      throw error;
+    }
+
+  }
 
 }
 

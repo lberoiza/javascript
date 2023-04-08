@@ -67,7 +67,7 @@ class ArticleController {
   public async findArticle(req: Request, res: Response) {
     const response = new WsResponse();
     try{
-      const article = await articleService.getArticle(req.params.id);
+      const article = await articleService.get(req.params.id);
       response.addResponse(article);
     } catch(err: unknown) {
       const serviceError: ServiceError = ServiceError.fromError(err);
@@ -116,7 +116,7 @@ class ArticleController {
     const response = new WsResponse();
 
     try{
-      const article = await articleService.getArticle(req.params.id);
+      const article = await articleService.get(req.params.id);
       if(req.files?.length == 0)
         throw new Error('No se se subieron imagenes');
       
@@ -132,6 +132,22 @@ class ArticleController {
 
     return res.status(200).send(response.toJson());
   }
+
+
+  public async searchArticles(req: Request, res: Response) {
+    const response = new WsResponse();
+
+    try{
+      const articles = await articleService.search(req.params.search);
+      response.addResponse(articles);
+    } catch(err: unknown) {
+      const serviceError: ServiceError = ServiceError.fromError(err);
+      response.addError(serviceError.getErrorMessage());
+    }
+
+    return res.status(200).send(response.toJson());
+  }
+
 
 
 }
