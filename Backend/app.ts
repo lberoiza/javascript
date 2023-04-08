@@ -11,6 +11,7 @@ const app = express();
 
 // 3.- Cargar Ficheros rutas
 import routesArticle from './routes/article.routes';
+import routesImage from './routes/image.routes';
 
 
 // 4.- Middlewares (se ejecutan antes de cargar las rutas )
@@ -23,6 +24,7 @@ app.use(bodyParser.json());
 
 // 6.- Agregar prefijos a las rutas y cargar rutas
 app.use(config.APP_API_PREFIX, routesArticle);
+app.use(config.APP_API_PREFIX, routesImage);
 
 
 // 7.- Exportar modulo (fichero actual)
