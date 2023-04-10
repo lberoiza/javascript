@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ArticulosPrueba from "./ArticulosPrueba";
+import ArticulosPrueba from "./ejemplos/ArticulosPrueba";
 
 class UltimosArticulos extends Component {
 

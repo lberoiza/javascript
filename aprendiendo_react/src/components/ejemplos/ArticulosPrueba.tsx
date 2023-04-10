@@ -1,17 +1,31 @@
-import React, { Component } from "react";
-import Article, { ArticleProps } from "./Article";
+import React, { ChangeEvent, ChangeEventHandler, Component, MouseEvent } from "react";
+import Article, { ArticleProps } from "../Article";
 
 export type ArticulosPruebaProps = {
   totalOfArticles: number;
 }
 
-class ArticulosPrueba extends Component<ArticulosPruebaProps> {
+
+export type ArticulosPruebaState = {
+  articles: ArticleProps[],
+  title: string
+}
+
+
+class ArticulosPrueba extends Component<ArticulosPruebaProps, ArticulosPruebaState> {
+
 
   private articleTestProps: ArticleProps = {
     title: 'Titulo del Articulo',
     date: 'hace %s minutos.',
     imageUrl: 'https://picsum.photos/300/200?random='
   }
+
+
+  state = {
+    articles: this.createTestArticleData(),
+    title: ''
+  };
 
 
   private createTestArticleData(): ArticleProps[] {
@@ -36,11 +50,26 @@ class ArticulosPrueba extends Component<ArticulosPruebaProps> {
   }
 
 
+  private actualizaTitulo = (e : ChangeEvent<HTMLInputElement>) : void => {
+    this.setState({...this.state, title: e.target.value});
+  };
+
+
+  private cambiarTitulo = (e : MouseEvent<HTMLButtonElement>) : void => {
+    const articles = this.state.articles;
+    articles[0].title = this.state.title;
+    this.setState({articles: articles});
+  };
+
 
   public render(): JSX.Element {
     return (
       <React.Fragment>
-        {this.createTestArticleData().map((article) => (
+        <div>
+          <input type="text" name="new_title" id="newtitle" onChange={this.actualizaTitulo}/>
+          <button onClick={this.cambiarTitulo}>Cambiar Titulo</button>
+        </div>
+        {this.state.articles.map((article) => (
           <Article key={article.title} {...article} />
         ))}
       </React.Fragment>
