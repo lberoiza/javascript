@@ -5,6 +5,8 @@ import './assets/css/App.css';
 import Header from './components/Header';
 import Slider from './components/Slider';
 import Sidebar from './components/Sidebar';
+import ClearFix from './components/ClearFix';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -12,12 +14,15 @@ function App() {
     <div className="App">
       <Header></Header>
       <Slider></Slider>
+
       <div className="center">
         <section id="content">
         </section>
         <Sidebar></Sidebar>
+        <ClearFix></ClearFix>
       </div>
 
+      <Footer></Footer>
     </div>
   );
 }
