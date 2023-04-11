@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ChangeEventHandler, Component, MouseEvent } from "react";
+import React, { ChangeEvent, Component, MouseEvent } from "react";
 import Article, { ArticleProps } from "../Article";
 
 export type ArticulosPruebaProps = {
@@ -8,23 +8,30 @@ export type ArticulosPruebaProps = {
 
 export type ArticulosPruebaState = {
   articles: ArticleProps[],
-  title: string
+  title: string,
+  followArticleTitle: string
 }
 
 
 class ArticulosPrueba extends Component<ArticulosPruebaProps, ArticulosPruebaState> {
 
+  private followArticle = (article: ArticleProps): void => {
+    this.setState({ ...this.state, followArticleTitle: article.title });
+  }
+
 
   private articleTestProps: ArticleProps = {
     title: 'Titulo del Articulo',
     date: 'hace %s minutos.',
-    imageUrl: 'https://picsum.photos/300/200?random='
+    imageUrl: 'https://picsum.photos/300/200?random=',
+    follow: this.followArticle
   }
 
 
   state = {
     articles: this.createTestArticleData(),
-    title: ''
+    title: '',
+    followArticleTitle: ''
   };
 
 
@@ -50,15 +57,15 @@ class ArticulosPrueba extends Component<ArticulosPruebaProps, ArticulosPruebaSta
   }
 
 
-  private actualizaTitulo = (e : ChangeEvent<HTMLInputElement>) : void => {
-    this.setState({...this.state, title: e.target.value});
+  private actualizaTitulo = (e: ChangeEvent<HTMLInputElement>): void => {
+    this.setState({ ...this.state, title: e.target.value });
   };
 
 
-  private cambiarTitulo = (e : MouseEvent<HTMLButtonElement>) : void => {
+  private cambiarTitulo = (e: MouseEvent<HTMLButtonElement>): void => {
     const articles = this.state.articles;
     articles[0].title = this.state.title;
-    this.setState({articles: articles});
+    this.setState({ articles: articles });
   };
 
 
@@ -66,9 +73,12 @@ class ArticulosPrueba extends Component<ArticulosPruebaProps, ArticulosPruebaSta
     return (
       <React.Fragment>
         <div>
-          <input type="text" name="new_title" id="newtitle" onChange={this.actualizaTitulo}/>
+          <input type="text" name="new_title" id="newtitle" onChange={this.actualizaTitulo} />
           <button onClick={this.cambiarTitulo}>Cambiar Titulo</button>
         </div>
+        {/* Operador ternario compacto. si this.state.followArticleTitle existe, se renderiza el resto*/}
+        {this.state.followArticleTitle && <div className="message">{this.state.followArticleTitle}</div>}
+
         {this.state.articles.map((article) => (
           <Article key={article.title} {...article} />
         ))}
