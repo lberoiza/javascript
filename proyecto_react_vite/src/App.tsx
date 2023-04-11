@@ -7,7 +7,7 @@ import Slider from './components/Slider';
 import Sidebar from './components/Sidebar';
 import ClearFix from './components/ClearFix';
 import Footer from './components/Footer';
-import UltimosArticulos from './components/UltimosArticulos';
+import Router from './Router';
 
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
 
       <div className="center">
         <section id="content">
-          <UltimosArticulos></UltimosArticulos>
+          <Router />
         </section>
         <Sidebar></Sidebar>
         <ClearFix></ClearFix>
