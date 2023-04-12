@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 export type SliderProps = {
+  title: string,
   isBlog?: boolean
 };
 
@@ -9,7 +10,7 @@ function Slider(props: SliderProps): JSX.Element {
 
   return (
     <div id="slider" className={className}>
-      <h1>Bienvenido al master der ReactJS</h1>
+      <h1>{props.title}</h1>
       {!props.isBlog && <NavLink to="/blog" className="btn-white">Ir al blog</NavLink>}
     
     </div>

@@ -9,7 +9,7 @@ class Home extends Component {
   public render(): JSX.Element {
     return (
       <div id="home">
-        <Slider></Slider>
+        <Slider title='Bienvenido al master der ReactJS'></Slider>
         <div className="center">
           <section id="content">
             <UltimosArticulos></UltimosArticulos>
