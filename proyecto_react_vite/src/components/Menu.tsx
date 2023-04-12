@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 
 class Menu extends Component {
 
@@ -6,11 +7,11 @@ class Menu extends Component {
     return (
       < nav id="menu" >
         <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="formulario.html">Formulario</a></li>
-          <li><a href="#">Pagina 1</a></li>
-          <li><a href="#">Pagina 2</a></li>
+          <li><NavLink to="/">Inicio</NavLink></li>
+          <li><NavLink to="blog">Blog</NavLink></li>
+          <li><NavLink to="formulario">Formulario</NavLink></li>
+          <li><NavLink to="pagina1">Pagina 1</NavLink></li>
+          <li><NavLink to="pagina2">Pagina 2</NavLink></li>
         </ul>
       </nav >
     );
