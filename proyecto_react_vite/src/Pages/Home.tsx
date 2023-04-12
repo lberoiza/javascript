@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import Slider from '../components/Slider';
 import Sidebar from '../components/Sidebar';
-import ClearFix from '../components/ClearFix';
 import UltimosArticulos from '../components/UltimosArticulos';
 
 class Home extends Component {
@@ -16,7 +15,6 @@ class Home extends Component {
             <UltimosArticulos></UltimosArticulos>
           </section>
           <Sidebar></Sidebar>
-          <ClearFix></ClearFix>
         </div>
       </div>
     );
