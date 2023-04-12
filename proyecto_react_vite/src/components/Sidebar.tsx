@@ -9,7 +9,7 @@ class Sidebar extends Component<SidebarProps> {
 
 
 
-  private getNavBlog() : JSX.Element | null{
+  private showNavBlogIfPageIsBlog() : JSX.Element | null{
     const navBlog = this.props.isBlog ?
     (
       <div id="nav-blog" className="sidebar-item">
@@ -24,7 +24,7 @@ class Sidebar extends Component<SidebarProps> {
   public render(): JSX.Element {
     return (
       <aside id="sidebar">
-        {this.getNavBlog()}
+        {this.showNavBlogIfPageIsBlog()}
 
         <div id="search" className="sidebar-item">
           <h3>Buscador</h3>
