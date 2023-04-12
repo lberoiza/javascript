@@ -3,14 +3,14 @@ import Article, { ArticleProps } from "../Article";
 
 export type ArticulosPruebaProps = {
   totalOfArticles: number;
-}
+};
 
 
 export type ArticulosPruebaState = {
   articles: ArticleProps[],
   title: string,
   followArticleTitle: string
-}
+};
 
 
 class ArticulosPrueba extends Component<ArticulosPruebaProps, ArticulosPruebaState> {
