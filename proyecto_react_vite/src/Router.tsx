@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 
 import MiComponente from './components/ejemplos/MiComponente';
 import NotFound from './components/NotFound';
+import Formulario from './Pages/Formulario';
 
 
 
@@ -22,7 +23,8 @@ class Router extends Component {
         <Routes>
           <Route path="/" Component={Home} />
           <Route path="/blog" Component={Blog} />
-          <Route path="/formulario" element={
+          <Route path="/formulario" Component={Formulario} />
+          <Route path="/pagina1" element={
             <>
               <h2>Poniendo texto desde un render en una ruta</h2>
               <p>Este es otro elemento JSX</p>
