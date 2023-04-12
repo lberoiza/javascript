@@ -9,7 +9,7 @@ class Blog extends Component {
   public render(): JSX.Element {
     return (
       <div id="blog">
-        <Slider title='Blog' isBlog></Slider>
+        <Slider title='Blog'></Slider>
         <div className="center">
           <section id="content">
             {/* Aqui se cargaran mediante api rest, la lista de articulos */}
