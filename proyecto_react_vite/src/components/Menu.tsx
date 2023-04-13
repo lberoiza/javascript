@@ -18,7 +18,7 @@ class Menu extends Component {
           <li><NavLink className={this.classNameMethod} to="/">Inicio</NavLink></li>
           <li><NavLink className={this.classNameMethod} to="blog">Blog</NavLink></li>
           <li><NavLink className={this.classNameMethod} to="formulario">Formulario</NavLink></li>
-          <li><NavLink className={this.classNameMethod} to="pagina1">Pagina 1</NavLink></li>
+          <li><NavLink className={this.classNameMethod} to="pagina1/funcional/receta">Pagina 1</NavLink></li>
           <li><NavLink className={this.classNameMethod} to="pagina2">Pagina 2</NavLink></li>
         </ul>
       </nav >
