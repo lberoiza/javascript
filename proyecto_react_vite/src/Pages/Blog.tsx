@@ -3,10 +3,26 @@ import React, { Component } from 'react';
 import Slider from '../components/Slider';
 import Sidebar from '../components/Sidebar';
 import MiComponente from '../components/ejemplos/MiComponente';
+import FetchRequest, { WsResponse } from '../classes/FetchRequest';
 
-class Blog extends Component {
+
+type apiArticles = {
+  articles: any
+};
+
+
+class Blog extends Component<{}, apiArticles> {
+
+  state: apiArticles = { articles: {} };
+
+
+  private showArticles = (wsResponse: WsResponse) => {
+    console.log(wsResponse);
+  }
 
   public render(): JSX.Element {
+
+    // FetchRequest.get('http://localhost:3900/api/article/all/5', this.showArticles);
     return (
       <div id="blog">
         <Slider title='Blog'></Slider>
