@@ -2,28 +2,66 @@ import React, { Component } from 'react';
 
 import Slider from '../components/Slider';
 import Sidebar from '../components/Sidebar';
-import UltimosArticulos from '../components/UltimosArticulos';
-import { on } from 'events';
 
-class Formulario extends Component {
+type formUser = {
+  nombre: string,
+  apellidos: string,
+  biografia: string,
+  genero: string
+};
+
+
+class Formulario extends Component<{}, formUser> {
+
+
+  state: formUser = {
+    nombre: '',
+    apellidos: '',
+    biografia: '',
+    genero: ''
+  }
+
 
   private formAttrib = {
     nombre: React.createRef<HTMLInputElement>(),
     apellido: React.createRef<HTMLInputElement>(),
     biografia: React.createRef<HTMLTextAreaElement>(),
-    genero: {
-      hombre: React.createRef<HTMLInputElement>(),
-      mujer: React.createRef<HTMLInputElement>(),
-      noBinario: React.createRef<HTMLInputElement>()
-    },
   };
 
-  
+
+  private getFormValue(input: React.RefObject<HTMLInputElement | HTMLTextAreaElement>): string {
+    return input.current ? input.current.value : ''
+  }
+
+
   private onSubmitMethode = (event: React.FormEvent<HTMLFormElement>) => {
-    console.log(this.formAttrib);
-    console.log(this.formAttrib.nombre.current?.value);
+    const newFormData: formUser = {
+      nombre: this.getFormValue(this.formAttrib.nombre),
+      apellidos: this.getFormValue(this.formAttrib.apellido),
+      biografia: this.getFormValue(this.formAttrib.biografia),
+      genero: this.state.genero
+    }
+    console.log(newFormData);
+    this.setState(newFormData);
     event.preventDefault();
   };
+
+
+  private handleGeneroChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({ ...this.state, genero: event.target.value });
+  }
+
+
+  private showUserDataIfDataExists(): JSX.Element {
+    return (
+      <div className='user-info'>
+        {
+          Object.entries(this.state).map(([key, value]) => {
+            return value ? <p key={key}><strong>{key}</strong>: {value}</p> : null
+          })
+        }
+      </div>);
+  }
 
 
   public render(): JSX.Element {
@@ -31,6 +69,7 @@ class Formulario extends Component {
       <div id="home">
         <Slider title='Formulario'></Slider>
         <div className="center">
+          {this.showUserDataIfDataExists()}
           <section id="content">
 
             <form className="mid-form" onSubmit={this.onSubmitMethode}>
@@ -52,9 +91,9 @@ class Formulario extends Component {
 
 
               <div className="form-group radio-button">
-                <input type="radio" name="genero" ref={this.formAttrib.genero.hombre} /> Hombre
-                <input type="radio" name="genero" ref={this.formAttrib.genero.mujer} /> Mujer
-                <input type="radio" name="genero" ref={this.formAttrib.genero.noBinario} /> No Binario
+                <input type="radio" name="genero" value="hombre" onChange={this.handleGeneroChange} /> Hombre
+                <input type="radio" name="genero" value="mujer" onChange={this.handleGeneroChange} /> Mujer
+                <input type="radio" name="genero" value="NoBinario" onChange={this.handleGeneroChange} /> No Binario
               </div>
 
               <div className="clearfix"></div>
