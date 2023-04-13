@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import MiComponente from './components/ejemplos/MiComponente';
 import NotFound from './components/NotFound';
 import Formulario from './Pages/Formulario';
+import MiComponenteFuncional from './components/ejemplos/MiComponenteFuncional';
 
 
 
@@ -24,7 +25,9 @@ class Router extends Component {
           <Route path="/" Component={Home} />
           <Route path="/blog" Component={Blog} />
           <Route path="/formulario" Component={Formulario} />
-          <Route path="/pagina1" element={
+          <Route path="/pagina1/funcional/:receta_title?" element={<MiComponenteFuncional />} />
+          <Route path="/pagina1/clase/:receta_title?" element={<MiComponente />} />
+          <Route path="/pagina2" element={
             <>
               <h2>Poniendo texto desde un render en una ruta</h2>
               <p>Este es otro elemento JSX</p>
