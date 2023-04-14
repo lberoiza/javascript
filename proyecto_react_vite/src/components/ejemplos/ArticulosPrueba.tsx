@@ -21,9 +21,11 @@ class ArticulosPrueba extends Component<ArticulosPruebaProps, ArticulosPruebaSta
 
 
   private articleTestProps: ArticleProps = {
+    _id: '',
     title: 'Titulo del Articulo',
     date: 'hace %s minutos.',
-    imageUrl: 'https://picsum.photos/300/200?random=',
+    image: 'https://picsum.photos/300/200?random=',
+    content: '',
     follow: this.followArticle
   }
 
@@ -35,6 +37,16 @@ class ArticulosPrueba extends Component<ArticulosPruebaProps, ArticulosPruebaSta
   };
 
 
+  private generateUUID(): string {
+    let dt = new Date().getTime();
+    const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+      const r = (dt + Math.random() * 16) % 16 | 0;
+      dt = Math.floor(dt / 16);
+      return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+    return uuid;
+  }
+
   private createTestArticleData(): ArticleProps[] {
     const { totalOfArticles } = this.props;
     const articles: ArticleProps[] = [];
@@ -45,9 +57,11 @@ class ArticulosPrueba extends Component<ArticulosPruebaProps, ArticulosPruebaSta
       // copia todas las propiedades del modelo
       const article: ArticleProps = { ...this.articleTestProps };
 
+      // setea el ID
+      article._id= this.generateUUID();
       // agrega un número al final de la URL de la imagen
       article.title = `${this.articleTestProps.title} ${i + 1}`;
-      article.imageUrl = this.articleTestProps.imageUrl + i;
+      article.image = this.articleTestProps.image + i;
       // reemplaza %s con el número aleatorio generado
       article.date = article.date.replace('%s', `${randomMinutes}`)
 
@@ -80,7 +94,7 @@ class ArticulosPrueba extends Component<ArticulosPruebaProps, ArticulosPruebaSta
         {this.state.followArticleTitle && <div className="message">{this.state.followArticleTitle}</div>}
 
         {this.state.articles.map((article) => (
-          <Article key={article.title} {...article} />
+          <Article key={article._id} {...article} />
         ))}
       </React.Fragment>
     );
