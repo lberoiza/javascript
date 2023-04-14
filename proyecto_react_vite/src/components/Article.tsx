@@ -1,10 +1,13 @@
 import React, { Component, MouseEvent } from "react";
+import ApiImage from "../api/ApiImage";
 import ClearFix from "./ClearFix";
 
 export interface ArticleProps {
+  _id: string,
   title: string;
-  imageUrl: string;
+  image: string;
   date: string;
+  content: string,
   follow(article: ArticleProps): void;
 };
 
@@ -27,12 +30,13 @@ class Article extends Component<ArticleProps, ArticleState> {
     this.props.follow(this.props);
   }
 
+
   render() {
-    const { title, imageUrl, date, follow } = this.props;
+    const { _id, title, image, date, follow } = this.props;
     return (
-      <article className="article-item">
+      <article id={_id} className="article-item">
         <div className="image-wrap">
-          <img src={imageUrl} alt="Article Image" />
+          <img src={ApiImage.getImageUrl(image)} alt="Article Image" />
         </div>
         <button className="btn-follow star-button" onClick={this.callFollow} disabled={this.state.btnSeguir.disabled}>
           <span className="star-icon"></span>
