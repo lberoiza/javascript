@@ -5,17 +5,25 @@ import Sidebar from '../components/Sidebar';
 import ApiArticle from '../api/ApiArticle';
 import WsResult, { WsResultObject } from '../classes/WsResult';
 import { FetchRequestResponse } from '../classes/FetchRequest';
+import Article, { ArticleProps } from '../components/Article';
 
 
 type BlogPropsType = {
   [key: string]: string
 }
 
+type BlogState = {
+  followArticleTitle: string,
+  articleRespose: WsResultObject
+}
 
-class Blog extends Component<BlogPropsType, WsResultObject> {
+class Blog extends Component<BlogPropsType, BlogState> {
 
   private wsResult = new WsResult()
-  state: WsResultObject = this.wsResult.toState();
+  state: BlogState = {
+    followArticleTitle: '',
+    articleRespose: this.wsResult.toState()
+  };
 
   constructor(props: BlogPropsType) {
     super(props);
@@ -28,11 +36,11 @@ class Blog extends Component<BlogPropsType, WsResultObject> {
   private loadArticles(): void {
     const self = this;
     ApiArticle.getList().then((response: FetchRequestResponse) => {
-      self.setState(self.wsResult.setFetchRequestResponse(response).toState());
+      self.setState({ articleRespose: self.wsResult.setFetchRequestResponse(response).toState() });
     }).catch(error => {
       console.error(error)
       self.wsResult.addError("Hubo un error al cargar los datos");
-      self.setState(self.wsResult.toState());
+      self.setState({ articleRespose: self.wsResult.toState() });
     });
   }
 
@@ -57,18 +65,23 @@ class Blog extends Component<BlogPropsType, WsResultObject> {
 
   private showArticleList(): JSX.Element {
     if (this.wsResult.hasResponse()) {
-      console.log(this.wsResult);
+      const articleList = this.wsResult.getResponse() as ArticleProps[]
       return (
-        <p>Se encontraron un total de {this.wsResult.getResponse().length}</p>
-        
+        <>
+          {articleList.map(article => (<Article key={article._id} {...article} follow={this.followArticle} />))}
+        </>
       );
     } else {
       return (
-          <p>Todavia no existen articulos para mostar</p>
-        );
+        <p>Todavia no existen articulos para mostar</p>
+      );
     }
   }
 
+
+  private followArticle = (article: ArticleProps): void => {
+    this.setState({ followArticleTitle: article.title });
+  }
 
   public render(): JSX.Element {
     return (
@@ -77,6 +90,8 @@ class Blog extends Component<BlogPropsType, WsResultObject> {
         <div className="center">
           <section id="content">
             {/* Aqui se cargaran mediante api rest, la lista de articulos */}
+            {/* Operador ternario compacto. si this.state.followArticleTitle existe, se renderiza el resto*/}
+            {this.state.followArticleTitle && <div className="message">{this.state.followArticleTitle}</div>}
             {this.showArticles()}
             {/* <MiComponente /> */}
           </section>
