@@ -1,28 +1,27 @@
-export type WsResponse = {
+export type FetchRequestResponse = {
   isSuccessful: boolean,
   successMessages: string[],
   warningMessages: string[],
   errorMessages: string[],
   response: any
-
 }
 
 
 class FetchRequest {
-  public static getRailsCsrfToken(): string {
+  public getRailsCsrfToken(): string {
     const csrfToken = document.querySelector("[name='csrf-token']");
     // return csrfToken ? csrfToken.content : '';
     return '';
   }
 
-  public static getRequestHeader(): Record<string, string> {
+  public getRequestHeader(): Record<string, string> {
     return {
-      // 'X-CSRF-Token': FetchRequest.getRailsCsrfToken(),
+      // 'X-CSRF-Token': this.getRailsCsrfToken(),
       'Content-Type': 'application/json'
     };
   }
 
-  public static objectToQueryString(requestParams: Record<string, string>): string {
+  public objectToQueryString(requestParams: Record<string, string>): string {
     const keys = Object.keys(requestParams);
     if (keys.length === 0) {
       return '';
@@ -43,91 +42,55 @@ class FetchRequest {
     );
   }
 
-  public static postOptions(params: Record<string, string> = {}): RequestInit {
+  public postOptions(params: Record<string, string> = {}): RequestInit {
     return {
       method: 'POST',
-      headers: FetchRequest.getRequestHeader(),
+      headers: this.getRequestHeader(),
       body: JSON.stringify(params)
     };
   }
 
-  public static post(
+  public post(
     urlPath: string,
-    successCallBack: ((result: WsResponse) => void) | null = null,
     params: Record<string, string> = {},
-    failHandler = '#message-error'
-  ): void {
-    const options = FetchRequest.postOptions(params);
-    fetch(urlPath, options)
-      .then(wsResponse => wsResponse.json())
-      .then((result: WsResponse) => (successCallBack ? successCallBack(result) : result))
-      .catch(error => {
-        FetchRequest.doFailureHandler(error, failHandler);
-      });
+  ): Promise<FetchRequestResponse> {
+    const options = this.postOptions(params);
+    return fetch(urlPath, options).then(response => response.json());
   }
 
-  public static getOptions(): RequestInit {
+  public getOptions(): RequestInit {
     return {
       method: 'GET',
-      headers: FetchRequest.getRequestHeader()
+      headers: this.getRequestHeader()
     };
   }
 
-  public static get(
+  public get(
     urlPath: string,
-    successCallBack: ((result: WsResponse) => void) | null = null,
     params: Record<string, string> = {},
-    failHandler = '#message-error'
-  ): void {
-    const options = FetchRequest.getOptions();
-    const url = `${urlPath}${FetchRequest.objectToQueryString(params)}`;
-    fetch(url, options)
-      .then(wsResponse => wsResponse.json())
-      .then((result: WsResponse) => (successCallBack ? successCallBack(result) : result))
-      .catch(error => {
-        FetchRequest.doFailureHandler(error, failHandler);
-      });
+  ): Promise<FetchRequestResponse> {
+    const options = this.getOptions();
+    const url = `${urlPath}${this.objectToQueryString(params)}`;
+    return fetch(url, options).then(response => response.json());
   }
 
-  public static formPostOptions(formData: FormData): RequestInit {
+  public formPostOptions(formData: FormData): RequestInit {
     return {
       method: 'POST',
-      headers: FetchRequest.getRequestHeader(),
+      headers: this.getRequestHeader(),
       body: formData
     };
   }
 
-  public static postForm(
+  public postForm(
     urlPath: string,
-    successCallBack: ((result: WsResponse) => void) | null = null,
     formData = new FormData(),
-    failHandler = '#message-error'
-  ): void {
-    const options = FetchRequest.formPostOptions(formData);
-    fetch(urlPath, options)
-      .then(wsResponse => wsResponse.json())
-      .then((result: WsResponse) => (successCallBack ? successCallBack(result) : result))
-      .catch(error => {
-        FetchRequest.doFailureHandler(error, failHandler);
-      });
+  ): Promise<FetchRequestResponse> {
+    const options = this.formPostOptions(formData);
+    return fetch(urlPath, options).then(response => response.json());
   }
 
 
-  private static doFailureHandler = (error: any, failHandler: string | Function): void => {
-    console.error(error);
-  
-    // if (failHandler instanceof Function) {
-    //   failHandler();
-    // } else {
-    //   if (document.querySelector(failHandler)) {
-    //     // FlashMessageHelper es una clase de ejemplo, deberías definirla en tu código.
-    //     FlashMessageHelper.show_error(FlashMessageHelper.SUPPORT_MESSAGE, false, failHandler);
-    //   } else {
-    //     alert(FlashMessageHelper.SUPPORT_MESSAGE);
-    //   }
-    // }
-  };
-
 }
 
-export default FetchRequest
+export default new FetchRequest()
