@@ -30,7 +30,11 @@ class ArticleValidation {
 
   
   public isLastParamsValid(last: string) {
-    return validator.isNumeric(last);
+    try {
+      return validator.isNumeric(last);
+    }catch(error) {
+      return false;
+    }
   }
 
 
