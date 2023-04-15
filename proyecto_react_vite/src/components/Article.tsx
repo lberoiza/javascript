@@ -1,6 +1,7 @@
 import React, { Component, MouseEvent } from "react";
 import ApiImage from "../api/ApiImage";
 import ClearFix from "./ClearFix";
+import Dayjs from "./Dayjs";
 
 export interface ArticleProps {
   _id: string,
@@ -33,6 +34,7 @@ class Article extends Component<ArticleProps, ArticleState> {
 
   render() {
     const { _id, title, image, date, follow } = this.props;
+
     return (
       <article id={_id} className="article-item">
         <div className="image-wrap">
@@ -42,7 +44,7 @@ class Article extends Component<ArticleProps, ArticleState> {
           <span className="star-icon"></span>
         </button>
         <h2>{title}</h2>
-        <span className="date">{date}</span>
+        <Dayjs className="date">{date}</Dayjs>
         <a href="#" className="btn">
           Leer más ...
         </a>
