@@ -1,5 +1,5 @@
 import React, { ChangeEvent, Component, MouseEvent } from "react";
-import Article, { ArticleProps } from "../Article";
+import ArticlePreview, { ArticlePreviewProps } from "../ArticlePreview";
 
 export type ArticulosPruebaProps = {
   totalOfArticles: number;
@@ -7,7 +7,7 @@ export type ArticulosPruebaProps = {
 
 
 export type ArticulosPruebaState = {
-  articles: ArticleProps[],
+  articles: ArticlePreviewProps[],
   title: string,
   followArticleTitle: string
 };
@@ -15,12 +15,12 @@ export type ArticulosPruebaState = {
 
 class ArticulosPrueba extends Component<ArticulosPruebaProps, ArticulosPruebaState> {
 
-  private followArticle = (article: ArticleProps): void => {
+  private followArticle = (article: ArticlePreviewProps): void => {
     this.setState({ ...this.state, followArticleTitle: article.title });
   }
 
 
-  private articleTestProps: ArticleProps = {
+  private articleTestProps: ArticlePreviewProps = {
     _id: '',
     title: 'Titulo del Articulo',
     date: 'hace %s minutos.',
@@ -47,15 +47,15 @@ class ArticulosPrueba extends Component<ArticulosPruebaProps, ArticulosPruebaSta
     return uuid;
   }
 
-  private createTestArticleData(): ArticleProps[] {
+  private createTestArticleData(): ArticlePreviewProps[] {
     const { totalOfArticles } = this.props;
-    const articles: ArticleProps[] = [];
+    const articles: ArticlePreviewProps[] = [];
 
     for (let i = 0; i < totalOfArticles; i++) {
       // genera un número aleatorio entre 0 y 59
       const randomMinutes = Math.floor(Math.random() * 60);
       // copia todas las propiedades del modelo
-      const article: ArticleProps = { ...this.articleTestProps };
+      const article: ArticlePreviewProps = { ...this.articleTestProps };
 
       // setea el ID
       article._id= this.generateUUID();
@@ -94,7 +94,7 @@ class ArticulosPrueba extends Component<ArticulosPruebaProps, ArticulosPruebaSta
         {this.state.followArticleTitle && <div className="message">{this.state.followArticleTitle}</div>}
 
         {this.state.articles.map((article) => (
-          <Article key={article._id} {...article} />
+          <ArticlePreview key={article._id} {...article} />
         ))}
       </React.Fragment>
     );

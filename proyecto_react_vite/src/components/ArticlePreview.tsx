@@ -3,24 +3,24 @@ import ApiImage from "../api/ApiImage";
 import ClearFix from "./ClearFix";
 import Dayjs from "./Dayjs";
 
-export interface ArticleProps {
+export interface ArticlePreviewProps {
   _id: string,
   title: string;
   image: string;
   date: string;
   content: string,
-  follow(article: ArticleProps): void;
+  follow(article: ArticlePreviewProps): void;
 };
 
 
-type ArticleState = {
+type ArticlePreviewState = {
   btnSeguir: {
     disabled: boolean
   }
 };
 
 
-class Article extends Component<ArticleProps, ArticleState> {
+class ArticlePreview extends Component<ArticlePreviewProps, ArticlePreviewState> {
 
   state = {
     btnSeguir: { disabled: false }
@@ -54,4 +54,4 @@ class Article extends Component<ArticleProps, ArticleState> {
   }
 }
 
-export default Article;
+export default ArticlePreview;

@@ -5,7 +5,7 @@ import Sidebar from '../components/Sidebar';
 import ApiArticle from '../api/ApiArticle';
 import WsResult, { WsResultObject } from '../classes/WsResult';
 import { FetchRequestResponse } from '../classes/FetchRequest';
-import Article, { ArticleProps } from '../components/Article';
+import ArticlePreview, { ArticlePreviewProps } from '../components/ArticlePreview';
 
 
 type BlogPropsType = {
@@ -65,10 +65,10 @@ class Blog extends Component<BlogPropsType, BlogState> {
 
   private showArticleList(): JSX.Element {
     if (this.wsResult.hasResponse()) {
-      const articleList = this.wsResult.getResponse() as ArticleProps[]
+      const articleList = this.wsResult.getResponse() as ArticlePreviewProps[]
       return (
         <>
-          {articleList.map(article => (<Article key={article._id} {...article} follow={this.followArticle} />))}
+          {articleList.map(article => (<ArticlePreview key={article._id} {...article} follow={this.followArticle} />))}
         </>
       );
     } else {
@@ -79,7 +79,7 @@ class Blog extends Component<BlogPropsType, BlogState> {
   }
 
 
-  private followArticle = (article: ArticleProps): void => {
+  private followArticle = (article: ArticlePreviewProps): void => {
     this.setState({ followArticleTitle: article.title });
   }
 
