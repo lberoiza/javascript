@@ -1,4 +1,5 @@
 import React, { Component, MouseEvent } from "react";
+import {Link} from 'react-router-dom';
 import ApiImage from "../api/ApiImage";
 import ClearFix from "./ClearFix";
 import Dayjs from "./Dayjs";
@@ -45,9 +46,9 @@ class ArticlePreview extends Component<ArticlePreviewProps, ArticlePreviewState>
         </button>
         <h2>{title}</h2>
         <Dayjs className="date">{date}</Dayjs>
-        <a href="#" className="btn">
+        <Link to={'/blog/article/'+_id} className="btn">
           Leer más ...
-        </a>
+        </Link>
         <ClearFix></ClearFix>
       </article>
     );
