@@ -13,16 +13,16 @@ type ArticleUrlParams = {
   id: string;
 }
 
-function renderArticle(response: ArticleResponse): JSX.Element {
+function renderArticle(article: ArticleResponse): JSX.Element {
   return (
-    <article className="article-item article-detail">
+    <article id={article._id} className="article-item article-detail">
       <div className="image-wrap">
-        <img src={ApiImage.getImageUrl(response.image)} alt="Article Image" />
+        <img src={ApiImage.getImageUrl(article.image)} alt="Article Image" />
       </div>
-      <h1 className="subheader">{response.title}</h1>
-      <Dayjs className="date">{response.date}</Dayjs>
+      <h1 className="subheader">{article.title}</h1>
+      <Dayjs className="date">{article.date}</Dayjs>
       <div className="article-text">
-        {response.content}
+        {article.content}
       </div>
     </article>
   );
