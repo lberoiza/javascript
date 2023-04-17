@@ -1,30 +1,53 @@
 import { useState, useEffect } from "react";
 
-interface UseFetchReturn {
-  data: any;
+
+type FetchResponse<T> = {
+  isSuccessful: boolean,
+  successMessages: string[],
+  warningMessages: string[],
+  errorMessages: string[],
+  response: T | null,
+};
+
+
+export type UseFetchReturn<T> = {
+  data: FetchResponse<T>;
   loading: boolean;
-  error: any;
+  error: Error | null;
   handleCancelRequest: () => void;
 }
 
-const useFetch = (url: string): UseFetchReturn => {
-  const [data, setData] = useState<any>(null);
+
+const useFetch = <T>(url: string): UseFetchReturn<T> => {
+  const fetchResponse = <FetchResponse<T>>({
+    isSuccessful: true,
+    successMessages: [],
+    warningMessages: [],
+    errorMessages: [],
+    response: null,
+  });
+
+  const [data, setData] = useState<FetchResponse<T>>(fetchResponse);
+  const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<any>(null);
-  const [controller, setController] = useState<AbortController | null>(null);
+
+
+  const abortController = new AbortController();
 
   useEffect(() => {
-    const abortController = new AbortController();
-    setController(abortController);
 
     fetch(url, { signal: abortController.signal })
       .then((response) => response.json())
-      .then((json) => setData(json))
+      .then((json) => {
+        data.response = json as T;
+        console.log({data});
+        setData(data);
+      })
       .catch((error) => {
         if (error.name === "AbortError") {
           console.log("Cancelled request");
         } else {
-          setError(error);
+          setError(error as Error);
         }
       })
       .finally(() => setLoading(false));
@@ -32,10 +55,10 @@ const useFetch = (url: string): UseFetchReturn => {
     return () => abortController.abort();
   }, [url]);
 
+
   const handleCancelRequest = () => {
-    if (controller) {
-      controller.abort();
-      setError("Cancelled Request");
+    if (abortController) {
+      abortController.abort();
     }
   };
 
