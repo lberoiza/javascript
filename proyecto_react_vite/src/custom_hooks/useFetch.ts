@@ -39,21 +39,18 @@ const useFetch = <T>(url: string): UseFetchReturn<T> => {
   useEffect(() => {
     const controller = new AbortController();
     setAbortController(controller);
-    const fetchData = async function () {
-      try {
-        const response = await fetch(url, { signal: controller.signal });
-        if (!response.ok) throw new Error("Error al leer los datos desde la API");
-        const jsonData = (await response.json()) as FetchResponse<T>;
-        setData(jsonData);
-      } catch (error: any) {
+
+    fetch(url, { signal: controller.signal })
+      .then(response => response.json())
+      .then(jsonResponse => {
+        setData(jsonResponse as FetchResponse<T>);
+      })
+      .catch(error => {
         if (error.name !== "AbortError") {
           setError(error as Error);
         }
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
+      })
+      .finally(() => setLoading(false))
 
     return () => handleCancelRequest();
   }, [url]);
