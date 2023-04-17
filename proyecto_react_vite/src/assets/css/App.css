@@ -310,6 +310,7 @@ textarea {
   border: 1px solid #444
 }
 
+.article-item .image-wrap a,
 .article-item .image-wrap img {
   height: 100%;
   text-align: center;
