@@ -2,8 +2,13 @@ import Config from '../config/Config'
 import FetchRequest from "../classes/FetchRequest";
 import { FetchRequestResponse } from "../classes/FetchRequest";
 
-export type ArticleTyp = {
-  [key:string]: string;
+export type ArticleResponse = {
+  __id: string,
+  title: string,
+  content: string,
+  date: string,
+  image: string,
+  __v: number
 }
 
 
