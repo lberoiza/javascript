@@ -1,15 +1,11 @@
 import React, { Component, MouseEvent } from "react";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ApiImage from "../api/ApiImage";
 import ClearFix from "./ClearFix";
 import Dayjs from "./Dayjs";
+import { ArticleResponse } from '../api/ApiArticle';
 
-export interface ArticlePreviewProps {
-  _id: string,
-  title: string;
-  image: string;
-  date: string;
-  content: string,
+export interface ArticlePreviewProps extends ArticleResponse {
   follow(article: ArticlePreviewProps): void;
 };
 
@@ -39,14 +35,16 @@ class ArticlePreview extends Component<ArticlePreviewProps, ArticlePreviewState>
     return (
       <article id={_id} className="article-item">
         <div className="image-wrap">
-          <img src={ApiImage.getImageUrl(image)} alt="Article Image" />
+          <Link to={'/blog/article/' + _id}>
+            <img src={ApiImage.getImageUrl(image)} alt="Article Image" />
+          </Link>
         </div>
         <button className="btn-follow star-button" onClick={this.callFollow} disabled={this.state.btnSeguir.disabled}>
           <span className="star-icon"></span>
         </button>
         <h2>{title}</h2>
         <Dayjs className="date">{date}</Dayjs>
-        <Link to={'/blog/article/'+_id} className="btn">
+        <Link to={'/blog/article/' + _id} className="btn">
           Leer más ...
         </Link>
         <ClearFix></ClearFix>
