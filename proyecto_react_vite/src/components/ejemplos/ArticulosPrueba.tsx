@@ -26,6 +26,7 @@ class ArticulosPrueba extends Component<ArticulosPruebaProps, ArticulosPruebaSta
     date: 'hace %s minutos.',
     image: 'https://picsum.photos/300/200?random=',
     content: '',
+    __v: 0,
     follow: this.followArticle
   }
 
