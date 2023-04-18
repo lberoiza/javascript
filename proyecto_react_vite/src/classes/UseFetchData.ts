@@ -20,6 +20,7 @@ class UseFetchData<T> implements IUseFetchData<T>{
   response: T | null = null;
 
   public setFetchData(data: IUseFetchData<T>): UseFetchData<T> {
+    this.isSuccessful = data.isSuccessful;
     this.successMessages = data.successMessages;
     this.warningMessages = data.warningMessages;
     this.errorMessages = data.errorMessages;
