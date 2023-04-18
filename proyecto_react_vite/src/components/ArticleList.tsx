@@ -54,7 +54,7 @@ const ArticleList = (props: ArticleListProps): JSX.Element => {
       {loading && <Loading></Loading>}
       {error && <Error></Error>}
       {data.hasErrors() && <Error errors={data.errorMessages}></Error>}
-      {showArticleList(data, followArticle)}
+      {data.isSuccessful && showArticleList(data, followArticle)}
     </section>
   );
 }
