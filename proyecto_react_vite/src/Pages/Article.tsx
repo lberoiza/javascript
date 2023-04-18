@@ -41,7 +41,8 @@ const Article = (): JSX.Element => {
         <div id="article-container">
           {loading && <Loading></Loading>}
           {error && <Error></Error>}
-          {data.response && renderArticle(data.response)}
+          {data.hasErrors() && <Error errors={data.errorMessages}></Error>}
+          {data.hasResponse() && renderArticle(data.response!)}
         </div>
       </section>
       <Sidebar isBlog></Sidebar>

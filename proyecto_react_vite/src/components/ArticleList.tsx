@@ -1,10 +1,12 @@
 import { useState } from "react";
 import ApiConstant from "../api/ApiConstant";
 import useFetch from "../custom_hooks/useFetch";
+import UseFetchData from "../classes/UseFetchData";
 import { ArticleResponse } from "../api/ApiArticle";
 import Error from "./Error";
 import Loading from "./Loading";
 import ArticlePreview from "./ArticlePreview";
+
 
 
 type ArticleListProps = {
@@ -16,8 +18,9 @@ type ArticleListState = {
 }
 
 
-function showArticleList(articleList: ArticleResponse[] | null, followArticle: (f: ArticleResponse) => void): JSX.Element {
-  if (articleList) {
+function showArticleList(fetchData: UseFetchData<ArticleResponse[]>, followArticle: (f: ArticleResponse) => void): JSX.Element {
+  if(fetchData.hasResponse()){
+    const articleList = fetchData.response!;
     return (
       <div id="article-container">
         {articleList.map(article => (<ArticlePreview key={article._id} {...article} follow={followArticle} />))}
@@ -51,7 +54,8 @@ const ArticleList = (props: ArticleListProps): JSX.Element => {
       {blogState.followArticleTitle && <div className="message">{blogState.followArticleTitle}</div>}
       {loading && <Loading></Loading>}
       {error && <Error></Error>}
-      {data.response && showArticleList(data.response, followArticle)}
+      {data.hasErrors() && <Error errors={data.errorMessages}></Error>}
+      {showArticleList(data, followArticle)}
     </section>
   );
 }
