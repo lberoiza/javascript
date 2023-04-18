@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import NotFound from './Pages/NotFound';
 import Formulario from './Pages/Formulario';
 import Article from './Pages/Article';
+import Search from './Pages/Search';
 
 // Componente de Ejemplo
 import MiComponente from './components/ejemplos/MiComponente';
@@ -30,6 +31,7 @@ class Router extends Component {
           <Route path="/" Component={Home} />
           <Route path="/blog" Component={Blog} />
           <Route path="/blog/article/:id" element={<Article></Article>} />
+          <Route path="/search/:search" element={<Search></Search>} />
           <Route path="/formulario" Component={Formulario} />
           <Route path="/pagina1/funcional/:receta_title?" element={<MiComponenteFuncional />} />
           <Route path="/pagina1/clase/:receta_title?" element={<MiComponente />} />
