@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Slider from '../components/Slider';
 import Sidebar from '../components/Sidebar';
-import UltimosArticulos from '../components/UltimosArticulos';
+import ArticleList from "../components/ArticleList";
 
 class Home extends Component {
 
@@ -12,7 +12,9 @@ class Home extends Component {
         <Slider isHome title='Bienvenido al master der ReactJS'></Slider>
         <div className="center">
           <section id="content">
-            <UltimosArticulos></UltimosArticulos>
+            <h2 className="subheader">Últimos artículos</h2>
+            {/* <!-- LISTADO ULTIMOS ARTICULOS ARTICULOS --> */}
+            <ArticleList nrOfArticlesToShow={3}></ArticleList>
           </section>
           <Sidebar></Sidebar>
         </div>
