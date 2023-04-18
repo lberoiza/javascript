@@ -10,7 +10,7 @@ import ArticlePreview from "./ArticlePreview";
 
 
 type ArticleListProps = {
-  nrOfArticlesToShow?: number
+  articlesApiUrl?: string
 }
 
 type ArticleListState = {
@@ -36,8 +36,7 @@ function showArticleList(fetchData: UseFetchData<ArticleResponse[]>, followArtic
 
 const ArticleList = (props: ArticleListProps): JSX.Element => {
 
-  const numberOfLastArticles = props.nrOfArticlesToShow ? `/${props.nrOfArticlesToShow}` : '';
-  const apiUrl = ApiConstant.ARTICLE.GET_ALL_ARTICLES + numberOfLastArticles;
+  const apiUrl = props.articlesApiUrl ? props.articlesApiUrl : ApiConstant.ARTICLE.GET_ALL_ARTICLES;
 
   const { data, error, loading } = useFetch<ArticleResponse[]>(apiUrl);
   const [blogState, setBlogState] = useState<ArticleListState>({
