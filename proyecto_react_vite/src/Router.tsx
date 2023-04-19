@@ -8,16 +8,16 @@ import Blog from './Pages/Blog'
 import ClearFix from './components/ClearFix';
 import Footer from './components/Footer';
 
+// Componente de Ejemplo
+import MiComponente from './components/ejemplos/MiComponente';
+import MiComponenteFuncional from './components/ejemplos/MiComponenteFuncional';
+
 // Paginas
 import NotFound from './Pages/NotFound';
 import Formulario from './Pages/Formulario';
 import ArticlePage from './Pages/ArticlePage';
 import Search from './Pages/Search';
-
-// Componente de Ejemplo
-import MiComponente from './components/ejemplos/MiComponente';
-import MiComponenteFuncional from './components/ejemplos/MiComponenteFuncional';
-
+import ArticleNewPage from './Pages/ArticleNewPage';
 
 
 
@@ -31,6 +31,7 @@ class Router extends Component {
           <Route path="/" Component={Home} />
           <Route path="/blog" Component={Blog} />
           <Route path="/blog/article/:id" element={<ArticlePage></ArticlePage>} />
+          <Route path="/blog/nuevo" element={<ArticleNewPage></ArticleNewPage>} />
           <Route path="/search/:search" element={<Search></Search>} />
           <Route path="/formulario" Component={Formulario} />
           <Route path="/pagina1/funcional/:receta_title?" element={<MiComponenteFuncional />} />
