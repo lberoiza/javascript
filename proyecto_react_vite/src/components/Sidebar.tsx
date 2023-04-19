@@ -1,5 +1,5 @@
-import SearchArticleForm from "./SearchArticleForm";
-import ArticleNew from "./ArticleNew";
+import SearchArticleForm from "./SidebarSearchArticleForm";
+import SidebarArticleNew from "./SidebarArticleNew";
 
 
 export type SidebarProps = {
@@ -10,7 +10,7 @@ export type SidebarProps = {
 const Sidebar = (props: SidebarProps): JSX.Element => {
   return (
     <aside id="sidebar">
-      {props.isBlog && <ArticleNew />}
+      {props.isBlog && <SidebarArticleNew />}
       <SearchArticleForm></SearchArticleForm>
     </aside>
   );
