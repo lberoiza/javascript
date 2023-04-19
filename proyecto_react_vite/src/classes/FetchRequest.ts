@@ -1,18 +1,12 @@
-export type FetchRequestResponse = {
-  isSuccessful: boolean,
-  successMessages: string[],
-  warningMessages: string[],
-  errorMessages: string[],
-  response: any
+import { IUseFetchData } from "./UseFetchData";
+
+
+export type FetchRequestReturn<T> = {
+  promise: Promise<IUseFetchData<T>>,
+  abortController: AbortController
 }
 
-
 class FetchRequest {
-  public getRailsCsrfToken(): string {
-    const csrfToken = document.querySelector("[name='csrf-token']");
-    // return csrfToken ? csrfToken.content : '';
-    return '';
-  }
 
   public getRequestHeader(): Record<string, string> {
     return {
@@ -21,6 +15,7 @@ class FetchRequest {
     };
   }
 
+  
   public objectToQueryString(requestParams: Record<string, string>): string {
     const keys = Object.keys(requestParams);
     if (keys.length === 0) {
@@ -42,6 +37,7 @@ class FetchRequest {
     );
   }
 
+
   public postOptions(params: Record<string, string> = {}): RequestInit {
     return {
       method: 'POST',
@@ -50,13 +46,15 @@ class FetchRequest {
     };
   }
 
-  public post(
+
+  public post<T>(
     urlPath: string,
-    params: Record<string, string> = {},
-  ): Promise<FetchRequestResponse> {
-    const options = this.postOptions(params);
-    return fetch(urlPath, options).then(response => response.json());
+    params = {},
+    options: RequestInit = this.postOptions(params)
+  ): FetchRequestReturn<T> {
+    return this.fetch<T>(urlPath, options);
   }
+
 
   public getOptions(): RequestInit {
     return {
@@ -65,31 +63,42 @@ class FetchRequest {
     };
   }
 
-  public get(
+
+  public get<T>(
     urlPath: string,
     params: Record<string, string> = {},
-  ): Promise<FetchRequestResponse> {
-    const options = this.getOptions();
+    options: RequestInit = this.postOptions(params)
+  ): FetchRequestReturn<T> {
     const url = `${urlPath}${this.objectToQueryString(params)}`;
-    return fetch(url, options).then(response => response.json());
+    return this.fetch<T>(urlPath, options);
   }
 
-  public formPostOptions(formData: FormData): RequestInit {
+
+  public formPostOptions(): RequestInit {
     return {
-      method: 'POST',
-      headers: this.getRequestHeader(),
-      body: formData
+      method: 'POST'
     };
   }
 
-  public postForm(
+
+  public postForm<T>(
     urlPath: string,
     formData = new FormData(),
-  ): Promise<FetchRequestResponse> {
-    const options = this.formPostOptions(formData);
-    return fetch(urlPath, options).then(response => response.json());
+    options: RequestInit = this.formPostOptions()
+  ): FetchRequestReturn<T>  {
+    options.body = formData;
+    return this.fetch<T>(urlPath, options);
   }
 
+
+  public fetch<T>(urlPath: string, options: RequestInit): FetchRequestReturn<T> {
+    const controller = new AbortController();
+    options.signal = controller.signal;
+    return {
+      promise: fetch(urlPath, options).then(response => response.json()),
+      abortController: controller
+    };
+  }
 
 }
 
