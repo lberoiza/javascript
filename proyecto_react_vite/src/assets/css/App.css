@@ -264,8 +264,12 @@ div.message {
   margin-bottom: 5px;
   font-size: 17px;
 }
+.mid-form .form-group {
+  margin-bottom: 10px;
+}
 
 input[type="text"],
+input[type="file"],
 textarea {
   width: 100%;
   min-height: 30px;
@@ -278,6 +282,7 @@ textarea {
 }
 
 input[type="text"]:hover,
+input[type="file"]:hover,
 textarea:hover {
   border: 1px solid #61dafb;
   box-shadow: 0px 0px 5px #61dafb inset;
