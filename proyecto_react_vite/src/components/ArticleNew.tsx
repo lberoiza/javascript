@@ -1,17 +1,7 @@
-import React, { FormEvent, useState } from "react";
+import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useForm from "../hooks/useForm";
-import FetchRequest from "../classes/FetchRequest";
-import { IUseFetchData } from '../classes/UseFetchData'
-import { ArticleResponse } from "../api/ApiArticle";
-import ApiConstant from "../api/ApiConstant";
-
-
-type ArticleFormFields = {
-  title: string,
-  content: string
-  imagen: File
-}
+import ApiArticle, { ArticleFormFields } from "../api/ApiArticle";
 
 
 export default function ArticleNew(): JSX.Element {
@@ -27,17 +17,7 @@ export default function ArticleNew(): JSX.Element {
       if (!validateStringFields(formDataObject)) throw new Error("Titulo o Contenido del Articulo vacio.");
       if (formDataObject.imagen.name == '') throw new Error("No se ha Selecionado imagen para el Articulo");
 
-      const { promise } = FetchRequest.post<ArticleResponse>(ApiConstant.ARTICLE.POST_NEW_ARTICLE, formDataObject)
-      promise.then(wsResult => {
-        const id = wsResult.response?._id;
-        const form = new FormData();
-        form.append('imagen', formDataObject.imagen, formDataObject.imagen.name);
-
-        const { promise } = FetchRequest.postForm<ArticleResponse>(`${ApiConstant.ARTICLE.POST_ADD_IMAGE_TO_ARTICLE}/${id}`, form)
-        promise.then(wsResult => {
-          navigation(`/blog/article/${id}`);
-        });
-      });
+      ApiArticle.createCompleteArticle(formDataObject, (wsResult) => navigation(`/blog/article/${wsResult.response?._id}`))
 
     } catch (error) {
       console.log(error);
