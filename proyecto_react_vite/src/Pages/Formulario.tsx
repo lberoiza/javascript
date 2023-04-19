@@ -74,26 +74,26 @@ class Formulario extends Component<{}, formUser> {
 
             <form className="mid-form" onSubmit={this.onSubmitMethode}>
               <div className="form-group">
-                <label htmlFor="nombre">Nombre</label>
-                <input type="text" name="nombre" ref={this.formAttrib.nombre} />
+                <label htmlFor="nombre">Ingrese Nombre</label>
+                <input type="text" name="nombre" ref={this.formAttrib.nombre} placeholder='José Pepe'/>
               </div>
 
               <div className="form-group">
-                <label htmlFor="apellido">Apellido</label>
-                <input type="text" name="apellido" ref={this.formAttrib.apellido} />
+                <label htmlFor="apellido">Ingrese Apellido</label>
+                <input type="text" name="apellido" ref={this.formAttrib.apellido} placeholder='Ramirez García'/>
               </div>
 
 
               <div className="form-group">
                 <label htmlFor="biografia">Biografía</label>
-                <textarea name="biografia" cols={30} rows={10} ref={this.formAttrib.biografia} ></textarea>
+                <textarea name="biografia" cols={30} rows={10} ref={this.formAttrib.biografia} placeholder='Yo me dedico a contar experiencias de vida....'></textarea>
               </div>
 
 
               <div className="form-group radio-button">
                 <input type="radio" name="genero" value="hombre" onChange={this.handleGeneroChange} /> Hombre
                 <input type="radio" name="genero" value="mujer" onChange={this.handleGeneroChange} /> Mujer
-                <input type="radio" name="genero" value="NoBinario" onChange={this.handleGeneroChange} /> No Binario
+                <input type="radio" name="genero" value="NoBinario" onChange={this.handleGeneroChange} checked/> No Binario
               </div>
 
               <div className="clearfix"></div>
