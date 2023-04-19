@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ApiConstant from "../api/ApiConstant";
-import useFetch from "../custom_hooks/useFetch";
+import useFetch from "../hooks/useFetch";
 import UseFetchData from "../classes/UseFetchData";
 import { ArticleResponse } from "../api/ApiArticle";
 import Error from "./Error";

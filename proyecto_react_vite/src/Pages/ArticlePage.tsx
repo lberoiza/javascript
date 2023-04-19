@@ -1,7 +1,7 @@
 import ApiConstant from "../api/ApiConstant";
 import Sidebar from "../components/Sidebar";
 import { useParams } from "react-router-dom";
-import useFetch from "../custom_hooks/useFetch";
+import useFetch from "../hooks/useFetch";
 import NotFound from "./NotFound";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
