@@ -4,32 +4,18 @@ import { useParams } from "react-router-dom";
 import useFetch from "../custom_hooks/useFetch";
 import NotFound from "./NotFound";
 import Loading from "../components/Loading";
-import Dayjs from "../components/Dayjs";
-import ApiImage from "../api/ApiImage";
 import Error from "../components/Error";
-import {ArticleResponse} from "../api/ApiArticle";
+import { ArticleResponse } from "../api/ApiArticle";
+import Article from "../components/Article";
 
 type ArticleUrlParams = {
   id: string;
 }
 
-function renderArticle(article: ArticleResponse): JSX.Element {
-  return (
-    <article id={article._id} className="article-item article-detail">
-      <div className="image-wrap">
-        <img src={ApiImage.getImageUrl(article.image)} alt="Article Image" />
-      </div>
-      <h1 className="subheader">{article.title}</h1>
-      <Dayjs className="date">{article.date}</Dayjs>
-      <div className="article-text">
-        {article.content}
-      </div>
-    </article>
-  );
-}
 
 
-const Article = (): JSX.Element => {
+
+const ArticlePage = (): JSX.Element => {
   const { id } = useParams<ArticleUrlParams>();
   if (id === undefined) return <NotFound></NotFound>
 
@@ -42,7 +28,7 @@ const Article = (): JSX.Element => {
           {loading && <Loading></Loading>}
           {error && <Error></Error>}
           {data.hasErrors() && <Error errors={data.errorMessages}></Error>}
-          {data.hasResponse() && renderArticle(data.response!)}
+          {data.hasResponse() && <Article article={data.response!}></Article>}
         </div>
       </section>
       <Sidebar isBlog></Sidebar>
@@ -50,4 +36,4 @@ const Article = (): JSX.Element => {
   );
 }
 
-export default Article;
+export default ArticlePage;

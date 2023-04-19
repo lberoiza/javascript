@@ -11,7 +11,7 @@ import Footer from './components/Footer';
 // Paginas
 import NotFound from './Pages/NotFound';
 import Formulario from './Pages/Formulario';
-import Article from './Pages/Article';
+import ArticlePage from './Pages/ArticlePage';
 import Search from './Pages/Search';
 
 // Componente de Ejemplo
@@ -30,7 +30,7 @@ class Router extends Component {
         <Routes>
           <Route path="/" Component={Home} />
           <Route path="/blog" Component={Blog} />
-          <Route path="/blog/article/:id" element={<Article></Article>} />
+          <Route path="/blog/article/:id" element={<ArticlePage></ArticlePage>} />
           <Route path="/search/:search" element={<Search></Search>} />
           <Route path="/formulario" Component={Formulario} />
           <Route path="/pagina1/funcional/:receta_title?" element={<MiComponenteFuncional />} />
