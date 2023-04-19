@@ -233,6 +233,24 @@ div.message {
   background: rgb(63, 197, 59);
 }
 
+.btn-warning {
+  background: rgb(238, 165, 9);
+  color: white
+}
+
+.btn-warning:hover {
+  background: rgb(255, 201, 85);
+}
+
+.btn-danger {
+  background: rgb(189, 0, 0);
+  color: white
+}
+
+.btn-danger:hover {
+  background: rgb(255, 0, 0);
+}
+
 .mid-form {
   width: 60%;
   margin: 0px auto;
@@ -366,12 +384,21 @@ textarea {
   float: none
 }
 
+.article-item.article-detail .article-button-bar {
+  margin-top: 10px;
+  /* display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 #content .article-item.article-detail .subheader {
   border: none;
   margin-bottom: 5px;
 
 }
-
 
 
 /* RESPONSIVE */
