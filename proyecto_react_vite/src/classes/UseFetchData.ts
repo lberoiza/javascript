@@ -1,6 +1,3 @@
-// import { FetchRequestResponse } from "./FetchRequest";
-
-
 export interface IUseFetchData<T> {
   isSuccessful: boolean,
   successMessages: string[],
