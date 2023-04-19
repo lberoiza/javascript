@@ -1,7 +1,7 @@
 export default function ArticleNew(): JSX.Element {
   return (
     <div className="new-article-form">
-      <form action="" className="mid-form">
+      <form className="mid-form">
 
         <div className="form-group">
           <label htmlFor="title">Agregue el titulo del artículo</label>
@@ -19,7 +19,7 @@ export default function ArticleNew(): JSX.Element {
         </div>
 
         <div className="form-group">
-          <input type="submit" className="btn btn-success" />
+          <input type="submit" value="guardar" className="btn btn-success" />
         </div>
       </form>
     </div>
