@@ -1,10 +1,7 @@
-const ArticleNew = (): JSX.Element => {
+export default function ArticleNew(): JSX.Element {
   return (
-    <div id="nav-blog" className="sidebar-item">
-      <h3>Puedes hacer esto</h3>
-      <a href="" className="btn btn-success">Crear Articulo</a>
+    <div className="article-item">
+      <h1 className="subheader">Nuevo Articulo</h1>
     </div>
   );
 }
-
-export default ArticleNew;
