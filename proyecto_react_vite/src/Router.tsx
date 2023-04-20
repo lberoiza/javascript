@@ -18,6 +18,7 @@ import Formulario from './Pages/Formulario';
 import ArticlePage from './Pages/ArticlePage';
 import Search from './Pages/Search';
 import PageCreateArticle from './Pages/PageCreateArticle';
+import PageEditArticle from './Pages/PageEditArticle';
 
 
 
@@ -32,6 +33,7 @@ class Router extends Component {
           <Route path="/blog" Component={Blog} />
           <Route path="/blog/article/:id" element={<ArticlePage></ArticlePage>} />
           <Route path="/blog/nuevo" element={<PageCreateArticle></PageCreateArticle>} />
+          <Route path="/blog/edita/:id" element={<PageEditArticle></PageEditArticle>} />
           <Route path="/search/:search" element={<Search></Search>} />
           <Route path="/formulario" Component={Formulario} />
           <Route path="/pagina1/funcional/:receta_title?" element={<MiComponenteFuncional />} />
