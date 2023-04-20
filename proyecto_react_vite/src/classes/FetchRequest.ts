@@ -65,6 +65,15 @@ class FetchRequest {
     return this.fetch<T>(urlPath, options);
   }
 
+  public put<T>(
+    urlPath: string,
+    params = {},
+    options: RequestInit = this.postOptions(params)
+  ): FetchRequestReturn<T> {
+    options.method = 'PUT';
+    return this.fetch<T>(urlPath, options);
+  }
+
 
   public getOptions(): RequestInit {
     return {
