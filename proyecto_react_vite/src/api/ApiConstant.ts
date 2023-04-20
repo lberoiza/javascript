@@ -7,7 +7,8 @@ type ApiConstantProps = {
     readonly GET_ALL_BY_SEARCH: string
     readonly POST_NEW_ARTICLE: string
     readonly POST_ADD_IMAGE_TO_ARTICLE: string
-    readonly DELETE_BY_ID: string
+    readonly DELETE_BY_ID: string,
+    readonly PUT_UPDATE_BY_ID: string
   },
   readonly IMAGE: {
     readonly GET_IMAGE_BY_NAME: string
@@ -22,7 +23,8 @@ const ApiConstant: ApiConstantProps = {
     GET_ALL_ARTICLES: `http://${Config.APP_API_HOST}:${Config.APP_PORT}${Config.APP_API_PREFIX}/article/all`,
     GET_ALL_BY_SEARCH: `http://${Config.APP_API_HOST}:${Config.APP_PORT}${Config.APP_API_PREFIX}/article/search`,
     POST_NEW_ARTICLE: `http://${Config.APP_API_HOST}:${Config.APP_PORT}${Config.APP_API_PREFIX}/article/save`,
-    POST_ADD_IMAGE_TO_ARTICLE: `http://${Config.APP_API_HOST}:${Config.APP_PORT}${Config.APP_API_PREFIX}/article/upload_image`
+    POST_ADD_IMAGE_TO_ARTICLE: `http://${Config.APP_API_HOST}:${Config.APP_PORT}${Config.APP_API_PREFIX}/article/upload_image`,
+    PUT_UPDATE_BY_ID: `http://${Config.APP_API_HOST}:${Config.APP_PORT}${Config.APP_API_PREFIX}/article`
   },
   IMAGE: {
     GET_IMAGE_BY_NAME: `http://${Config.APP_API_HOST}:${Config.APP_PORT}${Config.APP_API_PREFIX}/image`
