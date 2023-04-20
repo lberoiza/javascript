@@ -41,11 +41,24 @@ class ApiArticle {
   }
 
 
-  public deleteArticle(id: string, callback: (wsResult: IUseFetchData<ArticleResponse>) => void): void {
-    const { promise } = FetchRequest.delete<ArticleResponse>(`${ApiConstant.ARTICLE.DELETE_BY_ID}/${id}`);
+  public deleteArticle(articleId: string, callback: (wsResult: IUseFetchData<ArticleResponse>) => void): void {
+    const { promise } = FetchRequest.delete<ArticleResponse>(`${ApiConstant.ARTICLE.DELETE_BY_ID}/${articleId}`);
     promise.then((wsResult) => callback(wsResult));
   }
 
+
+  public updateArticle(articleId: string, formDataObject: ArticleFormFields, callback: (wsResult: IUseFetchData<ArticleResponse>) => void): void {
+    const { promise } = FetchRequest.put<ArticleResponse>(`${ApiConstant.ARTICLE.PUT_UPDATE_BY_ID}/${articleId}`, formDataObject);
+    promise.then((wsResult) => {
+      if(formDataObject.imagen.name!='') {
+        const form = new FormData();
+        form.append('imagen', formDataObject.imagen, formDataObject.imagen.name);
+        this.updateArticleImage(articleId, form, callback);
+      } else {
+        callback(wsResult);
+      }
+    });
+  }
 
 }
 
