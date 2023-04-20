@@ -40,6 +40,12 @@ div.message-error {
   border-radius: 10px;
 }
 
+.swal-position-top-right {
+  position: fixed;
+  top: 0px;
+  right: 10px;
+}
+
 .center {
   width: 75%;
   margin: 0px auto;
@@ -276,6 +282,7 @@ div.message-error {
   margin-bottom: 5px;
   font-size: 17px;
 }
+
 .mid-form .form-group {
   margin-bottom: 10px;
 }
