@@ -9,7 +9,7 @@ function showSuccessAlert(): void {
   swal("Tu Articulo fué creado exitosamente", {
     icon: 'success',
     buttons: [false],
-    timer: 3000,
+    timer: 2000,
     className: 'swal-position-top-right'
   });
 }
