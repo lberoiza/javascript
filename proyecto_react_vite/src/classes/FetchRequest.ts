@@ -15,7 +15,7 @@ class FetchRequest {
     };
   }
 
-  
+
   public objectToQueryString(requestParams: Record<string, string>): string {
     const keys = Object.keys(requestParams);
     if (keys.length === 0) {
@@ -56,6 +56,16 @@ class FetchRequest {
   }
 
 
+  public delete<T>(
+    urlPath: string,
+    params = {},
+    options: RequestInit = this.postOptions(params)
+  ): FetchRequestReturn<T> {
+    options.method = 'DELETE';
+    return this.fetch<T>(urlPath, options);
+  }
+
+
   public getOptions(): RequestInit {
     return {
       method: 'GET',
@@ -85,7 +95,7 @@ class FetchRequest {
     urlPath: string,
     formData = new FormData(),
     options: RequestInit = this.formPostOptions()
-  ): FetchRequestReturn<T>  {
+  ): FetchRequestReturn<T> {
     options.body = formData;
     return this.fetch<T>(urlPath, options);
   }
