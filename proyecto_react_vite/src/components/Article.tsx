@@ -2,9 +2,8 @@ import Dayjs from "../components/Dayjs";
 import ApiImage from "../api/ApiImage";
 import ApiArticle, { ArticleResponse } from "../api/ApiArticle";
 import ClearFix from "./ClearFix";
-import { NavigateFunction, NavigateOptions, To, useNavigate } from "react-router-dom";
-import swal from "sweetalert";
-import { SwalParams } from "sweetalert/typings/core";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import Alert from "../classes/Alert";
 
 
 type ArticleProps = {
@@ -13,36 +12,22 @@ type ArticleProps = {
 
 
 function deleteArticle(articleId: string, useNavigationHook: NavigateFunction): void {
-  const swalOptions = {
-    text: '',
-    className: 'swal-position-top-right',
-    timer: 2000,
-    icon: 'success'
-  }
-
   try {
     ApiArticle.deleteArticle(articleId, (wsResult) => {
-      swalOptions.text = `El Articulo: "${wsResult.response?.title}" fué eliminado correctamente.`;
+      const text = `El Articulo: "${wsResult.response?.title}" fué eliminado correctamente.`;
       useNavigationHook('/blog');
-      swal(swalOptions);
+      Alert.showSuccess(text);
     });
   } catch (error) {
-    swalOptions.text = `El Articulo no pudo ser eliminado`;
-    swalOptions.icon = 'error';
-    swalOptions.timer = 0;
-    swal(swalOptions)
+    const text = `El Articulo no pudo ser eliminado`;
+    Alert.showAlert(text);
   }
 }
 
 
 function confirmDeletion(articleId: string, useNavigationHook: NavigateFunction) {
-  swal({
-    title: "Está seguro que desea eliminar el articulo?",
-    text: "El borrado del articulo es permanente!",
-    icon: "warning",
-    buttons: ['cancelar', 'borrar'],
-    dangerMode: true,
-  })
+
+  Alert.showConfirmDialog("Está seguro que desea eliminar el articulo?", "El borrado del articulo es permanente!")
     .then((willDelete) => {
       if (willDelete) {
         deleteArticle(articleId, useNavigationHook);

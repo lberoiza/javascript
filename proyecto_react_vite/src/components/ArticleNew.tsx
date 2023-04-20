@@ -2,17 +2,8 @@ import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useForm from "../hooks/useForm";
 import ApiArticle, { ArticleFormFields } from "../api/ApiArticle";
-import swal from "sweetalert";
+import Alert from "../classes/Alert";
 
-
-function showSuccessAlert(): void {
-  swal("Tu Articulo fué creado exitosamente", {
-    icon: 'success',
-    buttons: [false],
-    timer: 2000,
-    className: 'swal-position-top-right'
-  });
-}
 
 export default function ArticleNew(): JSX.Element {
   const navigation = useNavigate();
@@ -29,7 +20,7 @@ export default function ArticleNew(): JSX.Element {
       if (formDataObject.imagen.name == '') throw new Error("No se ha Selecionado imagen para el Articulo");
 
       ApiArticle.createCompleteArticle(formDataObject, (wsResult) => navigation(`/blog/article/${wsResult.response?._id}`));
-      showSuccessAlert();
+      Alert.showSuccess("Tu Articulo fué creado exitosamente")
 
     } catch (error) {
       setError((error as Error).message)
