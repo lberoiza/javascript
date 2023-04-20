@@ -1,4 +1,4 @@
-import ArticleNew from "../components/ArticleNew";
+import ArticleCreate from "../components/ArticleCreate";
 import Sidebar from "../components/Sidebar";
 import Slider from "../components/Slider";
 
@@ -8,7 +8,7 @@ export default function ArticleNewPage(): JSX.Element {
       <Slider title="Nuevo Articulo"></Slider>
       <div className="center">
         <section id="content">
-          <ArticleNew></ArticleNew>
+          <ArticleCreate></ArticleCreate>
         </section>
         <Sidebar></Sidebar>
       </div>

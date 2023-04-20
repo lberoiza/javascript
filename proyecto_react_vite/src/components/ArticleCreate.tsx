@@ -5,7 +5,7 @@ import ApiArticle, { ArticleFormFields } from "../api/ApiArticle";
 import Alert from "../classes/Alert";
 
 
-export default function ArticleNew(): JSX.Element {
+export default function ArticleCreate(): JSX.Element {
   const navigation = useNavigate();
   const [error, setError] = useState<string>('');
   const { getData, validateStringFields } = useForm<ArticleFormFields>();
