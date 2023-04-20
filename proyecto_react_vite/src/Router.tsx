@@ -17,7 +17,7 @@ import NotFound from './Pages/NotFound';
 import Formulario from './Pages/Formulario';
 import ArticlePage from './Pages/ArticlePage';
 import Search from './Pages/Search';
-import ArticleNewPage from './Pages/ArticleNewPage';
+import PageCreateArticle from './Pages/PageCreateArticle';
 
 
 
@@ -31,7 +31,7 @@ class Router extends Component {
           <Route path="/" Component={Home} />
           <Route path="/blog" Component={Blog} />
           <Route path="/blog/article/:id" element={<ArticlePage></ArticlePage>} />
-          <Route path="/blog/nuevo" element={<ArticleNewPage></ArticleNewPage>} />
+          <Route path="/blog/nuevo" element={<PageCreateArticle></PageCreateArticle>} />
           <Route path="/search/:search" element={<Search></Search>} />
           <Route path="/formulario" Component={Formulario} />
           <Route path="/pagina1/funcional/:receta_title?" element={<MiComponenteFuncional />} />
