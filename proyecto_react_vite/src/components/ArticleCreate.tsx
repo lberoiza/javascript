@@ -20,8 +20,10 @@ export default function ArticleCreate(): JSX.Element {
       if (!validateStringFields(formDataObject)) throw new Error("Titulo o Contenido del Articulo vacio.");
       if (formDataObject.imagen.name == '') throw new Error("No se ha Selecionado imagen para el Articulo");
 
-      ApiArticle.createCompleteArticle(formDataObject, (wsResult) => navigation(`/blog/article/${wsResult.response?._id}`));
-      Alert.showSuccess("Tu Articulo fué creado exitosamente")
+      ApiArticle.createCompleteArticle(formDataObject, (wsResult) => {
+        navigation(`/blog/article/${wsResult.response?._id}`)
+        Alert.showSuccess("Tu Articulo fué creado exitosamente")
+      });
 
     } catch (error) {
       setError((error as Error).message)
