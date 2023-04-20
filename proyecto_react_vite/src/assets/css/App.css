@@ -283,6 +283,10 @@ div.message-error {
   font-size: 17px;
 }
 
+.mid-form img {
+  width: 100%;
+}
+
 .mid-form .form-group {
   margin-bottom: 10px;
 }
@@ -424,6 +428,46 @@ textarea {
 
 }
 
+button.star-button {
+  position: relative;
+  display: inline-block;
+  padding: 15px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #ffffff;
+  border: 1px solid #3cb2d3;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+span.star-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: #3cb2d3;
+  clip-path: polygon(50% 0%,
+      64% 36%,
+      100% 36%,
+      70% 57%,
+      82% 91%,
+      50% 72%,
+      18% 91%,
+      30% 57%,
+      0% 36%,
+      36% 36%);
+}
+
+button.star-button[disabled] {
+  border: 1px solid lightgrey;
+}
+
+button.star-button[disabled] span.star-icon {
+  background-color: lightgrey;
+}
+
 
 /* RESPONSIVE */
 /* desde la anchura 1326px hasta 1488px de pantalla */
@@ -525,48 +569,4 @@ textarea {
   #slider.slider-small h1 {
     padding-top: 35px;
   }
-}
-
-
-button.star-button {
-  position: relative;
-  display: inline-block;
-  padding: 15px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: #ffffff;
-  border: 1px solid #3cb2d3;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-
-span.star-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  background-color: #3cb2d3;
-  clip-path: polygon(50% 0%,
-      64% 36%,
-      100% 36%,
-      70% 57%,
-      82% 91%,
-      50% 72%,
-      18% 91%,
-      30% 57%,
-      0% 36%,
-      36% 36%);
-}
-
-
-button.star-button[disabled] {
-  border: 1px solid lightgrey;
-}
-
-
-button.star-button[disabled] span.star-icon {
-  background-color: lightgrey;
 }
