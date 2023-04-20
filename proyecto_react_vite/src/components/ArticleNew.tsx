@@ -2,7 +2,17 @@ import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useForm from "../hooks/useForm";
 import ApiArticle, { ArticleFormFields } from "../api/ApiArticle";
+import swal from "sweetalert";
 
+
+function showSuccessAlert(): void {
+  swal("Tu Articulo fué creado exitosamente", {
+    icon: 'success',
+    buttons: [false],
+    timer: 3000,
+    className: 'swal-position-top-right'
+  });
+}
 
 export default function ArticleNew(): JSX.Element {
   const navigation = useNavigate();
@@ -11,16 +21,17 @@ export default function ArticleNew(): JSX.Element {
 
   const formHandler = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const formDataObject = getData(event.target as HTMLFormElement);
 
     try {
       if (!validateStringFields(formDataObject)) throw new Error("Titulo o Contenido del Articulo vacio.");
       if (formDataObject.imagen.name == '') throw new Error("No se ha Selecionado imagen para el Articulo");
 
-      ApiArticle.createCompleteArticle(formDataObject, (wsResult) => navigation(`/blog/article/${wsResult.response?._id}`))
+      ApiArticle.createCompleteArticle(formDataObject, (wsResult) => navigation(`/blog/article/${wsResult.response?._id}`));
+      showSuccessAlert();
 
     } catch (error) {
-      console.log(error);
       setError((error as Error).message)
     }
   }
