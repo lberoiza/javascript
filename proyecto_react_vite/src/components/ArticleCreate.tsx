@@ -30,7 +30,7 @@ export default function ArticleCreate(): JSX.Element {
 
 
   return (
-    <div className="new-article-form">
+    <div className="create-article-form">
       {error && <div className="message-error">{error}</div>}
       <ArticleForm formHandler={formHandler}></ArticleForm>
     </div>
