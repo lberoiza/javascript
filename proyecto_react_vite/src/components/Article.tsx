@@ -45,7 +45,7 @@ export default function Article(props: ArticleProps): JSX.Element {
         <img src={ApiImage.getImageUrl(props.article.image)} alt="Article Image" />
       </div>
       <div className="article-button-bar">
-        <button className="btn btn-warning">Editar</button>
+        <button onClick={() => navigation(`/blog/edita/${props.article._id}`)} className="btn btn-warning">Editar</button>
         <button onClick={() => confirmDeletion(props.article._id, navigation)} className="btn btn-danger">Eliminar</button>
       </div>
       <ClearFix></ClearFix>
