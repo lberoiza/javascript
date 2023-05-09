@@ -5,7 +5,6 @@ import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import Header from './components/Header';
 import Home from './Pages/Home';
 import Blog from './Pages/Blog'
-import ClearFix from './components/ClearFix';
 import Footer from './components/Footer';
 
 // Componente de Ejemplo
@@ -19,6 +18,7 @@ import ArticlePage from './Pages/ArticlePage';
 import Search from './Pages/Search';
 import PageCreateArticle from './Pages/PageCreateArticle';
 import PageEditArticle from './Pages/PageEditArticle';
+import Menu from './components/Menu';
 
 
 
@@ -28,6 +28,7 @@ class Router extends Component {
     return (
       <BrowserRouter>
         <Header></Header>
+        <Menu></Menu>
         <Routes>
           <Route path="/" Component={Home} />
           <Route path="/blog" Component={Blog} />
@@ -39,14 +40,13 @@ class Router extends Component {
           <Route path="/pagina1/funcional/:receta_title?" element={<MiComponenteFuncional />} />
           <Route path="/pagina1/clase/:receta_title?" element={<MiComponente />} />
           <Route path="/pagina2" element={
-            <>
+            <section id="content">
               <h2>Poniendo texto desde un render en una ruta</h2>
               <p>Este es otro elemento JSX</p>
-            </>
+            </section>
           } />
           <Route path='*' Component={NotFound}></Route>
         </Routes>
-        <ClearFix></ClearFix>
 
         <Footer></Footer>
       </BrowserRouter>

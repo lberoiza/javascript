@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import Slider from '../components/Slider';
 import Sidebar from '../components/Sidebar';
-import ClearFix from '../components/ClearFix';
 
 type formUser = {
   nombre: string,
@@ -67,48 +66,45 @@ class Formulario extends Component<{}, formUser> {
 
   public render(): JSX.Element {
     return (
-      <div id="home">
+      <>
         <Slider title='Formulario'></Slider>
-        <div className="center">
-          {this.showUserDataIfDataExists()}
-          <section id="content">
+        {this.showUserDataIfDataExists()}
+        <section id="content">
 
-            <form className="mid-form" onSubmit={this.onSubmitMethode}>
-              <div className="form-group">
-                <label htmlFor="nombre">Ingrese Nombre</label>
-                <input type="text" name="nombre" ref={this.formAttrib.nombre} placeholder='José Pepe' />
-              </div>
+          <form className="mid-form" onSubmit={this.onSubmitMethode}>
+            <div className="form-group">
+              <label htmlFor="nombre">Ingrese Nombre</label>
+              <input type="text" name="nombre" ref={this.formAttrib.nombre} placeholder='José Pepe' />
+            </div>
 
-              <div className="form-group">
-                <label htmlFor="apellido">Ingrese Apellido</label>
-                <input type="text" name="apellido" ref={this.formAttrib.apellido} placeholder='Ramirez García' />
-              </div>
-
-
-              <div className="form-group">
-                <label htmlFor="biografia">Biografía</label>
-                <textarea name="biografia" cols={30} rows={10} ref={this.formAttrib.biografia} placeholder='Yo me dedico a contar experiencias de vida....'></textarea>
-              </div>
+            <div className="form-group">
+              <label htmlFor="apellido">Ingrese Apellido</label>
+              <input type="text" name="apellido" ref={this.formAttrib.apellido} placeholder='Ramirez García' />
+            </div>
 
 
-              <div className="form-group radio-button">
-                <input type="radio" name="genero" value="hombre" onChange={this.handleGeneroChange} /> Hombre
-                <input type="radio" name="genero" value="mujer" onChange={this.handleGeneroChange} /> Mujer
-                <input type="radio" name="genero" value="NoBinario" onChange={this.handleGeneroChange} checked /> No Binario
+            <div className="form-group">
+              <label htmlFor="biografia">Biografía</label>
+              <textarea name="biografia" cols={30} rows={10} ref={this.formAttrib.biografia} placeholder='Yo me dedico a contar experiencias de vida....'></textarea>
+            </div>
 
-              </div>
 
-              <ClearFix></ClearFix>
-              <div className="form-group">
-                <input type="submit" value="Enviar" className="btn" />
-              </div>
+            <div className="form-group radio-button">
+              <input type="radio" name="genero" value="hombre" onChange={this.handleGeneroChange} /> Hombre
+              <input type="radio" name="genero" value="mujer" onChange={this.handleGeneroChange} /> Mujer
+              <input type="radio" name="genero" value="NoBinario" onChange={this.handleGeneroChange} checked /> No Binario
 
-            </form>
+            </div>
 
-          </section>
-          <Sidebar></Sidebar>
-        </div>
-      </div>
+            <div className="form-group">
+              <input type="submit" value="Enviar" className="btn" />
+            </div>
+
+          </form>
+
+        </section>
+        <Sidebar></Sidebar>
+      </>
     );
   }
 }

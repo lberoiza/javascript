@@ -21,14 +21,14 @@ class MiComponente extends Component {
   public render(): JSX.Element {
 
     return (
-      <Fragment>
+      <section id="content">
         <h1>Receta: {this.receta.nombre}</h1>
         {/* {tituloUrl} */}
         <h3>Calorias: {this.receta.calorias}</h3>
         <ol>
           {this.receta.ingredientes.map((ingrediente, index) => (<li key={index}>{ingrediente}</li>))}
         </ol>
-      </Fragment>
+      </section>
 
     );
   }

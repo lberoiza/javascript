@@ -1,7 +1,6 @@
 import Dayjs from "../components/Dayjs";
 import ApiImage from "../api/ApiImage";
 import ApiArticle, { ArticleResponse } from "../api/ApiArticle";
-import ClearFix from "./ClearFix";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import Alert from "../classes/Alert";
 
@@ -48,7 +47,6 @@ export default function Article(props: ArticleProps): JSX.Element {
         <button onClick={() => navigation(`/blog/edita/${props.article._id}`)} className="btn btn-warning">Editar</button>
         <button onClick={() => confirmDeletion(props.article._id, navigation)} className="btn btn-danger">Eliminar</button>
       </div>
-      <ClearFix></ClearFix>
       <h1 className="subheader">{props.article.title}</h1>
       <Dayjs className="date">{props.article.date}</Dayjs>
       <div className="article-text">

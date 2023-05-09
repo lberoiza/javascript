@@ -22,7 +22,7 @@ const ArticlePage = (): JSX.Element => {
   const { data, loading, error } = useFetch<ArticleResponse>(`${ApiConstant.ARTICLE.GET_BY_ID}/${id}`);
 
   return (
-    <div className="center">
+    <>
       <section id="content">
         <div id="article-container">
           {loading && <Loading></Loading>}
@@ -32,7 +32,7 @@ const ArticlePage = (): JSX.Element => {
         </div>
       </section>
       <Sidebar isBlog></Sidebar>
-    </div>
+    </>
   );
 }
 

@@ -48,14 +48,14 @@ const ArticleList = (props: ArticleListProps): JSX.Element => {
   };
 
   return (
-    <section id="content">
+    <>
       {/* Aqui se cargaran mediante api rest, la lista de articulos */}
       {blogState.followArticleTitle && <div className="message">{blogState.followArticleTitle}</div>}
       {loading && <Loading></Loading>}
       {error && <Error></Error>}
       {data.hasErrors() && <Error errors={data.errorMessages}></Error>}
       {data.isSuccessful && showArticleList(data, followArticle)}
-    </section>
+    </>
   );
 }
 
