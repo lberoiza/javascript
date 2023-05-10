@@ -8,15 +8,13 @@ const Search = (): JSX.Element => {
   const { search } = useParams<string>();
 
   return (
-    <div id="search">
+    <>
       <Slider title={`Busqueda: '${search}'`}></Slider>
-      <div className="center">
-        <section id="content">
-          <ArticleListSearch search={search!}></ArticleListSearch>
-        </section>
-        <Sidebar isBlog></Sidebar>
-      </div>
-    </div>
+      <section id="content">
+        <ArticleListSearch search={search!}></ArticleListSearch>
+      </section>
+      <Sidebar isBlog></Sidebar>
+    </>
   );
 }
 
