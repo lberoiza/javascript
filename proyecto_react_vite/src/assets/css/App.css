@@ -16,13 +16,14 @@ div.App {
   border-top: 7px solid #61dafb;
   display: grid;
   grid-template-columns: 5% 1fr 5%;
-  grid-template-rows: 100px 50px auto 3fr auto auto;
+  grid-template-rows: 100px 50px 10px auto 3fr auto auto;
   justify-items: center;
   align-items: start;
 
   grid-template-areas:
     "header header  header"
     "nav    nav     nav"
+    "sep    sep     sep"
     "slider slider  slider"
     ".      content ."
     ".      aside   ."
@@ -39,7 +40,18 @@ div.App {
 #menu {
   font-size: 18px;
   grid-area: nav;
+}
+
+/* Separator Line */
+/* after menu */
+div.App::before {
+  grid-area: sep;
+
+  content: "";
+  width: 90%;
+
   border-bottom: 1px solid #ccc;
+  margin: 15px 0 0 0;
 }
 
 #content {
@@ -453,10 +465,11 @@ button.star-button[disabled] span.star-icon {
 
   div.App {
     grid-template-columns: 5% 200px repeat(4, 1fr) 5%;
-    grid-template-rows: 100px auto 1fr auto;
+    grid-template-rows: 100px 10px auto 1fr auto;
     align-items: start;
     grid-template-areas:
-      ".      header   nav     nav     nav     nav    ."
+      ".      header   header  nav     nav     nav    ."
+      ".      sep      sep     sep     sep      sep   ."
       "slider slider   slider  slider  slider  slider slider"
       ".      content  content content content aside  ."
       "footer footer   footer  footer  footer  footer footer"
@@ -466,7 +479,6 @@ button.star-button[disabled] span.star-icon {
   #header {
     padding-left: 35%;
     width: 100%;
-    border-bottom: 1px solid #ccc;
     align-self: end;
   }
 
@@ -488,7 +500,8 @@ button.star-button[disabled] span.star-icon {
 
   div.App {
     grid-template-areas:
-      ".      header   header  nav     nav     nav    ."
+      ".      header   header  .     nav     nav    ."
+      ".      sep      sep     sep     sep      sep   ."
       "slider slider   slider  slider  slider  slider slider"
       ".      content  content content content aside  ."
       "footer footer   footer  footer  footer  footer footer"
