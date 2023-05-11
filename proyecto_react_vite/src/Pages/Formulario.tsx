@@ -69,7 +69,7 @@ class Formulario extends Component<{}, formUser> {
       <>
         <Slider title='Formulario'></Slider>
         {this.showUserDataIfDataExists()}
-        <section id="content">
+        <section id="content" className="page-contact-form">
 
           <form className="mid-form" onSubmit={this.onSubmitMethode}>
             <div className="form-group">

@@ -10,7 +10,7 @@ class Home extends Component {
     return (
       <>
         <Slider isHome title='Bienvenido al master der ReactJS'></Slider>
-        <section id="content">
+        <section id="content" className="page-home">
           <h2 className="subheader">Últimos artículos</h2>
           {/* <!-- LISTADO ULTIMOS ARTICULOS ARTICULOS --> */}
           <ArticleListLast></ArticleListLast>

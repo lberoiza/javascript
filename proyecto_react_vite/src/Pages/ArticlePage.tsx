@@ -23,7 +23,7 @@ const ArticlePage = (): JSX.Element => {
 
   return (
     <>
-      <section id="content">
+      <section id="content" className="page-article">
         <div id="article-container">
           {loading && <Loading></Loading>}
           {error && <Error></Error>}

@@ -8,7 +8,7 @@ const Blog = (): JSX.Element => {
   return (
     <>
       <Slider title='Blog'></Slider>
-      <section id="content">
+      <section id="content" className="page-blog">
         <ArticleList></ArticleList>
       </section>
       <Sidebar isBlog></Sidebar>

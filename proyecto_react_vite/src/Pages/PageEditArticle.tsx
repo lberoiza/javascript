@@ -15,7 +15,7 @@ export default function PageEditArticle(): JSX.Element {
   return (
     <>
       <Slider title="Edita Articulo"></Slider>
-      <section id="content">
+      <section id="content" className="page-edit-article">
         {loading && <Loading></Loading>}
         {error && <Error></Error>}
         {data.hasResponse() && <ArticleEdit article={data.response!}></ArticleEdit>}
