@@ -21,7 +21,7 @@ class MiComponente extends Component {
   public render(): JSX.Element {
 
     return (
-      <section id="content">
+      <section id="content" className="receta">
         <h1>Receta: {this.receta.nombre}</h1>
         {/* {tituloUrl} */}
         <h3>Calorias: {this.receta.calorias}</h3>
