@@ -23,7 +23,7 @@ onUnmounted(() => {
 
 const click = () => {
   text.value = "The text has changed";
-}
+};
 
 
 </script>
@@ -34,7 +34,7 @@ const click = () => {
   <section id="content" class="page-1">
     <h2 class="subheader">Test Page 1</h2>
     <MyComponent :msg="text"></MyComponent>
-    <button @click="click">Button</button>
+    <button @click="click">Change Text</button>
   </section>
   <Sidebar></Sidebar>
 </template>
