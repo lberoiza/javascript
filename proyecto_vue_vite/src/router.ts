@@ -6,6 +6,7 @@ import Blog from './pages/PageBlog.vue';
 import Form from './pages/PageForm.vue';
 import Page1 from './pages/Page1.vue';
 import Page2 from './pages/Page2.vue'
+import PageNotFound from './pages/PageNotFound.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -36,6 +37,10 @@ const routes: Array<RouteRecordRaw> = [
     path: '/page2/:msg?',
     name: 'pag',
     component: Page2
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    component: PageNotFound
   }
 ];
 
