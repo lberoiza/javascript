@@ -150,6 +150,7 @@ div.App::before {
 
 #menu a.router-link-active {
   color: var(--color-primary-darker);
+  font-weight: bold;
 }
 
 #menu a.router-link-active::after {
