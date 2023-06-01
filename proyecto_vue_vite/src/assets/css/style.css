@@ -107,16 +107,24 @@ div.App::before {
   height: 50px;
   margin-top: -10px;
   margin-right: 10px;
-  animation: girar infinite 20s linear;
+  animation: bell-swing 3s ease-in-out infinite;
 }
 
-@keyframes girar {
-  from {
+@keyframes bell-swing {
+  0% {
     transform: rotate(0deg);
   }
-
-  to {
-    transform: rotate(360deg);
+  20% {
+    transform: rotate(20deg);
+  }
+  60% {
+    transform: rotate(-20deg);
+  }
+  80% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }
 
