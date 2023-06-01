@@ -24,23 +24,19 @@ const routes: Array<RouteRecordRaw> = [
     path: '/blog',
     component: Blog
   },
-
-    {
+  {
     path: '/form',
     component: Form
   },
-
-    {
+  {
     path: '/page1',
     component: Page1
   },
-
-    {
-    path: '/page2',
+  {
+    path: '/page2/:msg?',
+    name: 'pag',
     component: Page2
   }
-
-  
 ];
 
 const router = createRouter({
