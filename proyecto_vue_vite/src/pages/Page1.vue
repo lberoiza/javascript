@@ -21,7 +21,7 @@ onUnmounted(() => {
 });
 
 
-const click = (event: MouseEvent) => {
+const click = () => {
   text.value = "The text has changed";
 }
 
