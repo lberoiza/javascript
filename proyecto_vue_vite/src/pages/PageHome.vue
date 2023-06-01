@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import Slider from '../components/Slider.vue';
+import Sidebar from '../components/Sidebar.vue';
+</script>
+
+
 <template>
   <Slider isHome title='Bienvenido al master der ReactJS'></Slider>
   <section id="content" class="page-home">
@@ -8,7 +14,3 @@
   <Sidebar></Sidebar>
 </template>
 
-<script setup lang="ts">
-import Slider from '../components/Slider.vue';
-import Sidebar from '../components/Sidebar.vue';
-</script>

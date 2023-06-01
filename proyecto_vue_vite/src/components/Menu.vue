@@ -2,19 +2,19 @@
   <nav id="menu">
     <ul>
       <li>
-        <a class="navlink_active" href="/">Inicio</a>
+        <router-link  to="/">Home</router-link>
       </li>
       <li>
-        <a class="navlink_active" href="blog">Blog</a>
+        <router-link to="blog">Blog</router-link>
       </li>
       <li>
-        <a class="navlink_active" href="formulario">Formulario</a>
+        <router-link to="form">Form</router-link>
       </li>
     <li>
-      <a class="navlink_active" href="pagina1/funcional/receta">Pagina 1</a>
+      <router-link to="page1">Page 1</router-link>
     </li>
     <li>
-      <a class="navlink_active" href="pagina2">Pagina 2</a>
+      <router-link to="page2">Page 2</router-link>
     </li>
   </ul>
 </nav></template>

@@ -148,11 +148,11 @@ div.App::before {
   color: var(--color-primary-darker);
 }
 
-#menu a.navlink_active {
+#menu a.router-link-active {
   color: var(--color-primary-darker);
 }
 
-#menu a.navlink_active::after {
+#menu a.router-link-active::after {
   content: '';
   height: 2px;
   bottom: -2px;
