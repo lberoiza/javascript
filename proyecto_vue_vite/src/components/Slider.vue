@@ -1,7 +1,7 @@
 <template>
   <div id="slider" :class="isHome ? 'slider-big' : 'slider-small'">
     <h1>{{ title }}</h1>
-    <router-link v-if="isHome" to="/blog" class="btn-white">Ir al blog</router-link>
+    <router-link v-if="isHome" to="/blog" class="btn-white">Go to the Blog</router-link>
   </div>
 </template>
 

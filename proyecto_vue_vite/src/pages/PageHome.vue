@@ -5,9 +5,9 @@ import Sidebar from '../components/Sidebar.vue';
 
 
 <template>
-  <Slider isHome title='Bienvenido al master der ReactJS'></Slider>
+  <Slider isHome title='Welcome to the Blog with VueJs'></Slider>
   <section id="content" class="page-home">
-    <h2 class="subheader">Últimos artículos</h2>
+    <h2 class="subheader">Last Articles</h2>
     <!-- LISTADO ULTIMOS ARTICULOS ARTICULOS -->
     <!-- <ArticleListLast></ArticleListLast> -->
   </section>

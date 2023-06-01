@@ -2,7 +2,7 @@
   <footer id="footer">
     <div class="center">
       <p>
-        &copy; Master en ReactJs de Luis Beroiza.
+        &copy; Blog with VueJs - Luis Beroiza.
       </p>
     </div>
   </footer>
