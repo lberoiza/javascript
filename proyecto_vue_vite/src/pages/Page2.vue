@@ -33,7 +33,13 @@ const goHome = () => {
     <input type="text" name="text-test" id="text-test" v-model="testText.valor1">
     <p class="show-text">The text in the input is: {{ testText.valor1 }}</p>
     <ol v-if="testText.valor1.length > 0">
-      <li v-for="elemento in testText.valor1.split(',')">{{ elemento }}</li>
+      <li v-for="elemento in testText.valor1.split(',')"
+        :key="elemento"
+        :class="{
+          'font-red': elemento.length >= 10,
+          'font-green': elemento.length < 10
+
+      }">{{ elemento }}</li>
     </ol>
     <button @click="goHome">Go back to home</button>
 
