@@ -342,10 +342,8 @@ textarea {
   resize: none;
 }
 
-.radio-button {
-  margin-top: 10px;
-  float: left;
-  margin-bottom: 20px;
+.radio-button label {
+  margin-right: 20px;
 }
 
 #footer p {
