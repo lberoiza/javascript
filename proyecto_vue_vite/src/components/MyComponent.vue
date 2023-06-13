@@ -4,7 +4,7 @@
     <div class="my-component">
       <p>Hello World</p>
       <p>text of MyComponent: <strong>{{ msg }} </strong></p>
-      <div>
+      <div class="button-bar">
         <p>Options from MyComponent</p>
         <button @click="buttonClicked" name="Button1">Button 1</button>
         <button @click="buttonClicked" name="Button2">Button 2</button>
@@ -32,3 +32,10 @@ const buttonClicked = (event: MouseEvent) => {
 }
 
 </script>
+
+<style>
+.button-bar button{
+  margin: 2px;
+}
+
+</style>
