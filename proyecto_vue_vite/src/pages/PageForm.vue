@@ -2,10 +2,37 @@
 import Slider from '../components/Slider.vue';
 import Sidebar from '../components/Sidebar.vue';
 import { ref } from 'vue';
+// import { useVuelidate } from '@vuelidate/core';
+// import { required, email } from '@vuelidate/validators';
+// import { messages } from '@vuelidate/error-extractor';
+
+
+const user = ref({
+  name: '',
+  surname: '',
+  bio: '',
+  gender: 'NoDefined'
+})
+
+
+// const rules = computed(() => ({
+//   user: {
+//     name: {
+//       required,
+//     },
+//     surname: {
+//       required,
+//     },
+//     bio: {
+//       required,
+//     }
+//   }
+// }));
+
+// const $v = useVuelidate();
 
 
 const sendData = () => {
-  console.log(user.value);
   console.log(user.value.name);
   console.log(user.value.surname);
   console.log(user.value.bio);
@@ -15,12 +42,7 @@ const sendData = () => {
 
 
 
-const user = ref({
-  name: '',
-  surname: '',
-  bio: '',
-  gender: 'NoDefined'
-})
+
 </script>
 
 
@@ -33,6 +55,7 @@ const user = ref({
       <div class="form-group">
         <label for="name">Name</label>
         <input id="name" type="text" name="name" placeholder='José Pepe' v-model="user.name" />
+        <!-- <p v-if="$v.name.$dirty && !$v.name.required">Name is required</p> -->
       </div>
 
       <div class="form-group">
