@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Slider from '../components/Slider.vue';
 import Sidebar from '../components/Sidebar.vue';
-import MyComponent from '../components/MyComponent.vue';
+import MyComponent from '../components/examples/MyComponent.vue';
 import { ref, onBeforeMount, onMounted, onUnmounted, computed } from 'vue';
 
 const text = ref<string>("Prop-Text from My Component");
