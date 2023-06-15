@@ -1,6 +1,5 @@
 import FetchRequest from "../classes/FetchRequest"
 import { IUseFetchData } from "../classes/UseFetchData"
-import WsResult from "../classes/WsResult"
 import ApiConstant from "./ApiConstant"
 
 export interface ArticleResponse {
