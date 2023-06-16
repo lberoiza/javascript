@@ -11,7 +11,7 @@ const Config: ConfigProps = {
   APP_API_HOST: 'localhost',
   APP_PORT: 3900,
   APP_API_PREFIX: '/api',
-  DEFAULT_LANGUAGE: 'es',
+  DEFAULT_LANGUAGE: 'en',
   DEFAULT_NR_OF_ARTICLES_HOMEPAGE: 3
 };
 

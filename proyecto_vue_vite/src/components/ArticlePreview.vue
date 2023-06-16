@@ -9,7 +9,7 @@
       <span class="star-icon"></span>
     </button>
     <h2>{{article.title}}</h2>
-    <div class="date">{{article.date}}</div>
+    <Dayjs class="date" :dateString="article.date"></Dayjs>
     <a :href="'/blog/article/' + article._id" class="btn">
     Leer más ...
     </a>
@@ -19,6 +19,7 @@
 <script setup lang="ts">
 import ApiImage from "../api/ApiImage";
 import { ArticleResponse } from "../api/ApiArticle";
+import Dayjs from "./Dayjs.vue";
 
 type ArticlePreviewProps = {
   article: ArticleResponse
