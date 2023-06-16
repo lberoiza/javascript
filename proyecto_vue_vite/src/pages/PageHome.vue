@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Slider from '../components/Slider.vue';
 import Sidebar from '../components/Sidebar.vue';
+import ArticleList from '../components/ArticleList.vue'
 </script>
 
 
@@ -8,8 +9,7 @@ import Sidebar from '../components/Sidebar.vue';
   <Slider isHome title='Welcome to the Blog with VueJs'></Slider>
   <section id="content" class="page-home">
     <h2 class="subheader">Last Articles</h2>
-    <!-- LISTADO ULTIMOS ARTICULOS ARTICULOS -->
-    <!-- <ArticleListLast></ArticleListLast> -->
+    <ArticleList :lastArticles="true"></ArticleList>
   </section>
   <Sidebar></Sidebar>
 </template>
