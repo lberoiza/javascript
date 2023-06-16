@@ -29,14 +29,12 @@ const { promise, abortController } = ApiArticle.getLastArticles(props.lastArticl
 onMounted(() => {
   promise.then((wsResult) => {
     articleList.value = new UseFetchData<ArticleResponse[]>().setFetchData(wsResult);
-    console.log(articleList)
     loading.value = false;
   });
 });
 
 onUnmounted(() => {
   abortController.abort();
-  console.log("abortando peticion")
 })
 
 
