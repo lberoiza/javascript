@@ -23,7 +23,7 @@ defineProps<SelectedArticleProps>()
   align-items: center;
   gap: 0.5rem;
 
-  color:aliceblue;
+  color: aliceblue;
   background-color: var(--color-primary-darker);
   border-radius: 3px;
   font-size: 1.3rem;
