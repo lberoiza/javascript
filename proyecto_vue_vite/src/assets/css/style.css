@@ -101,7 +101,7 @@ div.App::before {
   justify-content: center;
 }
 
-#article-container {
+.article-container {
   display: flex;
   flex-flow: column nowrap;
 }

@@ -1,11 +1,14 @@
 <template>
-  <Error v-if="articleList?.hasErrors()" :errors="props.articleList?.errorMessages"></Error>
   <Loading v-if="loading"></Loading>
-  <div v-else id="article-container">
+  <div v-else>
     <SelectedArticle v-if="selectedArticle" :title=selectedArticle></SelectedArticle>
-    <ArticlePreview v-if="props.articleList?.hasResponse()" v-for="article in articleList?.response" :key="article._id"
-      :article="article" @setFavorite="setSelectedArticle"></ArticlePreview>
-    <NoResults v-else></NoResults>
+    <Error v-if="articleList?.hasErrors()" :errors="props.articleList?.errorMessages"></Error>
+    <div v-else  class="article-container">
+      <ArticlePreview v-if="props.articleList?.hasResponse()" v-for="article in articleList?.response" :key="article._id"
+        :article="article" @setFavorite="setSelectedArticle"></ArticlePreview>
+      <NoResults v-else></NoResults>
+    </div>
+
   </div>
 </template>
 
