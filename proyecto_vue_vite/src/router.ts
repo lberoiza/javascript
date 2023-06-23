@@ -3,6 +3,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 // Components
 import Home from './pages/PageHome.vue';
 import Blog from './pages/PageBlog.vue';
+import PageSearch from './pages/PageSearch.vue';
 import Form from './pages/PageForm.vue';
 import Page1 from './pages/Page1.vue';
 import Page2 from './pages/Page2.vue'
@@ -41,6 +42,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/:pathMatch(.*)*',
     component: PageNotFound
+  },
+  {
+    path:'/search/:searchStr',
+    component: PageSearch
   }
 ];
 
