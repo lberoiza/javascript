@@ -20,11 +20,8 @@ export type ArticleFormFields = {
 
 class ApiArticle {
 
-  public getLastArticles(lastArticles: boolean): FetchRequestReturn<ArticleResponse[]> {
-    if (lastArticles == true)
-      return FetchRequest.get<ArticleResponse[]>(`${ApiConstant.ARTICLE.GET_ALL_ARTICLES}/${Config.DEFAULT_NR_OF_ARTICLES_HOMEPAGE}`);
-    else
-      return this.getArticles();
+  public getLastArticles(): FetchRequestReturn<ArticleResponse[]> {
+    return FetchRequest.get<ArticleResponse[]>(`${ApiConstant.ARTICLE.GET_ALL_ARTICLES}/${Config.DEFAULT_NR_OF_ARTICLES_HOMEPAGE}`);
   }
 
   public getArticles(): FetchRequestReturn<ArticleResponse[]> {
@@ -62,7 +59,7 @@ class ApiArticle {
   public updateArticle(articleId: string, formDataObject: ArticleFormFields, callback: (wsResult: IUseFetchData<ArticleResponse>) => void): void {
     const { promise } = FetchRequest.put<ArticleResponse>(`${ApiConstant.ARTICLE.PUT_UPDATE_BY_ID}/${articleId}`, formDataObject);
     promise.then((wsResult) => {
-      if(formDataObject.imagen.name!='') {
+      if (formDataObject.imagen.name != '') {
         const form = new FormData();
         form.append('imagen', formDataObject.imagen, formDataObject.imagen.name);
         this.updateArticleImage(articleId, form, callback);
