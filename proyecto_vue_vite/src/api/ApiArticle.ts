@@ -28,6 +28,10 @@ class ApiArticle {
     return FetchRequest.get<ArticleResponse[]>(`${ApiConstant.ARTICLE.GET_ALL_ARTICLES}`);
   }
 
+  public getArticlesBySearch(searchStr: string): FetchRequestReturn<ArticleResponse[]> {
+    return FetchRequest.get<ArticleResponse[]>(`${ApiConstant.ARTICLE.GET_ALL_BY_SEARCH}/${searchStr}`);
+  }
+
   public updateArticleImage(articleId: string, form: FormData, callback: (wsResult: IUseFetchData<ArticleResponse>) => void): void {
     const { promise } = FetchRequest.postForm<ArticleResponse>(`${ApiConstant.ARTICLE.POST_ADD_IMAGE_TO_ARTICLE}/${articleId}`, form);
     promise.then((wsResult) => callback(wsResult));
