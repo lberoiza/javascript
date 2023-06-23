@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineEmits} from 'vue';
+import { ref } from 'vue';
 import ApiImage from "../api/ApiImage";
 import { ArticleResponse } from "../api/ApiArticle";
 import Dayjs from "./Dayjs.vue";
