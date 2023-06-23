@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 // Components
+import RedirectComponent from './components/RedirectComponent.vue';
 import Home from './pages/PageHome.vue';
 import Blog from './pages/PageBlog.vue';
 import PageSearch from './pages/PageSearch.vue';
@@ -10,6 +11,11 @@ import Page2 from './pages/Page2.vue'
 import PageNotFound from './pages/PageNotFound.vue'
 
 const routes: Array<RouteRecordRaw> = [
+  {
+    name: 'redirect',
+    path: '/redirect/*',
+    component: RedirectComponent
+  },
   {
     path: '/',
     component: Home
@@ -44,6 +50,7 @@ const routes: Array<RouteRecordRaw> = [
     component: PageNotFound
   },
   {
+    name: 'searchPage',
     path:'/search/:searchStr',
     component: PageSearch
   }
