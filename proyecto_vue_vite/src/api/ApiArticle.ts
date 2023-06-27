@@ -28,6 +28,10 @@ class ApiArticle {
     return FetchRequest.get<ArticleResponse[]>(`${ApiConstant.ARTICLE.GET_ALL_ARTICLES}`);
   }
 
+  public getArticleById(articleId: string): FetchRequestReturn<ArticleResponse> {
+    return FetchRequest.get<ArticleResponse>(`${ApiConstant.ARTICLE.GET_BY_ID}/${articleId}`);
+  }
+
   public getArticlesBySearch(searchStr: string): FetchRequestReturn<ArticleResponse[]> {
     return FetchRequest.get<ArticleResponse[]>(`${ApiConstant.ARTICLE.GET_ALL_BY_SEARCH}/${searchStr}`);
   }
