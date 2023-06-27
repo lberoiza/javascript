@@ -1,18 +1,18 @@
 <template>
   <article :id="article._id" class="article-item">
     <div class="image-wrap">
-      <a :href="'/blog/article/' + article._id">
+      <router-link :to="'/blog/article/' + article._id">
         <img :src="ApiImage.getImageUrl(article.image)" :alt="article.title" />
-      </a>
+      </router-link>
     </div>
     <button class="btn-follow star-button" @click="buttonFollowPressed" :disabled="buttonFollorPressed">
       <span class="star-icon"></span>
     </button>
     <h2>{{ article.title }}</h2>
     <Dayjs class="date" :dateString="article.date"></Dayjs>
-    <a :href="'/blog/article/' + article._id" class="btn">
+    <router-link :to="'/blog/article/' + article._id" class="btn">
       Leer más ...
-    </a>
+    </router-link>
   </article>
 </template>
 
