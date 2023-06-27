@@ -6,6 +6,7 @@ import Home from './pages/PageHome.vue';
 import Blog from './pages/PageBlog.vue';
 import PageSearch from './pages/PageSearch.vue';
 import Form from './pages/PageForm.vue';
+import PageArticle from './pages/PageArticle.vue'
 import Page1 from './pages/Page1.vue';
 import Page2 from './pages/Page2.vue'
 import PageNotFound from './pages/PageNotFound.vue'
@@ -17,22 +18,27 @@ const routes: Array<RouteRecordRaw> = [
     component: RedirectComponent
   },
   {
+    name: 'pageIndex',
     path: '/',
     component: Home
   },
   {
+    name: 'pageHome',
     path: '/home',
     component: Home
   },
   {
+    name: 'pageLastArticles',
     path: '/last-articles',
     component: Home
   },
   {
+    name: 'pageBlog',
     path: '/blog',
     component: Blog
   },
   {
+    name: 'pageForm',
     path: '/form',
     component: Form
   },
@@ -46,13 +52,19 @@ const routes: Array<RouteRecordRaw> = [
     component: Page2
   },
   {
-    path: '/:pathMatch(.*)*',
-    component: PageNotFound
+    name: 'pageSearch',
+    path: '/search/:searchStr',
+    component: PageSearch
   },
   {
-    name: 'searchPage',
-    path:'/search/:searchStr',
-    component: PageSearch
+    name: 'pageArticle',
+    path: '/blog/article/:articleId',
+    component: PageArticle
+  },
+
+  {
+    path: '/:pathMatch(.*)*',
+    component: PageNotFound
   }
 ];
 
