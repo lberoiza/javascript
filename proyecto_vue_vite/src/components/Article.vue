@@ -35,7 +35,6 @@ type ArticleProps = {
 const props = defineProps<ArticleProps>()
 
 const editArticle = (articleId: string) => {
-  console.log(articleId);
   router.push({name: 'pageArticleEdit', params: {articleId: articleId}})
 }
 
