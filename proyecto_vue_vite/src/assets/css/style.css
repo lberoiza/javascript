@@ -7,6 +7,16 @@ html {
   font-size: 16px;
 }
 
+.error-message {
+  text-align: center;
+  background-color: red;
+  color: whitesmoke;
+  padding: 5px;
+  border-radius: 5px;
+  font-weight: bold;
+
+}
+
 .font-red {
   color: red;
 }
