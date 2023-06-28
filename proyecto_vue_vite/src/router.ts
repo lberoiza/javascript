@@ -8,6 +8,7 @@ import PageSearch from './pages/PageSearch.vue';
 import Form from './pages/PageForm.vue';
 import PageArticle from './pages/PageArticle.vue'
 import PageArticleNew from './pages/PageArticleNew.vue'
+import PageArticleEdit from './pages/PageArticleEdit.vue'
 import Page1 from './pages/Page1.vue';
 import Page2 from './pages/Page2.vue'
 import PageNotFound from './pages/PageNotFound.vue'
@@ -66,6 +67,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'pageArticleNew',
     path: '/blog/new',
     component: PageArticleNew
+  },
+  {
+    name: 'pageArticleEdit',
+    path: '/blog/edit/:articleId',
+    component: PageArticleEdit
   },
   {
     path: '/:pathMatch(.*)*',
