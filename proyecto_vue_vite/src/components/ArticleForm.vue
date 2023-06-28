@@ -4,6 +4,9 @@
       <p class="error-message">{{ errorStr }}</p>
     </div>
 
+    <div v-if="props.article" class="form-group form-article-image">
+      <img :src="ApiImage.getImageUrl(props.article?.image)" :alt="props.article?.title">
+    </div>
 
     <div class="form-group">
       <label for="title">Article Title</label>
@@ -34,6 +37,7 @@ import { ref } from 'vue';
 import { ArticleResponse, ArticleFormFields } from '../api/ApiArticle';
 import useForm from "../hooks/useForm";
 import ApiArticle from '../api/ApiArticle';
+import ApiImage from '../api/ApiImage';
 import UseFetchData from '../classes/UseFetchData';
 import { useRouter } from 'vue-router';
 
