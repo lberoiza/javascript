@@ -20,10 +20,11 @@ import { onMounted, onUnmounted, ref } from 'vue';
 import ApiArticle, { ArticleResponse } from '../api/ApiArticle';
 import ApiImage from '../api/ApiImage';
 import UseFetchData from '../classes/UseFetchData';
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import Dayjs from './Dayjs.vue';
 
 const route = useRoute();
+const router = useRouter();
 const articleId = route.params.articleId as string;
 
 
@@ -35,6 +36,7 @@ const props = defineProps<ArticleProps>()
 
 const editArticle = (articleId: string) => {
   console.log(articleId);
+  router.push({name: 'pageArticleEdit', params: {articleId: articleId}})
 }
 
 const deleteArticle = (articleId: string) => {
