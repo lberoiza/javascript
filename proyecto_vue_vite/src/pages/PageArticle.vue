@@ -1,5 +1,5 @@
 <template>
-  <section id="content" class="page-blog">
+  <section id="content" class="page-article">
     <Loading v-if="loading"></Loading>
     <div v-else>
       <Error v-if="article.hasErrors()" :errors="article.errorMessages"></Error>
