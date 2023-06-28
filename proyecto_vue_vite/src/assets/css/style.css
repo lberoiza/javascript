@@ -326,6 +326,13 @@ div.App::before {
 
 .mid-form img {
   width: 100%;
+  border-radius: 10px;
+  border: 2px solid var(--color-primary-darker);
+  padding: 1px;
+}
+
+.mid-form img:hover {
+  border-color: var(--color-primary);
 }
 
 .mid-form .form-group {
