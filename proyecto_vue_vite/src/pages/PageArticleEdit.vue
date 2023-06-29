@@ -33,7 +33,7 @@ const apiArticle = ApiArticle.getArticleById(articleId);
 onMounted(() => {
   apiArticle.promise.then(wsResponse => {
     loading.value = false;
-    article.value = new UseFetchData<ArticleResponse>().setFetchData(wsResponse);
+    article.value.setFetchData(wsResponse);
   });
 });
 
