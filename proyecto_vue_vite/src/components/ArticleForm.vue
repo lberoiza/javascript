@@ -60,8 +60,6 @@ const article = ref<{ title: string, content: string }>({
 });
 
 
-
-
 const redirectAfterProcess = (articleId: string = '') => {
   let name = 'pageBlog';
   let params = { articleId: '' };
