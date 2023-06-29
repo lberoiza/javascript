@@ -27,11 +27,7 @@ const { promise, abortController } = ApiArticle.getArticlesBySearch(searchStr);
 
 onMounted(() => {
   promise.then((wsResult) => {
-    console.log(wsResult);
     articleList.value.setFetchData(wsResult);
-    console.log(articleList.value);
-    console.log(articleList.value.hasResponse());
-
     loading.value = false;
   });
 });
