@@ -34,12 +34,14 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { ArticleResponse, ArticleFormFields } from '../api/ApiArticle';
 import useForm from "../hooks/useForm";
 import ApiArticle from '../api/ApiArticle';
 import ApiImage from '../api/ApiImage';
 import UseFetchData from '../classes/UseFetchData';
-import { useRouter } from 'vue-router';
+import Alert from '../classes/Alert';
+import { FetchRequestReturn } from '../classes/FetchRequest';
 
 const router = useRouter();
 const { getData, validateStringFields } = useForm<ArticleFormFields>();
@@ -75,37 +77,41 @@ const sendData = (event: Event) => {
   const formDataObject = getData(event.target as HTMLFormElement);
 
   try {
-    if (!validateStringFields(formDataObject)) throw new Error("Title o Content of the Article are empty.");
+    if (!validateStringFields(formDataObject)) {
+      throw new Error("Title o Content of the Article are empty.");
+    }
 
     const articleId = props.article?._id ?? null;
-    const { promise } = articleId ? ApiArticle.updateArticle(articleId, formDataObject) : ApiArticle.createArticle(formDataObject)
+    let api: FetchRequestReturn<ArticleResponse> = ApiArticle.createArticle(formDataObject);
+    let opString = 'created';
 
 
-    promise.then(wsResult => {
+    if (articleId) {
+      api = ApiArticle.updateArticle(articleId, formDataObject);
+      opString = 'updated';
+    }
+
+    api.promise.then(wsResult => {
       const result = new UseFetchData<ArticleResponse>().setFetchData(wsResult);
       if (formDataObject.imagen.name != '') {
         if (result.hasResponse()) {
           const { promise } = ApiArticle.updateArticleImage(result.response?._id!, formDataObject);
           promise.then(wsResult => {
             console.log(wsResult);
+            Alert.showSuccess(`Article '${wsResult.response?.title}' with Image '${formDataObject.imagen.name}' sucessfully ${opString}`);
             redirectAfterProcess(result.response?._id);
           });
         }
 
       } else {
+        Alert.showSuccess(`Article '${result.response?.title}' sucessfully ${opString}`);
         redirectAfterProcess(result.response?._id);
       }
     });
 
-    // ApiArticle.updateArticle(props.article._id, formDataObject, (wsResult) => {
-    //   navigation(`/blog/article/${wsResult.response?._id}`);
-    //   Alert.showSuccess("Tu Articulo fué editado exitosamente");
-    // });
-
   } catch (err) {
     const error = err as Error;
     errorStr.value = error.message;
-    // setError((error as Error).message)
   }
 
 }
