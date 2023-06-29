@@ -16,18 +16,13 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue';
 import ApiArticle, { ArticleResponse } from '../api/ApiArticle';
 import ApiImage from '../api/ApiImage';
-import UseFetchData from '../classes/UseFetchData';
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import Dayjs from './Dayjs.vue';
 import Alert from '../classes/Alert';
 
-const route = useRoute();
 const router = useRouter();
-const articleId = route.params.articleId as string;
-
 
 type ArticleProps = {
   article: ArticleResponse
@@ -38,7 +33,6 @@ const props = defineProps<ArticleProps>()
 const editArticle = (articleId: string) => {
   router.push({name: 'pageArticleEdit', params: {articleId: articleId}})
 }
-
 
 
 function deleteArticle(articleId: string): void {
@@ -65,24 +59,5 @@ Alert.showConfirmDialog(message, title)
     }
   });
 }
-
-
-const article = ref<UseFetchData<ArticleResponse>>(new UseFetchData<ArticleResponse>());
-const loading = ref<boolean>(true);
-const { promise, abortController } = ApiArticle.getArticleById(articleId);
-
-
-onMounted(() => {
-  promise.then((wsResult) => {
-    article.value.setFetchData(wsResult);
-    loading.value = false;
-  });
-});
-
-onUnmounted(() => {
-  abortController.abort();
-})
-
-
 
 </script>
