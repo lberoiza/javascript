@@ -19,7 +19,7 @@ function deleteArticle(articleId: string, useNavigationHook: NavigateFunction): 
     });
   } catch (error) {
     const text = `El Articulo no pudo ser eliminado`;
-    Alert.showAlert(text);
+    Alert.showError(text);
   }
 }
 
