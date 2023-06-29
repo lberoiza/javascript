@@ -28,18 +28,18 @@ const route = useRoute();
 const articleId = route.params.articleId as string;
 const article = ref<UseFetchData<ArticleResponse>>(new UseFetchData<ArticleResponse>());
 const loading = ref<boolean>(true);
-const { promise, abortController } = ApiArticle.getArticleById(articleId);
+const api = ApiArticle.getArticleById(articleId);
 
 
 onMounted(() => {
-  promise.then((wsResult) => {
-    article.value.setFetchData(wsResult);
+  api.promise.then((wsResult) => {
     loading.value = false;
+    article.value.setFetchData(wsResult);
   });
 });
 
 onUnmounted(() => {
-  abortController.abort();
+  api.abortController.abort();
 })
 
 </script>
