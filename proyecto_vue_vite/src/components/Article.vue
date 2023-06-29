@@ -4,8 +4,8 @@
       <img :src="ApiImage.getImageUrl(props.article.image)" alt="Article Image" />
     </div>
     <div class="article-button-bar">
-      <button @click="editArticle(props.article._id)" class="btn btn-warning">Editar</button>
-      <button @click="confirmDeleteArticle(props.article._id)" class="btn btn-danger">Eliminar</button>
+      <button @click="editArticle(props.article._id)" class="btn btn-warning">Edit</button>
+      <button @click="confirmDeleteArticle(props.article._id)" class="btn btn-danger">Delete</button>
     </div>
     <h1 class="subheader">{{ props.article.title }}</h1>
     <Dayjs class="date" :dateString="props.article.date"></Dayjs>

@@ -35,7 +35,7 @@ class Alert {
   }
 
 
-  public showConfirmDialog(text: string, title: string = '', buttons = ['Cancelar', 'Continuar']): Promise<any> {
+  public showConfirmDialog(text: string, title: string = '', buttons = ['Cancel', 'Accept']): Promise<any> {
     return this.showAlert({
       title: title,
       text: text,
