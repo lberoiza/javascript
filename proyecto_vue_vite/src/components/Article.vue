@@ -5,7 +5,7 @@
     </div>
     <div class="article-button-bar">
       <button @click="editArticle(props.article._id)" class="btn btn-warning">Editar</button>
-      <button @click="deleteArticle(props.article._id)" class="btn btn-danger">Eliminar</button>
+      <button @click="confirmDeleteArticle(props.article._id)" class="btn btn-danger">Eliminar</button>
     </div>
     <h1 class="subheader">{{ props.article.title }}</h1>
     <Dayjs class="date" :dateString="props.article.date"></Dayjs>
@@ -22,6 +22,7 @@ import ApiImage from '../api/ApiImage';
 import UseFetchData from '../classes/UseFetchData';
 import { useRoute, useRouter } from "vue-router";
 import Dayjs from './Dayjs.vue';
+import Alert from '../classes/Alert';
 
 const route = useRoute();
 const router = useRouter();
@@ -38,8 +39,31 @@ const editArticle = (articleId: string) => {
   router.push({name: 'pageArticleEdit', params: {articleId: articleId}})
 }
 
-const deleteArticle = (articleId: string) => {
-  console.log(articleId);
+
+
+function deleteArticle(articleId: string): void {
+  try {
+    ApiArticle.deleteArticle(articleId, (wsResult) => {
+      const text = `The Article: "${wsResult.response?.title}" was successfully deleted.`;
+      router.push({name: 'pageBlog'});
+      Alert.showSuccess(text);
+    });
+  } catch (error) {
+    const text = `The Article could not be eliminated`;
+    Alert.showError(text);
+  }
+}
+
+
+const confirmDeleteArticle = (articleId: string) => {
+const title = 'The deletion is permanent!'
+const message= 'Are you sure, that you want to delete the Article?';
+Alert.showConfirmDialog(message, title)
+  .then((willDelete) => {
+    if (willDelete) {
+      deleteArticle(articleId);
+    }
+  });
 }
 
 
