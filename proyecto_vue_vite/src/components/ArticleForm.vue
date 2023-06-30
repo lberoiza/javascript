@@ -79,15 +79,19 @@ const sendData = (event: Event) => {
       throw new Error("Title o Content of the Article are empty.");
     }
 
-    const articleId = props.article?._id ?? null;
-    let api: FetchRequestReturn<ArticleResponse> = ApiArticle.createArticle(formDataObject);
+
+    const articleId = props.article?._id;
+    let api: FetchRequestReturn<ArticleResponse>;
     let opString = 'created';
 
 
     if (articleId) {
       api = ApiArticle.updateArticle(articleId, formDataObject);
       opString = 'updated';
+    }else {
+      api = ApiArticle.createArticle(formDataObject);
     }
+
 
     api.promise.then(wsResult => {
       const result = new UseFetchData<ArticleResponse>().setFetchData(wsResult);
