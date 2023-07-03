@@ -1,5 +1,4 @@
 <template>
-  <h1>redireccionando</h1>
 </template>
 <script setup lang="ts">
 import { onMounted } from 'vue';
