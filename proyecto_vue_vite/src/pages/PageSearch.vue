@@ -4,7 +4,7 @@
     <h2 class="subheader">List of Articles</h2>
     <ArticleList :loading="loading" :articleList="articleList"></ArticleList>
   </section>
-  <Sidebar></Sidebar>
+  <Sidebar :searchText="searchStr"></Sidebar>
 </template>
 
 <script setup lang="ts">
@@ -35,8 +35,4 @@ onMounted(() => {
 onUnmounted(() => {
   abortController.abort();
 })
-
-
-
-// import ArticleList from '../components/ArticleList.vue';
 </script>

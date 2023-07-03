@@ -1,7 +1,7 @@
 <template>
   <aside id="sidebar">
     <SidebarArticleNew v-if="isBlog" />
-    <SidebarSearchArticleForm></SidebarSearchArticleForm>
+    <SidebarSearchArticleForm :searchText="searchText"></SidebarSearchArticleForm>
   </aside>
 </template>
 
@@ -10,7 +10,8 @@ import SidebarArticleNew from './SidebarArticleNew.vue';
 import SidebarSearchArticleForm from './SidebarSearchArticleForm.vue';
 
 type SidebarProps = {
-  isBlog?: boolean
+  isBlog?: boolean,
+  searchText?: string
 };
 
 defineProps<SidebarProps>()
