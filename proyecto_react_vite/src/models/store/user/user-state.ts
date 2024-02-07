@@ -8,5 +8,4 @@ export interface UserInformation {
 
 export interface UserState {
   information: UserInformation;
-  articles: ArticleResponse[];
 }

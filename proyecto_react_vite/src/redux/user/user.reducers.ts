@@ -6,8 +6,7 @@ const initialState: UserState = {
     name: '',
     email: '',
     username: '',
-  },
-  articles: [],
+  }
 }
 
 export const userSlice = createSlice<UserState>({
@@ -25,9 +24,6 @@ export const userSlice = createSlice<UserState>({
     },
     setUsername(state, action) {
       state.userDetails.username = action.payload;
-    },
-    setUserArticles(state, action) {
-      state.userArticles = action.payload;
     }
   }
 });
