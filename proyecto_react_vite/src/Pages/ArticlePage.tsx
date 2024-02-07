@@ -5,7 +5,7 @@ import useFetch from "../hooks/useFetch";
 import NotFound from "./NotFound";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
-import { ArticleResponse } from "../api/ApiArticle";
+import { ArticleResponse } from "@/models/ArticleResponse.model";
 import Article from "../components/Article";
 
 type ArticleUrlParams = {

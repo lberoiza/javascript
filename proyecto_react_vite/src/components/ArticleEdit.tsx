@@ -1,7 +1,9 @@
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useForm from "../hooks/useForm";
-import ApiArticle, { ArticleFormFields, ArticleResponse } from "../api/ApiArticle";
+import ApiArticle from "../api/ApiArticle";
+import { ArticleFormFields } from "@/models/ArticleFormFields.model"
+import { ArticleResponse } from "@/models/ArticleResponse.model"
 import Alert from "../classes/Alert";
 import ArticleForm from "./ArticleForm";
 

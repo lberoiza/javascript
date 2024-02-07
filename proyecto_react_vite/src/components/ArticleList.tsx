@@ -2,7 +2,7 @@ import { useState } from "react";
 import ApiConstant from "../api/ApiConstant";
 import useFetch from "../hooks/useFetch";
 import UseFetchData from "../classes/UseFetchData";
-import { ArticleResponse } from "../api/ApiArticle";
+import { ArticleResponse } from "@/models/ArticleResponse.model";
 import Error from "./Error";
 import Loading from "./Loading";
 import ArticlePreview from "./ArticlePreview";
@@ -34,7 +34,7 @@ function showArticleList(fetchData: UseFetchData<ArticleResponse[]>, followArtic
 }
 
 
-const ArticleList = (props: ArticleListProps): JSX.Element => {
+const ArticleList = (props: ArticleListProps) => {
 
   const apiUrl = props.articlesApiUrl ? props.articlesApiUrl : ApiConstant.ARTICLE.GET_ALL_ARTICLES;
 

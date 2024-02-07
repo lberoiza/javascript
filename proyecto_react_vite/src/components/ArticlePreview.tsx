@@ -2,7 +2,7 @@ import React, { Component, MouseEvent } from "react";
 import { Link } from 'react-router-dom';
 import ApiImage from "../api/ApiImage";
 import Dayjs from "./Dayjs";
-import { ArticleResponse } from '../api/ApiArticle';
+import { ArticleResponse } from '@/models/ArticleResponse.model';
 
 export interface ArticlePreviewProps extends ArticleResponse {
   follow(article: ArticlePreviewProps): void;

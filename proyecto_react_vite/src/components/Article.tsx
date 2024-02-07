@@ -1,6 +1,7 @@
 import Dayjs from "../components/Dayjs";
 import ApiImage from "../api/ApiImage";
-import ApiArticle, { ArticleResponse } from "../api/ApiArticle";
+import { ArticleResponse } from "@/models/ArticleResponse.model";
+import ApiArticle from "../api/ApiArticle";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import Alert from "../classes/Alert";
 

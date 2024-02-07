@@ -1,23 +1,11 @@
 import FetchRequest from "../classes/FetchRequest"
-import { IUseFetchData } from "../classes/UseFetchData"
+import { IUseFetchData } from "@/classes/UseFetchData"
 import ApiConstant from "./ApiConstant"
-
-export interface ArticleResponse {
-  _id: string,
-  title: string,
-  content: string,
-  date: string,
-  image: string,
-  __v: number
-}
-
-export type ArticleFormFields = {
-  title: string,
-  content: string
-  imagen: File
-}
+import { ArticleResponse } from "@/models/ArticleResponse.model"
+import { ArticleFormFields } from "@/models/ArticleFormFields.model"
 
 class ApiArticle {
+
   public updateArticleImage(articleId: string, form: FormData, callback: (wsResult: IUseFetchData<ArticleResponse>) => void): void {
     const { promise } = FetchRequest.postForm<ArticleResponse>(`${ApiConstant.ARTICLE.POST_ADD_IMAGE_TO_ARTICLE}/${articleId}`, form);
     promise.then((wsResult) => callback(wsResult));

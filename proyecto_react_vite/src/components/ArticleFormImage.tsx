@@ -1,4 +1,4 @@
-import { ArticleResponse } from "../api/ApiArticle";
+import { ArticleResponse } from "@/models/ArticleResponse.model";
 import ApiImage from "../api/ApiImage";
 
 

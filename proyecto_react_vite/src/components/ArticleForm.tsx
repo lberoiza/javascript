@@ -1,5 +1,5 @@
 import { FormEvent } from "react";
-import { ArticleResponse } from "../api/ApiArticle";
+import { ArticleResponse } from "@/models/ArticleResponse.model";
 import ArticleFormImage from "./ArticleFormImage";
 
 
