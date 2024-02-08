@@ -16,7 +16,7 @@ function showErrors(errors: string[] | undefined) : JSX.Element{
   }
 }
 
-export const Error = function (props: ErrorComponentProps): JSX.Element {
+const Error = (props: ErrorComponentProps): JSX.Element => {
   return (
     <>
       <h2 className="subheader">Ooops!</h2>
@@ -27,3 +27,5 @@ export const Error = function (props: ErrorComponentProps): JSX.Element {
     </>
   );
 }
+
+export default Error;

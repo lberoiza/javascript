@@ -1,10 +1,10 @@
-import { useParams } from "react-router-dom";
-import Sidebar from "@/components/Sidebar";
-import NotFound from "@/pages/NotFound";
-import Loading from "@/components/Loading";
-import { Error } from "@/components/Error";
 import Article from "@/components/Article";
-import { useFetchArticleById } from "../hooks/useFetchArticleById";
+import Error from "@/components/Error";
+import Loading from "@/components/Loading";
+import NotFound from "@/pages/NotFound";
+import Sidebar from "@/components/Sidebar";
+import { useFetchArticleById } from "@/hooks/useFetchArticleById";
+import { useParams } from "react-router-dom";
 
 type ArticleUrlParams = {
   id: string;

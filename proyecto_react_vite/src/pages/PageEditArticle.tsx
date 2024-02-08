@@ -5,7 +5,7 @@ import Slider from "../components/Slider";
 import useFetch from "../hooks/useFetch";
 import ApiConstant from "../api/ApiConstant";
 import { ArticleResponse } from "../models/ArticleResponse.model";
-import { Error } from "@/components/Error";
+import Error from "@/components/Error";
 import Loading from "../components/Loading";
 
 export default function PageEditArticle(): JSX.Element {
