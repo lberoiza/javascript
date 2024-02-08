@@ -2,10 +2,10 @@ import ApiConstant from "../api/ApiConstant";
 import ArticleList from "../components/ArticleList";
 import Sidebar from "../components/Sidebar";
 import Slider from "../components/Slider";
-import { AppState } from "@/redux/store";
+import { AppState } from "@/store/store";
 import { ArticleResponse } from "@/models/ArticleResponse.model";
 import { IUseFetchData } from "@/classes/UseFetchData";
-import { setAllArticles } from "../redux/article/articles.actions";
+import { setAllArticles } from "@/store/article/articles.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 

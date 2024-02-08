@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { AppState } from "../redux/store";
+import { AppState } from "@/store/store";
 import { ArticleResponse } from "@/models/ArticleResponse.model";
 import FetchRequest from "../classes/FetchRequest";
 import ApiConstant from "../api/ApiConstant";
