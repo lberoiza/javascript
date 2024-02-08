@@ -45,8 +45,8 @@
       "@/pages/*": [
         "src/pages/*"
       ],
-      "@/redux/*": [
-        "src/redux/*"
+      "@/store/*": [
+        "src/store/*"
       ]
     }
   },
