@@ -1,4 +1,4 @@
-import Config from '../config/Config';
+import Config from '@/config/Config';
 import * as dayjs from 'dayjs';
 import 'dayjs/locale/es';
 import 'dayjs/locale/en';
