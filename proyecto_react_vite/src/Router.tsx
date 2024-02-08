@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 
 
 import Header from './components/Header';
-import Home from './Pages/Home';
-import Blog from './Pages/Blog'
+import Home from './pages/Home';
+import Blog from './pages/Blog'
 import Footer from './components/Footer';
 
 // Componente de Ejemplo
@@ -12,12 +12,12 @@ import MiComponente from './components/ejemplos/MiComponente';
 import MiComponenteFuncional from './components/ejemplos/MiComponenteFuncional';
 
 // Paginas
-import NotFound from './Pages/NotFound';
-import Formulario from './Pages/Formulario';
-import ArticlePage from './Pages/ArticlePage';
-import Search from './Pages/Search';
-import PageCreateArticle from './Pages/PageCreateArticle';
-import PageEditArticle from './Pages/PageEditArticle';
+import NotFound from './pages/NotFound';
+import Formulario from './pages/Formulario';
+import ArticlePage from './pages/ArticlePage';
+import Search from './pages/Search';
+import PageCreateArticle from './pages/PageCreateArticle';
+import PageEditArticle from './pages/PageEditArticle';
 import Menu from './components/Menu';
 
 

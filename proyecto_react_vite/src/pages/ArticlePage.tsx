@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import Sidebar from "@/components/Sidebar";
-import NotFound from "@/Pages/NotFound";
+import NotFound from "@/pages/NotFound";
 import Loading from "@/components/Loading";
 import { Error } from "@/components/Error";
 import Article from "@/components/Article";
