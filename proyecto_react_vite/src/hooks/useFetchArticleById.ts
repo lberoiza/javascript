@@ -24,10 +24,10 @@ export const useFetchArticleById = (id: string) => {
         .then((data: IUseFetchData<ArticleResponse>) => {
           if (data.isSuccessful && data.response) {
             setArticle(data.response);
-            setLoading(false);
           } else {
             setError(true);
           }
+          setLoading(false);
         });
     }
   }, [id, articles]);
