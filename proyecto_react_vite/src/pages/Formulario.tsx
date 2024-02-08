@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Slider from '../components/Slider';
-import Sidebar from '../components/Sidebar';
+import Slider from '@/components/Slider';
+import Sidebar from '@/components/Sidebar';
 
 type formUser = {
   nombre: string,

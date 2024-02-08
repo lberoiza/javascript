@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 
 
-import Header from './components/Header';
+import Header from '@/components/Header';
 import Home from '@/pages/Home';
 import Blog from '@/pages/Blog'
-import Footer from './components/Footer';
+import Footer from '@/components/Footer';
 
 // Componente de Ejemplo
-import MiComponente from './components/ejemplos/MiComponente';
-import MiComponenteFuncional from './components/ejemplos/MiComponenteFuncional';
+import MiComponente from '@/components/ejemplos/MiComponente';
+import MiComponenteFuncional from '@/components/ejemplos/MiComponenteFuncional';
 
 // Paginas
 import NotFound from '@/pages/NotFound';
@@ -18,7 +18,7 @@ import ArticlePage from '@/pages/ArticlePage';
 import Search from '@/pages/Search';
 import PageCreateArticle from '@/pages/PageCreateArticle';
 import PageEditArticle from '@/pages/PageEditArticle';
-import Menu from './components/Menu';
+import Menu from '@/components/Menu';
 
 
 export default function Router(): JSX.Element {
