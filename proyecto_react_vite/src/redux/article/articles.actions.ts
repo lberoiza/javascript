@@ -1,4 +1,4 @@
-import { articleSlice } from "@/redux/article/articles.reducers";
+import { articleSlice } from "./articles.reducers";
 
 export const { setAllArticles, setLastArticles } = articleSlice.actions;
 
