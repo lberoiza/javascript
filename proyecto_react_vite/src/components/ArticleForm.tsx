@@ -1,6 +1,6 @@
-import { FormEvent } from "react";
+import ArticleFormImage from "@/components/ArticleFormImage";
 import { ArticleResponse } from "@/models/ArticleResponse.model";
-import ArticleFormImage from "./ArticleFormImage";
+import { FormEvent } from "react";
 
 
 type ArticleFormProps = {

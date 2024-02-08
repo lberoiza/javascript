@@ -1,4 +1,4 @@
-import { IUseFetchData } from "./UseFetchData";
+import { IUseFetchData } from "@/classes/UseFetchData";
 
 
 export type FetchRequestReturn<T> = {

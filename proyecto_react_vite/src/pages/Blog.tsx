@@ -1,7 +1,7 @@
 import ApiConstant from "../api/ApiConstant";
-import ArticleList from "../components/ArticleList";
-import Sidebar from "../components/Sidebar";
-import Slider from "../components/Slider";
+import ArticleList from "@/components/ArticleList";
+import Sidebar from "@/components/Sidebar";
+import Slider from "@/components/Slider";
 import { AppState } from "@/store/store";
 import { ArticleResponse } from "@/models/ArticleResponse.model";
 import { IUseFetchData } from "@/classes/UseFetchData";

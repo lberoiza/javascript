@@ -1,5 +1,3 @@
-import { ArticleResponse } from "@/models/ArticleResponse.model";
-
 export interface UserInformation {
   name: string;
   email: string;

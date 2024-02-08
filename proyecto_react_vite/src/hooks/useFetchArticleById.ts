@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import ApiConstant from "@/api/ApiConstant";
+import FetchRequest from "@/classes/FetchRequest";
 import { AppState } from "@/store/store";
 import { ArticleResponse } from "@/models/ArticleResponse.model";
-import FetchRequest from "../classes/FetchRequest";
-import ApiConstant from "../api/ApiConstant";
 import { IUseFetchData } from "@/classes/UseFetchData";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export const useFetchArticleById = (id: string) => {
 

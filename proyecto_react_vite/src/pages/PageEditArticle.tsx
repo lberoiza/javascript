@@ -1,12 +1,12 @@
-import { useParams } from "react-router-dom";
-import ArticleEdit from "../components/ArticleEdit";
-import Sidebar from "../components/Sidebar";
-import Slider from "../components/Slider";
-import useFetch from "../hooks/useFetch";
 import ApiConstant from "../api/ApiConstant";
-import { ArticleResponse } from "../models/ArticleResponse.model";
+import ArticleEdit from "@/components/ArticleEdit";
 import Error from "@/components/Error";
-import Loading from "../components/Loading";
+import Loading from "@/components/Loading";
+import Sidebar from "@/components/Sidebar";
+import Slider from "@/components/Slider";
+import useFetch from "@/hooks/useFetch";
+import { ArticleResponse } from "@/models/ArticleResponse.model";
+import { useParams } from "react-router-dom";
 
 export default function PageEditArticle(): JSX.Element {
   const { id } = useParams();
