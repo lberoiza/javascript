@@ -1,3 +1,3 @@
 import { articleSlice } from "@/store/article/articles.reducers";
 
-export const { setAllArticles, setLastArticles } = articleSlice.actions;
+export const { setAllArticles, setLastArticles, setCurrentArticle } = articleSlice.actions;
