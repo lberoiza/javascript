@@ -5,14 +5,14 @@ import useForm from "@/hooks/useForm";
 import { ArticleFormFields } from "@/models/ArticleFormFields.model"
 import { ArticleResponse } from "@/models/ArticleResponse.model"
 import { FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigateWithTransitions } from "@/hooks/useNavigateWithTransitions";
 
 type ArticleEditProps = {
   article: ArticleResponse
 }
 
 export default function ArticleEdit(props: ArticleEditProps): JSX.Element {
-  const navigation = useNavigate();
+  const navigation = useNavigateWithTransitions();
   const [error, setError] = useState<string>('');
   const { getData, validateStringFields } = useForm<ArticleFormFields>();
 

@@ -1,54 +1,63 @@
+import React, { useState, MouseEvent } from "react";
 import ApiImage from "@/api/ApiImage";
 import Dayjs from "@/components/Dayjs";
-import React, { Component, MouseEvent } from "react";
 import { ArticleResponse } from '@/models/ArticleResponse.model';
-import { Link } from 'react-router-dom';
+import { useNavigateWithTransitions } from "@/hooks/useNavigateWithTransitions";
+import { useDispatch } from "react-redux";
+import { setCurrentArticle } from "@/store/article/articles.actions";
 
-export interface ArticlePreviewProps extends ArticleResponse {
-  follow(article: ArticlePreviewProps): void;
+export interface ArticlePreviewProps {
+  article: ArticleResponse;
+
+  follow(article: ArticleResponse): void;
 };
 
+const ArticlePreview: React.FC<ArticlePreviewProps> = ({article, follow}) => {
+  const navigate = useNavigateWithTransitions();
+  const dispatch = useDispatch();
 
-type ArticlePreviewState = {
-  btnSeguir: {
-    disabled: boolean
-  }
-};
+  const [btnSeguir, setBtnSeguir] = useState({disabled: false});
 
-
-class ArticlePreview extends Component<ArticlePreviewProps, ArticlePreviewState> {
-
-  state = {
-    btnSeguir: {disabled: false}
+  const callFollow = (event: MouseEvent<HTMLButtonElement>): void => {
+    setBtnSeguir({disabled: true});
+    follow(article);
   }
 
-  private callFollow = (event: MouseEvent<HTMLButtonElement>): void => {
-    this.setState({...this.state, btnSeguir: {...this.state.btnSeguir, disabled: true}});
-    this.props.follow(this.props);
+  const gotToArticlePage = () => {
+    dispatch(setCurrentArticle(article));
+    navigate('/blog/article/' + article._id);
   }
 
-
-  render() {
-    const {_id, title, image, date, follow} = this.props;
-
-    return (
-      <article id={_id} className="article-item">
-        <div className="image-wrap">
-          <Link to={'/blog/article/' + _id}>
-            <img className="preview" src={ApiImage.getImageUrl(image)} alt="Article Image"/>
-          </Link>
-        </div>
-        <button className="btn-follow star-button" onClick={this.callFollow} disabled={this.state.btnSeguir.disabled}>
-          <span className="star-icon"></span>
-        </button>
-        <h2>{title}</h2>
-        <Dayjs className="date">{date}</Dayjs>
-        <Link to={'/blog/article/' + _id} className="btn">
-          Leer más ...
-        </Link>
-      </article>
-    );
-  }
+  return (
+    <article id={article._id} className="article-item">
+      <div className="image-wrap"
+           onClick={gotToArticlePage}
+           style={{viewTransitionName: `article-image-${article._id}`}}
+      >
+        <img className="preview"
+             src={ApiImage.getImageUrl(article.image)}
+             alt="Article Image"
+        />
+      </div>
+      <button className="btn-follow star-button" onClick={callFollow} disabled={btnSeguir.disabled}>
+        <span className="star-icon"></span>
+      </button>
+      <h2
+        style={{viewTransitionName: `article-title-${article._id}`}}
+      >
+        {article.title}
+      </h2>
+      <Dayjs
+        className="date"
+        style={{viewTransitionName: `article-date-${article._id}`}}
+      >
+             {article.date}
+      </Dayjs>
+      <a onClick={gotToArticlePage} className="btn" >
+        <span style={{viewTransitionName: `article-button-${article._id}`}}>Leer más ...</span>
+      </a>
+    </article>
+  );
 }
 
 export default ArticlePreview;

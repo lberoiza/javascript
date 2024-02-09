@@ -14,7 +14,7 @@ function showArticleList(articleList: ArticleResponse[], followArticle: (f: Arti
   if (articleList.length > 0) {
     return (
       <div id="article-container">
-        {articleList.map(article => (<ArticlePreview key={article._id} {...article} follow={followArticle}/>))}
+        {articleList.map(article => (<ArticlePreview key={article._id} article={article} follow={followArticle}/>))}
       </div>
     );
   } else {

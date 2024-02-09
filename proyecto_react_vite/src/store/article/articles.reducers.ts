@@ -4,6 +4,7 @@ import { ArticleState } from "@/models/store/user/article-state";
 const initialState: ArticleState = {
   all: [],
   last: [],
+  current: undefined
 }
 
 export const articleSlice = createSlice<ArticleState>({
@@ -15,6 +16,9 @@ export const articleSlice = createSlice<ArticleState>({
     },
     setLastArticles(state, action) {
       state.last = action.payload;
+    },
+    setCurrentArticle(state, action) {
+      state.current = action.payload;
     }
   }
 });

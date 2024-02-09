@@ -377,6 +377,7 @@ textarea {
 
 
 .image-wrap img.preview:hover {
+  cursor: pointer;
   animation: previewArticleImageHover 1000ms ease-in-out 1 normal both;
 }
 
