@@ -1,34 +1,38 @@
 import ApiConstant from "../api/ApiConstant";
 import ArticleList from "@/components/ArticleList";
-import Config from "@/config/Config";
+import Sidebar from "@/components/Sidebar";
+import Slider from "@/components/Slider";
 import { AppState } from "@/store/store";
 import { ArticleResponse } from "@/models/ArticleResponse.model";
 import { IUseFetchData } from "@/classes/UseFetchData";
-import { setLastArticles } from "@/store/article/articles.actions";
+import { setAllArticles } from "@/store/article/articles.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 
-const ArticleListLast = (): JSX.Element => {
-  const lastArticles = useSelector((state: AppState) => state.articles.last);
+const Blog = (): JSX.Element => {
+  const allArticles = useSelector((state: AppState) => state.articles.all);
   const dispatch = useDispatch();
 
-  const lastArticlesUrl = ApiConstant.ARTICLE.GET_ALL_ARTICLES + '/' + Config.DEFAULT_NR_OF_ARTICLES_HOMEPAGE;
   useEffect(() => {
-
-    fetch(lastArticlesUrl)
+    fetch(ApiConstant.ARTICLE.GET_ALL_ARTICLES)
       .then(response => response.json())
       .then((data: IUseFetchData<ArticleResponse>) => {
         if (data.isSuccessful && data.response) {
-          dispatch(setLastArticles(data.response));
+          dispatch(setAllArticles(data.response));
         }
       })
   }, []);
 
-
   return (
-    <ArticleList articles={lastArticles}></ArticleList>
+    <>
+      <Slider title='Blog'></Slider>
+      <section id="content" className="page-blog">
+        <ArticleList articles={allArticles}/>
+      </section>
+      <Sidebar isBlog></Sidebar>
+    </>
   );
 }
 
-export default ArticleListLast
+export default Blog

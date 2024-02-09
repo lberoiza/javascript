@@ -1,8 +1,9 @@
-import Dayjs from "../components/Dayjs";
+import Alert from "@/classes/Alert";
+import ApiArticle from "@/api/ApiArticle";
 import ApiImage from "../api/ApiImage";
-import ApiArticle, { ArticleResponse } from "../api/ApiArticle";
+import Dayjs from "@/components/Dayjs";
+import { ArticleResponse } from "@/models/ArticleResponse.model";
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import Alert from "../classes/Alert";
 
 
 type ArticleProps = {

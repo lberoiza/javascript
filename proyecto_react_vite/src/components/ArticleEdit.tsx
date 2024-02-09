@@ -1,9 +1,11 @@
+import Alert from "../classes/Alert";
+import ApiArticle from "@/api/ApiArticle";
+import ArticleForm from "@/components/ArticleForm";
+import useForm from "@/hooks/useForm";
+import { ArticleFormFields } from "@/models/ArticleFormFields.model"
+import { ArticleResponse } from "@/models/ArticleResponse.model"
 import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useForm from "../hooks/useForm";
-import ApiArticle, { ArticleFormFields, ArticleResponse } from "../api/ApiArticle";
-import Alert from "../classes/Alert";
-import ArticleForm from "./ArticleForm";
 
 type ArticleEditProps = {
   article: ArticleResponse

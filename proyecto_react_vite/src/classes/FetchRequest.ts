@@ -1,4 +1,4 @@
-import { IUseFetchData } from "./UseFetchData";
+import { IUseFetchData } from "@/classes/UseFetchData";
 
 
 export type FetchRequestReturn<T> = {
@@ -88,8 +88,10 @@ class FetchRequest {
     params: Record<string, string> = {},
     options: RequestInit = this.postOptions(params)
   ): FetchRequestReturn<T> {
+    options.method = 'GET';
     const url = `${urlPath}${this.objectToQueryString(params)}`;
-    return this.fetch<T>(urlPath, options);
+    delete(options.body);
+    return this.fetch<T>(url, options);
   }
 
 

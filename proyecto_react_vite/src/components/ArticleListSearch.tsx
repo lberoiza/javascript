@@ -1,17 +1,22 @@
-import ApiConstant from "../api/ApiConstant";
-import ArticleList from "./ArticleList";
-
+import ArticleList from "@/components/ArticleList";
+import Error from "@/components/Error";
+import Loading from "@/components/Loading";
+import { useFetchSearchArticlesByContent } from "@/hooks/useFetchSearchArticlesByContent";
 
 type ArticleListSearchProps = {
   search: string
 }
 
-
 const ArticleListSearch = (props: ArticleListSearchProps): JSX.Element => {
   const search = props.search
-  const apiUrl = ApiConstant.ARTICLE.GET_ALL_BY_SEARCH + '/' + search
+  const {articles, loading, error, errorMessage} = useFetchSearchArticlesByContent(search);
+
   return (
-    <ArticleList articlesApiUrl={apiUrl}></ArticleList>
+    <>
+      {loading && <Loading></Loading>}
+      {error && <Error errors={errorMessage}></Error>}
+      {articles.length > 0 && <ArticleList articles={articles}/>}
+    </>
   );
 }
 

@@ -1,5 +1,5 @@
+import UseFetchData, { IUseFetchData } from "@/classes/UseFetchData";
 import { useState, useEffect } from "react";
-import UseFetchData, { IUseFetchData } from "../classes/UseFetchData";
 
 export type UseFetchReturn<T> = {
   data: UseFetchData<T>;
