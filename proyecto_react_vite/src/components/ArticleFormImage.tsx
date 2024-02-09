@@ -9,7 +9,11 @@ type ArticleFormImageProps = {
 export default function ArticleFormImage(props: ArticleFormImageProps): JSX.Element {
   return (
     <div className="form-group">
-      <img src={ApiImage.getImageUrl(props.article.image)} alt="Article Image" />
+      <img
+        src={ApiImage.getImageUrl(props.article.image)}
+        alt="Article Image"
+        style={{viewTransitionName: `article-image-${props.article._id}`}}
+      />
     </div>
   );
 }
