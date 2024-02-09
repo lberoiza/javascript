@@ -1,6 +1,6 @@
-import ArticleCreate from "../components/ArticleCreate";
-import Sidebar from "../components/Sidebar";
-import Slider from "../components/Slider";
+import ArticleCreate from "@/components/ArticleCreate";
+import Sidebar from "@/components/Sidebar";
+import Slider from "@/components/Slider";
 
 export default function ArticleNewPage(): JSX.Element {
   return (

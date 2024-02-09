@@ -43,10 +43,10 @@
         "src/hooks/*"
       ],
       "@/pages/*": [
-        "src/Pages/*"
+        "src/pages/*"
       ],
-      "@/redux/*": [
-        "src/redux/*"
+      "@/store/*": [
+        "src/store/*"
       ]
     }
   },

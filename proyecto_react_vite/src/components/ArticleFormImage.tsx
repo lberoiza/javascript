@@ -1,5 +1,5 @@
+import ApiImage from "@/api/ApiImage";
 import { ArticleResponse } from "@/models/ArticleResponse.model";
-import ApiImage from "../api/ApiImage";
 
 
 type ArticleFormImageProps = {

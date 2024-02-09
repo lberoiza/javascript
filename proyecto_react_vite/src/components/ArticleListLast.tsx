@@ -1,12 +1,12 @@
-import ArticleList from "./ArticleList";
-import { useDispatch, useSelector } from "react-redux";
-import { AppState } from "@/redux/store";
-import { useEffect } from "react";
-import { IUseFetchData } from "@/classes/UseFetchData";
-import { ArticleResponse } from "@/models/ArticleResponse.model";
-import { setLastArticles } from "../redux/article/articles.actions";
 import ApiConstant from "../api/ApiConstant";
-import Config from "../config/Config";
+import ArticleList from "@/components/ArticleList";
+import Config from "@/config/Config";
+import { AppState } from "@/store/store";
+import { ArticleResponse } from "@/models/ArticleResponse.model";
+import { IUseFetchData } from "@/classes/UseFetchData";
+import { setLastArticles } from "@/store/article/articles.actions";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 
 const ArticleListLast = (): JSX.Element => {

@@ -1,8 +1,8 @@
-import Config from '../config/Config';
-import * as dayjs from 'dayjs';
-import 'dayjs/locale/es';
-import 'dayjs/locale/en';
 import 'dayjs/locale/de';
+import 'dayjs/locale/en';
+import 'dayjs/locale/es';
+import * as dayjs from 'dayjs';
+import Config from '@/config/Config';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 dayjs.extend(relativeTime);

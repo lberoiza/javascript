@@ -1,6 +1,6 @@
-import ArticleListLast from '../components/ArticleListLast';
-import Sidebar from '../components/Sidebar';
-import Slider from '../components/Slider';
+import ArticleListLast from '@/components/ArticleListLast';
+import Sidebar from '@/components/Sidebar';
+import Slider from '@/components/Slider';
 
 const Home = () => {
   return (

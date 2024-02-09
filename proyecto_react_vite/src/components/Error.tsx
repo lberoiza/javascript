@@ -16,7 +16,7 @@ function showErrors(errors: string[] | undefined) : JSX.Element{
   }
 }
 
-const Error = function (props: ErrorComponentProps): JSX.Element {
+const Error = (props: ErrorComponentProps): JSX.Element => {
   return (
     <>
       <h2 className="subheader">Ooops!</h2>

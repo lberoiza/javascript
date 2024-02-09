@@ -1,10 +1,10 @@
+import ApiConstant from "@/api/ApiConstant";
+import FetchRequest from "@/classes/FetchRequest";
+import { AppState } from "@/store/store";
+import { ArticleResponse } from "@/models/ArticleResponse.model";
+import { IUseFetchData } from "@/classes/UseFetchData";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { AppState } from "../redux/store";
-import { ArticleResponse } from "@/models/ArticleResponse.model";
-import FetchRequest from "../classes/FetchRequest";
-import ApiConstant from "../api/ApiConstant";
-import { IUseFetchData } from "@/classes/UseFetchData";
 
 export const useFetchArticleById = (id: string) => {
 
@@ -24,10 +24,10 @@ export const useFetchArticleById = (id: string) => {
         .then((data: IUseFetchData<ArticleResponse>) => {
           if (data.isSuccessful && data.response) {
             setArticle(data.response);
-            setLoading(false);
           } else {
             setError(true);
           }
+          setLoading(false);
         });
     }
   }, [id, articles]);

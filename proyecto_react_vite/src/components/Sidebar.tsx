@@ -1,5 +1,5 @@
-import SidebarSearchArticleForm from "./SidebarSearchArticleForm";
-import SidebarArticleNew from "./SidebarArticleNew";
+import SidebarArticleNew from "@/components/SidebarArticleNew";
+import SidebarSearchArticleForm from "@/components/SidebarSearchArticleForm";
 
 
 export type SidebarProps = {

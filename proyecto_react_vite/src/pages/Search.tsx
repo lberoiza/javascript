@@ -1,6 +1,6 @@
-import ArticleListSearch from "../components/ArticleListSearch";
-import Sidebar from "../components/Sidebar";
-import Slider from "../components/Slider";
+import ArticleListSearch from "@/components/ArticleListSearch";
+import Sidebar from "@/components/Sidebar";
+import Slider from "@/components/Slider";
 import { useParams } from "react-router-dom";
 
 

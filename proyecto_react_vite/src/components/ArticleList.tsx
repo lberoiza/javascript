@@ -1,6 +1,6 @@
-import { useState } from "react";
+import ArticlePreview from "@/components/ArticlePreview";
 import { ArticleResponse } from "@/models/ArticleResponse.model";
-import ArticlePreview from "./ArticlePreview";
+import { useState } from "react";
 
 type ArticleListProps = {
   articles: ArticleResponse[]
