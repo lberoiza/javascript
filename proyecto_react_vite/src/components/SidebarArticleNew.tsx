@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { useNavigateWithTransitions } from "@/hooks/useNavigateWithTransitions";
 
 const SidebarArticleNew = (): JSX.Element => {
+  const navigate = useNavigateWithTransitions();
   return (
     <div id="nav-blog" className="sidebar-item">
       <h3>Puedes hacer esto</h3>
-      <Link to="/blog/nuevo" className="btn btn-success">Crear Articulo</Link>
+      <a className="btn btn-success" onClick={() => navigate("/blog/nuevo")}>Crear Articulo</a>
     </div>
   );
 }

@@ -1,9 +1,9 @@
 import { FormEvent, useState, createRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigateWithTransitions } from "@/hooks/useNavigateWithTransitions";
 
 const SidebarSearchArticleForm = () => {
   const [searchStatus, setSearchStatus] = useState('');
-  const navigate = useNavigate();
+  const navigate = useNavigateWithTransitions();
   const searchRef = createRef<HTMLInputElement>();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
