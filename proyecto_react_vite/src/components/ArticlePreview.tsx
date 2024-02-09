@@ -2,7 +2,6 @@ import React, { useState, MouseEvent } from "react";
 import ApiImage from "@/api/ApiImage";
 import Dayjs from "@/components/Dayjs";
 import { ArticleResponse } from '@/models/ArticleResponse.model';
-import { Link } from 'react-router-dom';
 import { useNavigateWithTransitions } from "@/hooks/useNavigateWithTransitions";
 import { useDispatch } from "react-redux";
 import { setCurrentArticle } from "@/store/article/articles.actions";
@@ -55,7 +54,7 @@ const ArticlePreview: React.FC<ArticlePreviewProps> = ({article, follow}) => {
              {article.date}
       </Dayjs>
       <a onClick={gotToArticlePage} className="btn" >
-        <span style={{viewTransitionName: `article-text-${article._id}`}}>Leer más ...</span>
+        <span style={{viewTransitionName: `article-button-${article._id}`}}>Leer más ...</span>
       </a>
     </article>
   );

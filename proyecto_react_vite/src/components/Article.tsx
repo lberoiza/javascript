@@ -50,7 +50,11 @@ export default function Article(props: ArticleProps): JSX.Element {
         />
       </div>
       <div className="article-button-bar">
-        <button onClick={() => navigation(`/blog/edita/${props.article._id}`)} className="btn btn-warning">Editar
+        <button
+          onClick={() => navigation(`/blog/edita/${props.article._id}`)}
+          className="btn btn-warning"
+          style={{viewTransitionName: `article-button-${props.article?._id}`}}
+        >Editar
         </button>
         <button onClick={() => confirmDeletion(props.article._id, navigation)} className="btn btn-danger">Eliminar
         </button>
