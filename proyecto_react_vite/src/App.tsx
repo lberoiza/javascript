@@ -1,4 +1,5 @@
 import '@/assets/css/App.css';
+import '@/assets/css/ViewTransitionApi.css';
 import Router from '@/Router';
 
 function App() {
