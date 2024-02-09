@@ -33,7 +33,7 @@ const ArticlePreview: React.FC<ArticlePreviewProps> = ({article, follow}) => {
     <article id={article._id} className="article-item">
       <div className="image-wrap"
            onClick={gotToArticlePage}
-           style={{viewTransitionName: `article${article._id}`}}
+           style={{viewTransitionName: `article-image-${article._id}`}}
       >
         <img className="preview"
              src={ApiImage.getImageUrl(article.image)}
@@ -43,11 +43,20 @@ const ArticlePreview: React.FC<ArticlePreviewProps> = ({article, follow}) => {
       <button className="btn-follow star-button" onClick={callFollow} disabled={btnSeguir.disabled}>
         <span className="star-icon"></span>
       </button>
-      <h2>{article.title}</h2>
-      <Dayjs className="date">{article.date}</Dayjs>
-      <Link to={'/blog/article/' + article._id} className="btn">
-        Leer más ...
-      </Link>
+      <h2
+        style={{viewTransitionName: `article-title-${article._id}`}}
+      >
+        {article.title}
+      </h2>
+      <Dayjs
+        className="date"
+        style={{viewTransitionName: `article-date-${article._id}`}}
+      >
+             {article.date}
+      </Dayjs>
+      <a onClick={gotToArticlePage} className="btn" >
+        <span style={{viewTransitionName: `article-text-${article._id}`}}>Leer más ...</span>
+      </a>
     </article>
   );
 }
