@@ -140,11 +140,11 @@ div.App::before {
   color: var(--color-primary-darker);
 }
 
-#menu a.navlink_active {
+#menu a.active {
   color: var(--color-primary-darker);
 }
 
-#menu a.navlink_active::after {
+#menu a.active::after {
   content: '';
   height: 2px;
   bottom: -2px;
@@ -480,6 +480,10 @@ button.star-button[disabled] {
 
 button.star-button[disabled] span.star-icon {
   background-color: lightgrey;
+}
+
+.linkWithTransition {
+  cursor: pointer;
 }
 
 
