@@ -1,0 +1,32 @@
+.componentContainer {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  background-color: #bebebe;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.componentContainer span {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: darkgreen;
+}
+
+.buttonColor {
+  background-color: #007bff;
+  border-color: #3cb2d3;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.buttonColor:hover {
+  background-color: #0f488c;
+}
