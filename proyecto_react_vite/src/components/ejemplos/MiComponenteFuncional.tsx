@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-
+import ButtonColor from '@/components/ejemplos/CssModulesExamples/ButtonColor';
 
 // Componente Funcional
 // Se usa para representar componentes mas simples
@@ -10,6 +10,7 @@ const MiComponenteFuncional = function (): JSX.Element {
   return (
     <section id="content" className="componente-funcional">
       <h4>Soy un Componente funcional</h4>
+      <ButtonColor/>
       {details}
     </section>
   );
