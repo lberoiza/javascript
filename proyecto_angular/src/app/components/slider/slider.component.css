@@ -1,0 +1,35 @@
+.slider {
+  height: 22rem;
+  color: white;
+  text-shadow: 0 0 0.5rem #444;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  /* Fondo en Degradado */
+  background: rgba(248, 80, 50, 1);
+  background: -moz-radial-gradient(center, ellipse cover, rgba(248, 80, 50, 1) 0%, rgba(241, 111, 92, 1) 0%, rgba(230, 31, 5, 1) 71%, rgba(231, 56, 39, 1) 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(248, 80, 50, 1)), color-stop(0%, rgba(241, 111, 92, 1)), color-stop(71%, rgba(230, 31, 5, 1)), color-stop(100%, rgba(231, 56, 39, 1)));
+  background: -webkit-radial-gradient(center, ellipse cover, rgba(248, 80, 50, 1) 0%, rgba(241, 111, 92, 1) 0%, rgba(230, 31, 5, 1) 71%, rgba(231, 56, 39, 1) 100%);
+  background: -o-radial-gradient(center, ellipse cover, rgba(248, 80, 50, 1) 0%, rgba(241, 111, 92, 1) 0%, rgba(230, 31, 5, 1) 71%, rgba(231, 56, 39, 1) 100%);
+  background: -ms-radial-gradient(center, ellipse cover, rgba(248, 80, 50, 1) 0%, rgba(241, 111, 92, 1) 0%, rgba(230, 31, 5, 1) 71%, rgba(231, 56, 39, 1) 100%);
+  background: radial-gradient(ellipse at center, rgba(248, 80, 50, 1) 0%, rgba(241, 111, 92, 1) 0%, rgba(230, 31, 5, 1) 71%, rgba(231, 56, 39, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f85032', endColorstr='#e73827', GradientType=1);
+}
+
+.slider--small {
+  height: 10rem;
+}
+
+.slider h1 {
+  text-align: center;
+}
+
+.slider a {
+  width: fit-content;
+  height: fit-content;
+}
+

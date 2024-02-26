@@ -1,0 +1,41 @@
+.sidebar__sidebarItem {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+
+  min-height: 10rem;
+  min-width: 15rem;
+
+  background: #ececec;
+  margin: 2rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.sidebar__sidebarItem h3 {
+  width: 100%;
+  text-transform: uppercase;
+  font-size: 1rem;
+  padding-bottom: 1rem;
+  margin: 0 0 1rem;
+  border-bottom: 3px solid #ccc;
+}
+
+.sidebar__createArticleBtn {
+  min-width: fit-content;
+  max-width: 3rem;
+}
+
+.sidebar__searchForm {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+  gap: 1rem;
+}
+
+.sidebar__searchForm *::placeholder{
+  font-style: italic;
+}

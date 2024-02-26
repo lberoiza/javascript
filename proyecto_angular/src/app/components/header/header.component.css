@@ -1,0 +1,40 @@
+.header__logo {
+  font-size: 30px;
+  margin-top: 35px;
+  display: flex;
+  align-items: start;
+  padding-bottom: 15px;
+}
+
+.header__logo img {
+  height: 50px;
+  margin-top: -10px;
+  margin-right: 10px;
+  animation: latir infinite 2s linear;
+}
+
+@keyframes latir {
+  0% {
+    transform: scale(1, 1);
+  }
+
+  45% {
+    transform: scale(1.1, 1.1);
+  }
+
+  55% {
+    transform: scale(0.9, 0.9);
+  }
+
+  70% {
+    transform: scale(1.15, 1.15);
+  }
+
+  90% {
+    transform: scale(1, 1);
+  }
+
+  100% {
+    transform: scale(1, 1);
+  }
+}

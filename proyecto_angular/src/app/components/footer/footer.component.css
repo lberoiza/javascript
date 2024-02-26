@@ -1,0 +1,12 @@
+.footer {
+  padding: 1rem 0;
+  width: 100%;
+  background: #ececec;
+  color: #444;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+}

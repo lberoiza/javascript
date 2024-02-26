@@ -1,0 +1,6 @@
+<div class="slider" [class]="isHome ? 'slider--big' : 'slider--small'">
+  <h1>{{ title }}</h1>
+  @if(isHome) {
+    <a routerLink="/blog" class="btn-white">Go to Blog</a>
+  }
+</div>
