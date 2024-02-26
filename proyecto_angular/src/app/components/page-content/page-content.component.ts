@@ -19,4 +19,7 @@ export class PageContentComponent {
   @Input()
   isHomePage: boolean = false;
 
+  @Input()
+  subheaderTitle: string = '';
+
 }

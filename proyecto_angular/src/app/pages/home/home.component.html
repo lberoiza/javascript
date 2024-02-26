@@ -1,8 +1,15 @@
 <app-page-content
   [isHomePage]="true"
   sliderTitle="Welcome to the Blog with Angular"
+  subheaderTitle="Last Articles"
 >
-  <h2 class="subheader">Last Articles</h2>
+  <section class="homePage__lastArticlesContainer">
+    @for (article of articles; track article._id) {
+      <app-article-preview [article]="article"/>
+    }
+  </section>
+
+
 </app-page-content>
 
 

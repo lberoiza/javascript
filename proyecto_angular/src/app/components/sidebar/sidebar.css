@@ -7,7 +7,7 @@
   min-height: 10rem;
   min-width: 15rem;
 
-  background: #ececec;
+  background: var(--color-ligth-gray);
   margin: 2rem;
   padding: 1rem;
   border-radius: 0.5rem;

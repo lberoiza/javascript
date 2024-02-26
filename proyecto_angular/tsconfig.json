@@ -24,10 +24,10 @@
       "@/*": [
         "src/app/*"
       ],
-      "@/components": [
+      "@/components/*": [
         "src/app/components/*"
       ],
-      "@/assets": [
+      "@/assets/*": [
         "src/app/assets/*"
       ]
     },

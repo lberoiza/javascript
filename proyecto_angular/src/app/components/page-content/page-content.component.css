@@ -1,7 +1,7 @@
 .page-content {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 7fr 2fr;
+  grid-template-rows: 1fr 10fr 2fr;
   grid-template-areas:
   "slider"
   "content"
@@ -12,12 +12,27 @@
 .page-content__slider-container {
   grid-area: slider;
   width: 100%;
+  height: fit-content;
 }
 
 .page-content__content {
   grid-area: content;
+  padding: 2rem;
 }
 
+.page-content__content h2 {
+  margin: 0 2rem 2rem;
+  font-size: 3rem;
+}
+
+.page-content__content h2::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-primary);
+  margin-top: 1rem;
+}
 
 .page-content__aside-container {
   grid-area: aside;
@@ -29,10 +44,12 @@
 }
 
 
+
+
 @media (min-width: 1000px) {
   .page-content {
     grid-template-columns: 8fr 2fr;
-    grid-template-rows: 3fr 7fr;
+    grid-template-rows: 2fr 8fr;
     grid-template-areas:
   "slider slider"
   "content aside";
