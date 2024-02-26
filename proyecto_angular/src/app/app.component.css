@@ -1,0 +1,68 @@
+.App {
+  min-height: 100vh;
+  border-top: 7px solid var(--color-primary);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 7rem 5rem auto 1fr auto;
+  justify-items: center;
+  align-items: start;
+
+  grid-template-areas:
+    "header"
+    "nav"
+    "sep"
+    "main-content"
+    "footer";
+}
+
+/* Separator Line */
+/* after menu */
+.App::before {
+  grid-area: sep;
+
+  content: "";
+  width: 90%;
+  height: 1px;
+
+  margin: 0.5rem 0;
+  background-color: #ccc;
+}
+
+.App__headerContainer {
+  grid-area: header;
+}
+
+.App__navMenuContainer {
+  grid-area: nav;
+  font-size: 18px;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.App__mainContent {
+  grid-area: main-content;
+  width: 100%;
+}
+
+.App__footer {
+  grid-area: footer;
+  width: 100%;
+}
+
+@media (min-width: 1000px) {
+  div.App {
+    grid-template-columns: 2fr 8fr;
+    grid-template-rows: auto auto 1fr auto;
+
+    grid-template-areas:
+    "header       nav"
+    "sep          sep"
+    "main-content main-content"
+    "footer       footer";
+  }
+}

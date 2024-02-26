@@ -1,0 +1,8 @@
+<section class="page-content">
+  <app-slider class="page-content__slider-container" [isHome]="isHomePage" [title]="sliderTitle"/>
+  <section class="page-content__content">
+    <h2 class="subheader">{{ subheaderTitle }}</h2>
+    <ng-content/>
+  </section>
+  <app-aside class="page-content__aside-container"/>
+</section>

@@ -1,0 +1,23 @@
+.homePage__lastArticlesContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+
+}
+
+app-article-preview {
+  width: 20rem;
+  height: 20rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: 0.2rem 0.2rem 10px 0 rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+app-article-preview:hover {
+  box-shadow: 0.5rem 0.5rem 20px 0 rgba(0, 0, 0, 0.6);
+  transform: translateY(-3%);
+}
