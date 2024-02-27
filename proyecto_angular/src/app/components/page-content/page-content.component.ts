@@ -14,7 +14,7 @@ import { SliderComponent } from "@/components/slider/slider.component";
 })
 export class PageContentComponent {
   @Input()
-  sliderTitle: string = 'sdfsdfsd';
+  sliderTitle: string = '';
 
   @Input()
   isHomePage: boolean = false;
