@@ -1,3 +1,19 @@
+// customClass: {
+//   container: 'your-container-class',
+//     popup: 'your-popup-class',
+//     header: 'your-header-class',
+//     title: 'your-title-class',
+//     closeButton: 'your-close-button-class',
+//     icon: 'your-icon-class',
+//     image: 'your-image-class',
+//     content: 'your-content-class',
+//     input: 'your-input-class',
+//     actions: 'your-actions-class',
+//     confirmButton: 'your-confirm-button-class',
+//     cancelButton: 'your-cancel-button-class',
+//     footer: 'your-footer-class'
+// }
+
 import {Injectable} from '@angular/core';
 import sweetAlert from 'sweetalert2'
 
@@ -27,16 +43,17 @@ export class AlertService {
   }
 
 
-  public confirmDialog(message: AlertMessage, confirmFunction: Function){
-    const swalWithBootstrapButtons = sweetAlert.mixin({
+  public confirmDialog(message: AlertMessage): Promise<boolean>{
+    const swalWithCustomButtons = sweetAlert.mixin({
       customClass: {
-        confirmButton: 'btn btn-success mx-1',
-        cancelButton: 'btn btn-danger mx-1'
+        actions: 'alert-confirm-button-container',
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
       },
       buttonsStyling: false
     })
 
-    swalWithBootstrapButtons.fire({
+    return swalWithCustomButtons.fire({
       title: message.title,
       text: message.content,
       icon: 'warning',
@@ -44,9 +61,7 @@ export class AlertService {
       confirmButtonText: 'Accept',
       cancelButtonText: 'Cancel',
     }).then((result) => {
-      if (result.isConfirmed) {
-        confirmFunction();
-      }
+      return result.isConfirmed;
     })
   }
 
