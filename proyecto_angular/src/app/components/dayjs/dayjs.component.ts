@@ -1,8 +1,9 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import dayjs, { Dayjs } from 'dayjs';
-import 'dayjs/locale/es';
-import 'dayjs/locale/en';
 import 'dayjs/locale/de';
+import 'dayjs/locale/en';
+import 'dayjs/locale/es';
+import Config from "@/config/Config";
+import dayjs, { Dayjs } from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 
@@ -15,7 +16,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 })
 export class DayjsComponent implements OnChanges {
 
-  @Input() locale: string = 'en';
+  @Input() locale: string = Config.DEFAULT_LANGUAGE;
   @Input() format?: string;
   @Input() dateString: string = '';
 
