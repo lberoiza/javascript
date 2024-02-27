@@ -5,7 +5,7 @@ import { ArticleDetailsComponent } from "@/components/article-details/article-de
 import { ArticlePreviewComponent } from "@/components/article-preview/article-preview.component";
 import { PageContentComponent } from "@/components/page-content/page-content.component";
 import { allArticles } from "../../../assets/data";
-import { ApiArticlesService } from "@/services/api-articles.service";
+import { ApiArticlesService } from "@/services/api-articles/api-articles.service";
 import { ApiArticle } from "@/models/ApiArticleResponse";
 
 @Component({

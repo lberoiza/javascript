@@ -4,7 +4,7 @@ import { AsideComponent } from "@/components/sidebar/aside/aside.component";
 import { PageContentComponent } from "@/components/page-content/page-content.component";
 import { Article } from "@/models/Article.model";
 import { ArticlePreviewComponent } from "@/components/article-preview/article-preview.component";
-import { ApiArticlesService } from "@/services/api-articles.service";
+import { ApiArticlesService } from "@/services/api-articles/api-articles.service";
 import { ApiListArticles } from "@/models/ApiArticleResponse";
 
 @Component({
