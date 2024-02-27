@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SidebarNewArticleComponent } from "@/components/sidebar/sidebar-new-article/sidebar-new-article.component";
 import {
   SidebarSearchArticleComponent
@@ -16,4 +16,6 @@ import {
 })
 export class AsideComponent {
 
+  @Input()
+  isHome: boolean = false;
 }
