@@ -3,8 +3,8 @@
     <img [src]="getImageUrl(article.image)" alt="Article Image" />
   </div>
   <div class="article-detail__button-bar">
-    <button class="btn btn-warning">Edit</button>
-    <button class="btn btn-danger">Delete</button>
+    <button [routerLink]="['/blog/article/edit', article._id]" class="btn btn-warning">Edit</button>
+    <button class="btn btn-danger" (click)="confirmDeleteArticle(article._id)">Delete</button>
   </div>
   <app-dayjs class="article-detail__date" [dateString]="article.date" />
   <div class="article-detail__article-text">
