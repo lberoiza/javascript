@@ -6,8 +6,7 @@
     <button class="btn btn-warning">Edit</button>
     <button class="btn btn-danger">Delete</button>
   </div>
-
-<!--  <Dayjs class="date" :dateString="props.article.date"></Dayjs>-->
+  <app-dayjs class="article-detail__date" [dateString]="article.date" />
   <div class="article-detail__article-text">
     {{ article.content }}
   </div>

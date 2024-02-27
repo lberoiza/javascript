@@ -9,13 +9,11 @@
   text-align: left;
 }
 
-
-.article-item .date {
-  display: block;
-  width: 100%;
+.article-detail__date{
   color: rgb(122, 122, 122);
+  font-style: italic;
+  text-align: right;
 }
-
 
 .article-detail__image-wrap {
   width: 100%;
@@ -37,5 +35,4 @@
   justify-content: flex-start;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 2rem;
 }
