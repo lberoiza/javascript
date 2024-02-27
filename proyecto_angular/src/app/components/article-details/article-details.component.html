@@ -1,0 +1,13 @@
+<article [id]="article._id" class="article-detail">
+  <div class="article-detail__image-wrap">
+    <img [src]="getImageUrl(article.image)" alt="Article Image" />
+  </div>
+  <div class="article-detail__button-bar">
+    <button [routerLink]="['/blog/article/edit', article._id]" class="btn btn-warning">Edit</button>
+    <button class="btn btn-danger" (click)="confirmDeleteArticle(article._id)">Delete</button>
+  </div>
+  <app-dayjs class="article-detail__date" [dateString]="article.date" />
+  <div class="article-detail__article-text">
+    {{ article.content }}
+  </div>
+</article>

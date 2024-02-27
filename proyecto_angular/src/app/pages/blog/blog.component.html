@@ -1,1 +1,11 @@
-<p>blog works!</p>
+<app-page-content
+  [isHomePage]="false"
+  sliderTitle="Blog Page"
+  subheaderTitle="List of Articles"
+>
+  <section class="blog__listArticlesContainer">
+    @for (article of articles; track article._id) {
+      <app-article-preview [article]="article"/>
+    }
+  </section>
+</app-page-content>

@@ -6,7 +6,7 @@
   </figure>
   <div class="article-card__info">
     <h2>{{ article.title }}</h2>
-    <!--  <Dayjs class="date" :dateString="article.date"></Dayjs>-->
+      <app-dayjs class="article-card__date" [dateString]="article.date"></app-dayjs>
     <a [routerLink]="'/blog/article/' + article._id" class="btn">
       Leer más ...
     </a>

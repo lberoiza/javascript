@@ -1,13 +1,10 @@
 <nav class="nav-menu">
   <ul>
     <li>
-      <a routerLink="/" active-class="navlink_active">Home</a>
+      <a routerLink="/" routerLinkActive="nav-menu__active" [routerLinkActiveOptions]="{exact: true}">Home</a>
     </li>
     <li>
-      <a routerLink="/blog" active-class="navlink_active">Blog</a>
-    </li>
-    <li>
-      <a routerLink="/form" active-class="navlink_active">Form</a>
+      <a routerLink="/blog" routerLinkActive="nav-menu__active">Blog</a>
     </li>
   </ul>
 </nav>
