@@ -22,5 +22,9 @@ export class ApiArticlesService {
     return this.http.get<ApiArticle>(`${ApiConstant.ARTICLE.GET_BY_ID}/${articleId}`);
   }
 
+  public deleteArticle(articleId: string): Observable<ApiArticle> {
+    return this.http.delete<ApiArticle>(`${ApiConstant.ARTICLE.DELETE_BY_ID}/${articleId}`);
+  }
+
 
 }
