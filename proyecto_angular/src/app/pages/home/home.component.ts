@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit{
   protected articles: Article[] = []
 
   ngOnInit(): void {
-    this.articles = allArticles.splice(0, 3);
+    this.articles = allArticles.slice(0, 3);
   }
 
 }
