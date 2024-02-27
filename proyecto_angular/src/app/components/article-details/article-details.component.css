@@ -1,0 +1,41 @@
+.article-detail {
+  width: 100%;
+
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1rem;
+
+  padding: 0 2rem;
+  text-align: left;
+}
+
+
+.article-item .date {
+  display: block;
+  width: 100%;
+  color: rgb(122, 122, 122);
+}
+
+
+.article-detail__image-wrap {
+  width: 100%;
+  height: 22rem;
+  overflow: hidden;
+  border-radius: 1vh;
+}
+
+.article-detail__image-wrap img {
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+  object-position: left 20%;
+}
+
+.article-detail__button-bar {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}

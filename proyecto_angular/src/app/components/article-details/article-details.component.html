@@ -1,0 +1,14 @@
+<article [id]="article._id" class="article-detail">
+  <div class="article-detail__image-wrap">
+    <img [src]="getImageUrl(article.image)" alt="Article Image" />
+  </div>
+  <div class="article-detail__button-bar">
+    <button class="btn btn-warning">Edit</button>
+    <button class="btn btn-danger">Delete</button>
+  </div>
+
+<!--  <Dayjs class="date" :dateString="props.article.date"></Dayjs>-->
+  <div class="article-detail__article-text">
+    {{ article.content }}
+  </div>
+</article>
