@@ -1,16 +1,18 @@
 import { Component, Input } from '@angular/core';
-import { Article } from "@/models/Article.model";
-import { allArticles } from "../../../assets/data";
-import { getImageUrl } from "@/libs/ImageUtils";
-import { DayjsComponent } from "@/components/dayjs/dayjs.component";
-import { Router, RouterLink } from "@angular/router";
 import { AlertMessage, AlertService } from "@/services/alerts/alert.service";
 import { ApiArticlesService } from "@/services/api-articles/api-articles.service";
+import { Article } from "@/models/Article.model";
+import { ConvertNewLinesToBrTag } from "@/pipes/ConvertNewLinesToBrTag";
+import { DayjsComponent } from "@/components/dayjs/dayjs.component";
+import { Router, RouterLink } from "@angular/router";
+import { allArticles } from "../../../assets/data";
+import { getImageUrl } from "@/libs/ImageUtils";
 
 @Component({
   selector: 'app-article-details',
   standalone: true,
   imports: [
+    ConvertNewLinesToBrTag,
     DayjsComponent,
     RouterLink
   ],
