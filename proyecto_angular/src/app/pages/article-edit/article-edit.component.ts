@@ -32,11 +32,9 @@ export class ArticleEditComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       const id = params['id'];
-      if (!id) {
-        this.goBackHome();
-        return;
+      if (id) {
+        this.loadArticleOrGoHome(id);
       }
-      this.loadArticleOrGoHome(id);
     });
   }
 

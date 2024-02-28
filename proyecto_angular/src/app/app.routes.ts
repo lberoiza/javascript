@@ -12,6 +12,11 @@ export const routes: Routes = [
       .then(chunk => chunk.BlogComponent)
   },
   {
+    path: 'blog/new',
+    loadComponent: () => import('@/pages/article-edit/article-edit.component')
+      .then(chunk => chunk.ArticleEditComponent)
+  },
+  {
     path: 'blog/article/:id',
     loadComponent: () => import('@/pages/article-show/article-show.component')
       .then(chunk => chunk.ArticleShowComponent)
