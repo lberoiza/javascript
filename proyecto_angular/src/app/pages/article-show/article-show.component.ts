@@ -55,7 +55,7 @@ export class ArticleShowComponent implements OnInit {
 
 
   private goBackHome(): void {
-    this.router.navigate(['/']).then(r => console.log('r', r));
+    this.router.navigate(['/']).then();
   }
 
 }
