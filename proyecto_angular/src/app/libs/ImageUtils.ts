@@ -1,3 +1,5 @@
+import ApiConstant from "@/config/ApiConstant";
+
 export function getImageUrl(imageString: string): string {
-  return `http://localhost:3900/api/image/${imageString}`;
+  return `${ApiConstant.IMAGE.GET_IMAGE_BY_NAME}/${imageString}`;
 }
