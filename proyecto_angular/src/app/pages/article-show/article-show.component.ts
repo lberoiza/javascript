@@ -16,8 +16,8 @@ import { ApiArticle } from "@/models/ApiArticleResponse";
     ArticlePreviewComponent,
     PageContentComponent,
   ],
-  templateUrl: './article.component.html',
-  styleUrl: './article.component.css'
+  templateUrl: './article-show.component.html',
+  styleUrl: './article-show.component.css'
 })
 export class ArticleShowComponent implements OnInit {
 

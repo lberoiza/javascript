@@ -18,7 +18,7 @@ export const routes: Routes = [
   },
   {
     path: 'blog/article/edit/:id',
-    loadComponent: () => import('@/pages/edit-article/edit-article.component')
-      .then(chunk => chunk.EditArticleComponent)
+    loadComponent: () => import('@/pages/article-edit/article-edit.component')
+      .then(chunk => chunk.ArticleEditComponent)
   },
 ];
