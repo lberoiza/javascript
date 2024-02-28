@@ -11,6 +11,13 @@
   --color-primary: #f13e3e;
   --color-primary-darker: #7a1d1d;
   --color-ligth-gray: #ececec;
+  --color-dark-gray: #585858FF;
+  --color-success: #179613FF;
+  --color-success-light: #3FC53BFF;
+  --color-warning: #EEA509FF;
+  --color-warning-light: #FFC955FF;
+  --color-danger: #BD0000FF;
+  --color-danger-light: #FF0000FF;
 }
 
 
