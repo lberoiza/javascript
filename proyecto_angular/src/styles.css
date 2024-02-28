@@ -1,9 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-@import "./assets/css/buttons.css";
-@import "./assets/css/ViewTransitionApi.css";
-@import "./assets/css/sweet-alert.css";
-
-
 *,
 *::before,
 *::after {
