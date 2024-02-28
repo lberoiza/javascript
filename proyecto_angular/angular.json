@@ -16,6 +16,10 @@
             "outputPath": "dist/proyecto_angular",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "allowedCommonJsDependencies": [
+              "sweetalert2",
+              "dayjs"
+            ],
             "polyfills": [
               "zone.js"
             ],
