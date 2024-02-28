@@ -54,24 +54,32 @@ export class ArticleFormComponent implements OnChanges {
     if (form.invalid || !this.isFormComplete()) {
       return;
     }
-    this.saveArticleData();
+    this.saveOrUpdateArticleData();
 
   }
 
-  private saveArticleData() {
-    this.apiArticleService.updateArticle(this.article._id, this.articleFormFields)
-      .subscribe(apiResponse => {
-        if (apiResponse.isSuccessful) {
-          this.saveArticleImage();
-        } else {
-          this.showError(apiResponse);
-        }
-      });
+  private saveOrUpdateArticleData() {
+    this.saveOrUpdate().subscribe(apiResponse => {
+      if (apiResponse.isSuccessful) {
+        const updatedArticle: Article = apiResponse.response;
+        this.saveArticleImage(updatedArticle);
+      } else {
+        this.showError(apiResponse);
+      }
+    });
   }
 
-  private saveArticleImage() {
+  private saveOrUpdate() {
+    if (this.article._id === '') {
+      return this.apiArticleService.createArticle(this.articleFormFields);
+    }
+    return this.apiArticleService.updateArticle(this.article._id, this.articleFormFields);
+  }
+
+
+  private saveArticleImage(updatedArticle: Article){
     if (this.articleFormFields.imageFile) {
-      this.apiArticleService.updateArticleImage(this.article._id, this.articleFormFields.imageFile!)
+      this.apiArticleService.updateArticleImage(updatedArticle._id, this.articleFormFields.imageFile!)
         .subscribe(apiResponse => {
           if (apiResponse.isSuccessful) {
             this.goBackToBlog();

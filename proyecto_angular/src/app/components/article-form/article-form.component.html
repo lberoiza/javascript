@@ -1,7 +1,9 @@
 <form class="mid-form" #myForm="ngForm" (ngSubmit)="sendData(myForm)">
-  <div class="form-group form-article-image">
-    <img [src]="getImageUrl(article.image)" [alt]="article.title">
-  </div>
+  @if(article._id) {
+    <div class="form-group form-article-image">
+      <img [src]="getImageUrl(article.image)" [alt]="article.title">
+    </div>
+  }
 
   @if (myForm.invalid) {
     <div class="errorMessages">
