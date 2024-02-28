@@ -1,31 +1,54 @@
-<form class="mid-form">
-<!--  <div v-if="errorStr.length > 0" class="form-group">-->
-<!--    <p class="error-message">{{ errorStr }}</p>-->
-<!--  </div>-->
-
+<form class="mid-form" #myForm="ngForm" (ngSubmit)="sendData(myForm)">
   <div class="form-group form-article-image">
     <img [src]="getImageUrl(article.image)" [alt]="article.title">
   </div>
 
+  @if (myForm.invalid) {
+    <div class="errorMessages">
+      Please fill in all red fields
+    </div>
+  }
+
   <div class="form-group">
-    <label for="title">Article Title</label>
-    <input id="title" type="text" name="title" placeholder='Article about Time and Space' [(ngModel)]="article.title" />
+    <label for="title">Article Title*</label>
+    <input
+      id="title"
+      type="text"
+      name="title"
+      placeholder='Article about Time and Space'
+      [(ngModel)]="articleFormFields.title"
+      #title="ngModel"
+      required/>
   </div>
 
   <div class="form-group">
-    <label for="article-content">Content of the Article</label>
-    <textarea id="article-content" type="text" name="content" cols=30 rows=10 placeholder='Text about Time and Space'
-              [(ngModel)]="article.content"></textarea>
+    <label for="article-content">Content of the Article*</label>
+    <textarea
+      id="article-content"
+      type="text"
+      name="content"
+      cols=30
+      rows=10
+      placeholder='Text about Time and Space'
+      [(ngModel)]="articleFormFields.content"
+      #content="ngModel"
+      required
+    ></textarea>
   </div>
-
 
   <div class="form-group">
     <label for="article-image">Image of the Article</label>
-    <input type="file" id="article-image" name="imagen" />
+    <input
+      type="file"
+      id="article-image"
+      name="imagen"
+      (change)="onFileSelected($event)"
+      accept="image/*"
+    />
   </div>
 
   <div class="form-group">
-    <input type="submit" value="Save" class="btn btn-success" />
+    <input type="submit" value="Save" class="btn btn-success" [disabled]="myForm.invalid"/>
   </div>
 
 </form>
