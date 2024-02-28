@@ -25,7 +25,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/buttons.css",
+              "src/assets/css/ViewTransitionApi.css",
+              "src/assets/css/sweet-alert.css"
             ],
             "scripts": []
           },

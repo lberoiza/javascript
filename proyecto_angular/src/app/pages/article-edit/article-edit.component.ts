@@ -15,10 +15,10 @@ import { ArticleFormComponent } from "@/components/article-form/article-form.com
     PageContentComponent,
     ArticleFormComponent
   ],
-  templateUrl: './edit-article.component.html',
-  styleUrl: './edit-article.component.css'
+  templateUrl: './article-edit.component.html',
+  styleUrl: './article-edit.component.css'
 })
-export class EditArticleComponent  implements OnInit {
+export class ArticleEditComponent implements OnInit {
 
   protected article: Article =  createEmptyArticle();
 
@@ -32,11 +32,9 @@ export class EditArticleComponent  implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       const id = params['id'];
-      if (!id) {
-        this.goBackHome();
-        return;
+      if (id) {
+        this.loadArticleOrGoHome(id);
       }
-      this.loadArticleOrGoHome(id);
     });
   }
 

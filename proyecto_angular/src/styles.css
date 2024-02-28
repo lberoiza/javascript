@@ -1,9 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-@import "./assets/css/buttons.css";
-@import "./assets/css/ViewTransitionApi.css";
-@import "./assets/css/sweet-alert.css";
-
-
 *,
 *::before,
 *::after {
@@ -16,6 +11,14 @@
   --color-primary: #f13e3e;
   --color-primary-darker: #7a1d1d;
   --color-ligth-gray: #ececec;
+  --color-dark-gray: #585858FF;
+  --color-success: #179613FF;
+  --color-success-light: #3FC53BFF;
+  --color-warning: #EEA509FF;
+  --color-warning-light: #FFC955FF;
+  --color-danger: #BD0000FF;
+  --color-danger-light: #FF0000FF;
+  --color-input-hover: #5222ce;
 }
 
 
@@ -36,6 +39,15 @@ body {
 
   display: flex;
   flex-flow: column nowrap;
+}
+
+form .errorMessages {
+  text-align: center;
+  color: var(--color-danger-light);
+  border: 1px solid var(--color-danger-light);
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  font-weight: bold;
 }
 
 .mid-form label {
@@ -66,11 +78,17 @@ textarea {
   margin-bottom: 5px;
   transition: 200ms all;
   font-size: 16px;
+  outline: none;
 }
 
 input[type="text"]:hover,
 input[type="file"]:hover,
 textarea:hover {
-  border: 1px solid var(--color-primary);
-  box-shadow: 0px 0px 5px var(--color-primary) inset;
+  border: 1px solid var(--color-input-hover);
+  /*box-shadow: 0 0 5px var(--color-primary) inset;*/
+}
+
+input.ng-invalid,
+textarea.ng-invalid {
+  border: 1px solid var(--color-danger-light);
 }

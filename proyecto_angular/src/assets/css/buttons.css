@@ -15,7 +15,7 @@
 
 .btn-white {
   background: white;
-  color: rgb(88, 88, 88);
+  color: var(--color-dark-gray);
   padding: 10px;
   width: 100px;
   height: 30px;
@@ -24,13 +24,13 @@
   text-shadow: none;
   text-decoration: none;
   line-height: 30px;
-  box-shadow: 0 0 5px rgb(88, 88, 88);
+  box-shadow: 0 0 5px #585858FF;
   border-radius: 4px;
   transition: 200ms all;
 }
 
 .btn-white:hover {
-  background: #444;
+  background: var(--color-dark-gray);
   color: white;
 }
 
@@ -40,27 +40,31 @@
 }
 
 .btn-success {
-  background: rgb(23, 150, 19);
+  background: var(--color-success);
 }
 
 .btn-success:hover {
-  background: rgb(63, 197, 59);
+  background: var(--color-success-light);
+}
+
+.btn-success[disabled] {
+  background: grey;
 }
 
 .btn-warning {
-  background: rgb(238, 165, 9);
+  background: var(--color-warning);
   color: white
 }
 
 .btn-warning:hover {
-  background: rgb(255, 201, 85);
+  background: var(--color-warning-light);
 }
 
 .btn-danger {
-  background: rgb(189, 0, 0);
+  background: var(--color-danger);
   color: white
 }
 
 .btn-danger:hover {
-  background: rgb(255, 0, 0);
+  background: var(--color-danger-light);
 }

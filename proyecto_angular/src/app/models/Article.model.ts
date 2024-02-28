@@ -1,4 +1,4 @@
-export interface Article{
+export interface Article {
   _id: string,
   title: string,
   content: string,
@@ -15,5 +15,18 @@ export const createEmptyArticle = (): Article => {
     date: '',
     image: '',
     __v: 0
+  }
+}
+
+export interface ArticleFormFields {
+  title: string,
+  content: string
+  imageFile?: File
+}
+
+export const createArticleFormFieldsOf = (article: Article): ArticleFormFields => {
+  return {
+    title: article.title,
+    content: article.content
   }
 }

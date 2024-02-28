@@ -16,10 +16,10 @@ import { ApiArticle } from "@/models/ApiArticleResponse";
     ArticlePreviewComponent,
     PageContentComponent,
   ],
-  templateUrl: './article.component.html',
-  styleUrl: './article.component.css'
+  templateUrl: './article-show.component.html',
+  styleUrl: './article-show.component.css'
 })
-export class ArticleComponent implements OnInit {
+export class ArticleShowComponent implements OnInit {
 
   protected article: Article = allArticles[0];
 
@@ -55,7 +55,7 @@ export class ArticleComponent implements OnInit {
 
 
   private goBackHome(): void {
-    this.router.navigate(['/']).then(r => console.log('r', r));
+    this.router.navigate(['/']).then();
   }
 
 }

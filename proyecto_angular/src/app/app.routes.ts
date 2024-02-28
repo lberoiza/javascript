@@ -12,13 +12,18 @@ export const routes: Routes = [
       .then(chunk => chunk.BlogComponent)
   },
   {
+    path: 'blog/new',
+    loadComponent: () => import('@/pages/article-edit/article-edit.component')
+      .then(chunk => chunk.ArticleEditComponent)
+  },
+  {
     path: 'blog/article/:id',
-    loadComponent: () => import('@/pages/article/article.component')
-      .then(chunk => chunk.ArticleComponent)
+    loadComponent: () => import('@/pages/article-show/article-show.component')
+      .then(chunk => chunk.ArticleShowComponent)
   },
   {
     path: 'blog/article/edit/:id',
-    loadComponent: () => import('@/pages/edit-article/edit-article.component')
-      .then(chunk => chunk.EditArticleComponent)
+    loadComponent: () => import('@/pages/article-edit/article-edit.component')
+      .then(chunk => chunk.ArticleEditComponent)
   },
 ];
