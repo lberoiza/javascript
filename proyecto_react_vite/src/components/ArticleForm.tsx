@@ -35,7 +35,7 @@ export default function ArticleForm(props: ArticleFormProps): JSX.Element {
       </div>
 
       <div className="form-group">
-        <label htmlFor="imagen" >Agrege la imagen del articulo</label>
+        <label htmlFor="imagen" >Agregue la imagen del articulo</label>
         <input id="file-input" type="file" name="imagen" />
       </div>
 
