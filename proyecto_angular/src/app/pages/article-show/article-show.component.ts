@@ -19,7 +19,7 @@ import { ApiArticle } from "@/models/ApiArticleResponse";
   templateUrl: './article.component.html',
   styleUrl: './article.component.css'
 })
-export class ArticleComponent implements OnInit {
+export class ArticleShowComponent implements OnInit {
 
   protected article: Article = allArticles[0];
 

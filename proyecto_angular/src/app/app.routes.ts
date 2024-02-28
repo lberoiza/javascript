@@ -13,8 +13,8 @@ export const routes: Routes = [
   },
   {
     path: 'blog/article/:id',
-    loadComponent: () => import('@/pages/article/article.component')
-      .then(chunk => chunk.ArticleComponent)
+    loadComponent: () => import('@/pages/article-show/article-show.component')
+      .then(chunk => chunk.ArticleShowComponent)
   },
   {
     path: 'blog/article/edit/:id',
