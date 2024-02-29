@@ -1,6 +1,6 @@
 import { Article } from "@/models/Article.model";
 
-export interface ModuleSearchState {
+export interface ArticleSearchState {
   isLoading: boolean,
   lastQuery: string,
   lastResults: Article[]

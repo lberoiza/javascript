@@ -5,6 +5,9 @@ import { PageContentComponent } from "@/components/page-content/page-content.com
 import { ApiArticlesService } from "@/services/api-articles/api-articles.service";
 import { ApiListArticles } from "@/models/ApiArticleResponse.model";
 import { ActivatedRoute } from "@angular/router";
+import { AppState } from "@/store/app.state";
+import { Store } from "@ngrx/store";
+import { ModuleSearchActions } from "@/store/storemodule-search/module-search.actions";
 
 @Component({
   selector: 'app-blog',
@@ -26,7 +29,8 @@ export class SearchResultComponent implements OnInit {
 
   constructor(
     private apiArticlesService: ApiArticlesService,
-  private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private store: Store<AppState>
   ) {
   }
 
@@ -36,8 +40,9 @@ export class SearchResultComponent implements OnInit {
       this.searchStr = params['searchStr'];
       this.apiArticlesService.getArticlesBySearch(this.searchStr)
         .subscribe((apiResponse: ApiListArticles) => {
-          if(apiResponse.isSuccessful) {
+          if (apiResponse.isSuccessful) {
             this.articles = apiResponse.response;
+            this.store.dispatch(ModuleSearchActions.setResults({ results: this.articles }));
           }
         });
     });

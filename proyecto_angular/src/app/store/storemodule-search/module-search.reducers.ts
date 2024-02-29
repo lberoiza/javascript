@@ -1,9 +1,9 @@
 import { createReducer, on } from "@ngrx/store";
-import { ModuleSearchState } from "@/models/store/SearchStore.model";
+import { ArticleSearchState } from "@/models/store/ArticleSearchState.model";
 import { ModuleSearchActions } from "@/store/storemodule-search/module-search.actions";
 
 
-const initialState: ModuleSearchState = {
+const initialState: ArticleSearchState = {
   isLoading: false,
   lastQuery: '',
   lastResults: []
