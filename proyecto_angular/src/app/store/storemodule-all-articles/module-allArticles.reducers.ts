@@ -16,7 +16,7 @@ export const ModuleAllArticlesReducers = createReducer(
   on(ModuleAllArticlesActions.loadAllArticlesEnded, (currentState) => {
     return {...currentState, isLoading: false}
   }),
-  on(ModuleAllArticlesActions.setArticles, (currentState, {articles}) => {
+  on(ModuleAllArticlesActions.setAllArticles, (currentState, {articles}) => {
     return {...currentState, articles}
   })
 );
