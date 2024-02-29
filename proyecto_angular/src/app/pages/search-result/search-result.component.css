@@ -1,0 +1,5 @@
+.blog__listArticlesContainer {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 2rem;
+}
