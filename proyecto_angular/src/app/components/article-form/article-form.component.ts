@@ -24,7 +24,7 @@ export class ArticleFormComponent implements OnChanges {
   article: Article = createEmptyArticle();
 
   protected articleFormFields: ArticleFormFields = createArticleFormFieldsOf(this.article);
-  protected previewImageUrl: any;
+  protected previewImageUrl?: string;
 
   constructor(
     private apiArticleService: ApiArticlesService,
@@ -35,6 +35,7 @@ export class ArticleFormComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.articleFormFields = createArticleFormFieldsOf(this.article);
+    this.previewImageUrl = getImageUrl(this.article.image);
   }
 
   private isFormComplete = (): boolean => {

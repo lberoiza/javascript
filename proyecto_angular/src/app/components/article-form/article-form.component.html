@@ -41,7 +41,7 @@
   <div class="form-group form-group__image">
     <label for="article-image">Image of the Article</label>
     <div class="form-group__image-preview">
-      @if (articleFormFields.imageFile) {
+      @if (previewImageUrl) {
         <img [src]="previewImageUrl" alt="Image preview">
       }
     </div>
