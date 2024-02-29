@@ -6,7 +6,7 @@ export const ModuleAllArticlesActions = createActionGroup({
   source: 'ModuleAllArticles',
   events: {
     'Load All Articles': emptyProps(),
-    'Set Results': props<{ articles: Article[] }>(),
+    'Set Articles': props<{ articles: Article[] }>(),
     'Load All Articles ended': emptyProps(),
   },
 })

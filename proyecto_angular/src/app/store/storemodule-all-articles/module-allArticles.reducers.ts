@@ -5,7 +5,7 @@ import { createReducer, on } from "@ngrx/store";
 
 const initialState: ArticlesAllState = {
   isLoading: false,
-  result: []
+  articles: []
 }
 
 export const ModuleAllArticlesReducers = createReducer(
@@ -16,8 +16,8 @@ export const ModuleAllArticlesReducers = createReducer(
   on(ModuleAllArticlesActions.loadAllArticlesEnded, (currentState) => {
     return {...currentState, isLoading: false}
   }),
-  on(ModuleAllArticlesActions.setResults, (currentState, {articles}) => {
-    return {...currentState, result: articles}
+  on(ModuleAllArticlesActions.setArticles, (currentState, {articles}) => {
+    return {...currentState, articles}
   })
 );
 
