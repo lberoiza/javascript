@@ -1,4 +1,11 @@
-<div class="slider" [class]="isHome ? 'slider--big' : 'slider--small'">
+<div
+  class="slider"
+  [class]="{
+    'slider--home': isHome,
+    'slider--small': !isHome
+  }"
+  [style.view-transition-name]="'slider'"
+>
   <h1>{{ title }}</h1>
   @if(isHome) {
     <a routerLink="/blog" class="btn-white">Go to Blog</a>
