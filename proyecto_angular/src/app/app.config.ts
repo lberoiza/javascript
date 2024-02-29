@@ -7,6 +7,7 @@ import { provideStore } from '@ngrx/store';
 import { ROOT_REDUCERS } from "@/store/app.state";
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
+import { ModuleAllArticlesEffects } from "@/store/storemodule-all-articles/module-allArticles.effects";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,6 +15,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideStore(ROOT_REDUCERS),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    provideEffects()
+    provideEffects([ModuleAllArticlesEffects])
 ]
 };
