@@ -23,6 +23,10 @@ export class ApiArticlesService {
     return this.http.get<ApiArticle>(`${ApiConstant.ARTICLE.GET_BY_ID}/${articleId}`);
   }
 
+  public getArticlesBySearch(searchStr: string): Observable<ApiListArticles> {
+    return this.http.get<ApiListArticles>(`${ApiConstant.ARTICLE.GET_ALL_BY_SEARCH}/${searchStr}`);
+  }
+
   public createArticle(formDataObject: ArticleFormFields): Observable<ApiArticle> {
     return this.http.post<ApiArticle>(ApiConstant.ARTICLE.POST_NEW_ARTICLE, formDataObject);
   }
