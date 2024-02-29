@@ -6,12 +6,14 @@ import { provideHttpClient } from "@angular/common/http";
 import { provideStore } from '@ngrx/store';
 import { ROOT_REDUCERS } from "@/store/app.state";
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { provideEffects } from '@ngrx/effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes, withViewTransitions()),
     provideHttpClient(),
     provideStore(ROOT_REDUCERS),
-    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    provideEffects()
 ]
 };
