@@ -8,6 +8,10 @@
   flex-flow: column nowrap;
 }
 
+.mid-form label {
+  font-weight: bold;
+}
+
 form .errorMessages {
   text-align: center;
   color: var(--color-danger-light);
@@ -55,7 +59,10 @@ textarea {
 .form-group__image{
   display: flex;
   flex-flow: column nowrap;
-  gap: 1rem;
+}
+
+.form-group__image input {
+  margin-top: 1rem;
 }
 
 .form-group__image-preview {
