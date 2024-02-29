@@ -24,6 +24,7 @@ export class ArticleFormComponent implements OnChanges {
   article: Article = createEmptyArticle();
 
   protected articleFormFields: ArticleFormFields = createArticleFormFieldsOf(this.article);
+  protected previewImageUrl: any;
 
   constructor(
     private apiArticleService: ApiArticlesService,
@@ -45,8 +46,17 @@ export class ArticleFormComponent implements OnChanges {
     const file: File = event.target.files[0];
     if (file && file.type.startsWith('image/')) {
       this.articleFormFields.imageFile = file;
+      this.loadPreviewImage(file);
     } else {
       this.articleFormFields.imageFile = undefined;
+    }
+  }
+
+  loadPreviewImage(file: File): void {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event: any) => {
+      this.previewImageUrl = event.target.result;
     }
   }
 
