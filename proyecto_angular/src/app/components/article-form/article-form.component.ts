@@ -72,8 +72,8 @@ export class ArticleFormComponent implements OnChanges {
   private saveOrUpdateArticleData() {
     this.saveOrUpdate().subscribe(apiResponse => {
       if (apiResponse.isSuccessful) {
-        const updatedArticle: Article = apiResponse.response;
-        this.saveArticleImage(updatedArticle);
+        this.article = apiResponse.response;
+        this.saveArticleImage();
       } else {
         this.showError(apiResponse);
       }
@@ -88,23 +88,23 @@ export class ArticleFormComponent implements OnChanges {
   }
 
 
-  private saveArticleImage(updatedArticle: Article){
+  private saveArticleImage(){
     if (this.articleFormFields.imageFile) {
-      this.apiArticleService.updateArticleImage(updatedArticle._id, this.articleFormFields.imageFile!)
+      this.apiArticleService.updateArticleImage(this.article._id, this.articleFormFields.imageFile!)
         .subscribe(apiResponse => {
           if (apiResponse.isSuccessful) {
-            this.goBackToBlog();
+            this.goBackToArticle();
           } else {
             this.showError(apiResponse);
           }
         });
     } else {
-      this.goBackToBlog();
+      this.goBackToArticle();
     }
   }
 
-  private goBackToBlog(): void {
-    this.router.navigate(['/blog'])
+  private goBackToArticle(): void {
+    this.router.navigate(['/blog/article', this.article._id])
       .then(() => {
         this.showSuccessAlert();
       });
