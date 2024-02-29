@@ -83,6 +83,14 @@ textarea {
   overflow: hidden;
 }
 
+.form-group__buttonBar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
 input[type="text"]:hover,
 input[type="file"]:hover,
 textarea:hover {

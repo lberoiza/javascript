@@ -93,22 +93,32 @@ export class ArticleFormComponent implements OnChanges {
       this.apiArticleService.updateArticleImage(this.article._id, this.articleFormFields.imageFile!)
         .subscribe(apiResponse => {
           if (apiResponse.isSuccessful) {
-            this.goBackToArticle();
+            this.goBackAndShowSuccess();
           } else {
             this.showError(apiResponse);
           }
         });
     } else {
-      this.goBackToArticle();
+      this.goBackAndShowSuccess();
     }
   }
 
-  private goBackToArticle(): void {
-    this.router.navigate(['/blog/article', this.article._id])
+
+  private goBackToArticle(): Promise<boolean> {
+    return this.router.navigate(['/blog/article', this.article._id])
+  }
+
+  private goBackAndShowSuccess(): void {
+    this.goBackToArticle()
       .then(() => {
         this.showSuccessAlert();
       });
   }
+
+  protected cancelEditionAndGoBack() {
+    this.goBackToArticle().then(() => {});
+  }
+
 
   private showSuccessAlert(): void {
     const message: AlertMessage = {

@@ -58,8 +58,9 @@
 
   </div>
 
-  <div class="form-group">
+  <div class="form-group form-group__buttonBar">
     <input type="submit" value="Save" class="btn btn-success" [disabled]="myForm.invalid"/>
+    <button type="button" class="btn" (click)="cancelEditionAndGoBack()">Cancel</button>
   </div>
 
 </form>
