@@ -17,11 +17,11 @@
 
 .page-content__content {
   grid-area: content;
-  padding: 2rem;
+  padding: 2rem 4rem 2rem;
 }
 
 .page-content__content h2 {
-  margin: 0 2rem 2rem;
+  margin: 0 0 2rem;
   font-size: 3rem;
 }
 
