@@ -5,7 +5,7 @@ import { PageContentComponent } from "@/components/page-content/page-content.com
 import { Article } from "@/models/Article.model";
 import { ArticlePreviewComponent } from "@/components/article-preview/article-preview.component";
 import { ApiArticlesService } from "@/services/api-articles/api-articles.service";
-import { ApiListArticles } from "@/models/ApiArticleResponse";
+import { ApiListArticles } from "@/models/ApiArticleResponse.model";
 
 @Component({
   selector: 'app-home',

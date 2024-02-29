@@ -5,7 +5,7 @@ import { FormsModule, NgForm } from "@angular/forms";
 import { ApiArticlesService } from "@/services/api-articles/api-articles.service";
 import { Router } from "@angular/router";
 import { AlertMessage, AlertService } from "@/services/alerts/alert.service";
-import { ApiArticle } from "@/models/ApiArticleResponse";
+import { ApiArticle } from "@/models/ApiArticleResponse.model";
 
 @Component({
   selector: 'app-article-form',

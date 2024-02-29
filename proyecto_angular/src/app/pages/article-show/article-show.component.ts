@@ -6,7 +6,7 @@ import { ArticlePreviewComponent } from "@/components/article-preview/article-pr
 import { PageContentComponent } from "@/components/page-content/page-content.component";
 import { allArticles } from "../../../assets/data";
 import { ApiArticlesService } from "@/services/api-articles/api-articles.service";
-import { ApiArticle } from "@/models/ApiArticleResponse";
+import { ApiArticle } from "@/models/ApiArticleResponse.model";
 
 @Component({
   selector: 'app-article',

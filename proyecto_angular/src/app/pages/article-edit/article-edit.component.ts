@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Article, createEmptyArticle } from "@/models/Article.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ApiArticlesService } from "@/services/api-articles/api-articles.service";
-import { ApiArticle } from "@/models/ApiArticleResponse";
+import { ApiArticle } from "@/models/ApiArticleResponse.model";
 import { ArticleDetailsComponent } from "@/components/article-details/article-details.component";
 import { PageContentComponent } from "@/components/page-content/page-content.component";
 import { ArticleFormComponent } from "@/components/article-form/article-form.component";

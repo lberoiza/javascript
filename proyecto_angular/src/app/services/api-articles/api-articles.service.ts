@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import ApiConstant from "@/config/ApiConstant";
-import { ApiArticle, ApiListArticles } from "@/models/ApiArticleResponse";
+import { ApiArticle, ApiListArticles } from "@/models/ApiArticleResponse.model";
 import { ArticleFormFields } from "@/models/Article.model";
 
 @Injectable({

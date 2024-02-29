@@ -3,7 +3,7 @@ import { Article } from "@/models/Article.model";
 import { ArticlePreviewComponent } from "@/components/article-preview/article-preview.component";
 import { PageContentComponent } from "@/components/page-content/page-content.component";
 import { ApiArticlesService } from "@/services/api-articles/api-articles.service";
-import { ApiListArticles } from "@/models/ApiArticleResponse";
+import { ApiListArticles } from "@/models/ApiArticleResponse.model";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
