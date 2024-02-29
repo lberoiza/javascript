@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiArticlesService } from "@/services/api-articles/api-articles.service";
+import { AppState } from "@/store/app.state";
 import { Article } from "@/models/Article.model";
 import { ArticlePreviewComponent } from "@/components/article-preview/article-preview.component";
+import { ModuleAllArticlesActions } from "@/store/storemodule-all-articles/module-allArticles.actions";
 import { PageContentComponent } from "@/components/page-content/page-content.component";
-import { ApiArticlesService } from "@/services/api-articles/api-articles.service";
-import { ApiListArticles } from "@/models/ApiArticleResponse.model";
+import { Store } from "@ngrx/store";
+import {
+  SelectModuleAllArticlesAll
+} from "@/store/storemodule-all-articles/module-allArticles.selectors";
 
 @Component({
   selector: 'app-blog',
@@ -22,17 +27,16 @@ export class BlogComponent implements OnInit {
 
   protected articles: Article[] = [];
 
-  constructor(private apiArticlesService: ApiArticlesService) {
+  constructor(
+    private store: Store<AppState>
+  ) {
 
   }
 
   ngOnInit(): void {
-    this.apiArticlesService.getAllArticles()
-      .subscribe((apiResponse: ApiListArticles) => {
-      if(apiResponse.isSuccessful) {
-        this.articles = apiResponse.response;
-      }
-    });
+    this.store.dispatch(ModuleAllArticlesActions.loadAllArticles());
+    this.store.select(SelectModuleAllArticlesAll)
+      .subscribe((articles: Article[]) => this.articles = articles);
   }
 
 }
