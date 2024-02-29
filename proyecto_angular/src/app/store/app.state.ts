@@ -1,17 +1,20 @@
-import { ArticleSearchState } from "@/models/store/ArticleSearchState.model";
 import { ActionReducerMap } from "@ngrx/store";
-import { ModuleSearchReducers } from "@/store/storemodule-search/module-search.reducers";
+import { ArticleCurrentState } from "@/models/store/ArticleCurrentState.model";
+import { ArticleSearchState } from "@/models/store/ArticleSearchState.model";
 import { ArticlesAllState } from "@/models/store/ArticlesAllState.model";
 import { ModuleAllArticlesReducers } from "@/store/storemodule-all-articles/module-allArticles.reducers";
+import { ModuleCurrentArticleReducers } from "@/store/storemodule-current-article/module-currentArticle.reducers";
+import { ModuleSearchReducers } from "@/store/storemodule-search/module-search.reducers";
 
 export interface AppState {
   articleSearchState: ArticleSearchState,
   articleAllState: ArticlesAllState,
-  // articlesLastState: ArticlesLastState,
-  // articleCurrentState: ArticleCurrentState
+  articleCurrentState: ArticleCurrentState
+  // articlesLastState: ArticlesLastState
 }
 
 export const ROOT_REDUCERS: ActionReducerMap<AppState> = {
   articleSearchState: ModuleSearchReducers,
-  articleAllState: ModuleAllArticlesReducers
+  articleAllState: ModuleAllArticlesReducers,
+  articleCurrentState: ModuleCurrentArticleReducers
 }
