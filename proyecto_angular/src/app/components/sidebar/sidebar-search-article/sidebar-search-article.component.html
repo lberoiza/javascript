@@ -1,8 +1,16 @@
 <div class="sidebar__sidebarItem">
   <h3>Search</h3>
-<!--  <form @submit.prevent="searchArticleHandler">-->
-  <form class="sidebar__searchForm">
-    <input type="text" name="search" [(ngModel)]="searchStr" placeholder="Search for an article"/>
+  <form class="sidebar__searchForm"
+        #mySearchForm="ngForm"
+        (ngSubmit)="search(mySearchForm)"
+  >
+    <input
+      type="text"
+      name="search"
+      [(ngModel)]="searchStr"
+      placeholder="Search for an article"
+      [autofocus]="shouldInputBeSelected()"
+    />
     <button type="submit" value="Search" name="submit" class="btn">Search</button>
   </form>
 </div>

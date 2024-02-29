@@ -1,0 +1,103 @@
+/* form */
+
+.mid-form {
+  width: 60%;
+  margin: 0 auto;
+
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.mid-form label {
+  font-weight: bold;
+}
+
+form .errorMessages {
+  text-align: center;
+  color: var(--color-danger-light);
+  border: 1px solid var(--color-danger-light);
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  font-weight: bold;
+}
+
+.mid-form label {
+  display: block;
+  float: left;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 17px;
+}
+
+.mid-form img {
+  width: 100%;
+}
+
+.mid-form .form-group {
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="file"],
+textarea {
+  width: 100%;
+  min-height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 3px;
+  margin-bottom: 5px;
+  transition: 200ms all;
+  font-size: 16px;
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.form-group__image{
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.form-group__image input {
+  margin-top: 1rem;
+}
+
+.form-group__image-preview {
+  width: 100%;
+  height: 200px;
+  border: 1px dashed grey;
+  border-radius: 5px;
+  padding: 3px;
+  margin-bottom: 5px;
+}
+
+.form-group__image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left 20%;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.form-group__buttonBar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+input[type="text"]:hover,
+input[type="file"]:hover,
+textarea:hover {
+  border: 1px solid var(--color-input-hover);
+}
+
+input.ng-invalid,
+textarea.ng-invalid {
+  border: 1px solid var(--color-danger-light);
+}

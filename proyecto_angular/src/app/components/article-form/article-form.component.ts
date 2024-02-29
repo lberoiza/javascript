@@ -24,6 +24,7 @@ export class ArticleFormComponent implements OnChanges {
   article: Article = createEmptyArticle();
 
   protected articleFormFields: ArticleFormFields = createArticleFormFieldsOf(this.article);
+  protected previewImageUrl?: string;
 
   constructor(
     private apiArticleService: ApiArticlesService,
@@ -34,6 +35,7 @@ export class ArticleFormComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.articleFormFields = createArticleFormFieldsOf(this.article);
+    this.previewImageUrl = getImageUrl(this.article.image);
   }
 
   private isFormComplete = (): boolean => {
@@ -45,8 +47,17 @@ export class ArticleFormComponent implements OnChanges {
     const file: File = event.target.files[0];
     if (file && file.type.startsWith('image/')) {
       this.articleFormFields.imageFile = file;
+      this.loadPreviewImage(file);
     } else {
       this.articleFormFields.imageFile = undefined;
+    }
+  }
+
+  loadPreviewImage(file: File): void {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event: any) => {
+      this.previewImageUrl = event.target.result;
     }
   }
 
@@ -61,8 +72,8 @@ export class ArticleFormComponent implements OnChanges {
   private saveOrUpdateArticleData() {
     this.saveOrUpdate().subscribe(apiResponse => {
       if (apiResponse.isSuccessful) {
-        const updatedArticle: Article = apiResponse.response;
-        this.saveArticleImage(updatedArticle);
+        this.article = apiResponse.response;
+        this.saveArticleImage();
       } else {
         this.showError(apiResponse);
       }
@@ -77,27 +88,37 @@ export class ArticleFormComponent implements OnChanges {
   }
 
 
-  private saveArticleImage(updatedArticle: Article){
+  private saveArticleImage(){
     if (this.articleFormFields.imageFile) {
-      this.apiArticleService.updateArticleImage(updatedArticle._id, this.articleFormFields.imageFile!)
+      this.apiArticleService.updateArticleImage(this.article._id, this.articleFormFields.imageFile!)
         .subscribe(apiResponse => {
           if (apiResponse.isSuccessful) {
-            this.goBackToBlog();
+            this.goBackAndShowSuccess();
           } else {
             this.showError(apiResponse);
           }
         });
     } else {
-      this.goBackToBlog();
+      this.goBackAndShowSuccess();
     }
   }
 
-  private goBackToBlog(): void {
-    this.router.navigate(['/blog'])
+
+  private goBackToArticle(): Promise<boolean> {
+    return this.router.navigate(['/blog/article', this.article._id])
+  }
+
+  private goBackAndShowSuccess(): void {
+    this.goBackToArticle()
       .then(() => {
         this.showSuccessAlert();
       });
   }
+
+  protected cancelEditionAndGoBack() {
+    this.goBackToArticle().then(() => {});
+  }
+
 
   private showSuccessAlert(): void {
     const message: AlertMessage = {

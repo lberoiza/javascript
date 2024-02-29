@@ -1,0 +1,11 @@
+<app-page-content
+  [isHomePage]="false"
+  sliderTitle="Search Results"
+  subheaderTitle="List of Articles matching: '{{searchStr}}'"
+>
+  <section class="blog__listArticlesContainer">
+    @for (article of articles; track article._id) {
+      <app-article-preview [article]="article"/>
+    }
+  </section>
+</app-page-content>

@@ -32,7 +32,7 @@ onMounted(() => {
 
 const searchArticleHandler = () => {
   if(searchStr.value.trim().length > 0){
-    router.push({name: 'redirect', params: {name: 'pageSearch', searchStr: searchStr.value, car1: 'test'}});
+    router.push({name: 'redirect', params: {name: 'pageSearch', searchStr: searchStr.value}});
   }
 }
 

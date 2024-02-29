@@ -1,10 +1,10 @@
 :host {
-  width: 15vw;
-  height: 15vw;
-  min-height: 12rem;
+  width: 16vw;
+  height: 16vw;
+  min-height: 15rem;
   min-width: 12rem;
-  max-width: 15rem;
-  max-height: 15rem;
+  max-width: 14rem;
+  max-height: 16rem;
   overflow: hidden;
   border-radius: 0.5rem;
   box-shadow: 0.2rem 0.2rem 10px 0 rgba(0, 0, 0, 0.4);
