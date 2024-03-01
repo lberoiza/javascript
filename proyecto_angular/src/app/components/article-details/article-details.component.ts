@@ -9,6 +9,7 @@ import { getImageUrl } from "@/libs/ImageUtils";
 import { Store } from "@ngrx/store";
 import { AppState } from "@/store/app.state";
 import { SelectModuleArticleCurrentArticle } from "@/store/storemodule-article/module-article.selectors";
+import { ModuleArticleActions } from "@/store/storemodule-article/module-article.actions";
 
 @Component({
   selector: 'app-article-details',
@@ -21,10 +22,10 @@ import { SelectModuleArticleCurrentArticle } from "@/store/storemodule-article/m
   templateUrl: './article-details.component.html',
   styleUrl: './article-details.component.css'
 })
-export class ArticleDetailsComponent implements OnInit{
+export class ArticleDetailsComponent implements OnInit {
   protected readonly getImageUrl = getImageUrl;
 
-  article?: Article;
+  protected article?: Article;
 
   constructor(
     private alert: AlertService,
@@ -39,12 +40,12 @@ export class ArticleDetailsComponent implements OnInit{
     this.subscribeToArticle();
   }
 
-
   private subscribeToArticle = () => {
     this.store.select(SelectModuleArticleCurrentArticle)
-      .subscribe((article?: Article) => this.article = article)
+      .subscribe((article?: Article) => {
+        this.article = article;
+      })
   }
-
 
   protected confirmDeleteArticle = (articleId: string) => {
 
@@ -56,31 +57,9 @@ export class ArticleDetailsComponent implements OnInit{
     this.alert.confirmDialog(message)
       .then((willDelete) => {
         if (willDelete) {
-          this.deleteArticle(articleId);
+          this.store.dispatch(ModuleArticleActions.deleteArticleById({articleId}));
         }
       });
-  }
-
-  private deleteArticle = (articleId: string) => {
-    const alertMessage: AlertMessage = {
-      title: '',
-      content: ''
-    }
-
-    this.apiArticleService.deleteArticle(articleId)
-      .subscribe(apiResult => {
-        if (apiResult.isSuccessful) {
-          alertMessage.title = `Successfully deleted`;
-          alertMessage.content = `The Article: "${apiResult.response?.title}" was successfully deleted.`;
-          this.router.navigate(['/blog']).then(() => {
-            this.alert.showSuccess(alertMessage);
-          })
-        } else {
-          alertMessage.title = `Error`;
-          alertMessage.content = `The Article could not be eliminated`;
-          this.alert.showError(alertMessage);
-        }
-      })
   }
 
 }
