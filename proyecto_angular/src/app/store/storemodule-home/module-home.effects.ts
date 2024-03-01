@@ -14,7 +14,7 @@ export class ModuleHomeEffects {
     private apiArticleService: ApiArticlesService) {
   }
 
-  loadArticles$ = createEffect(() =>
+  loadHomeArticles$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ModuleHomeActions.loadLastArticles),
       switchMap(() => this.apiArticleService.getLastArticles()
