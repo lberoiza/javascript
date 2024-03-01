@@ -7,10 +7,12 @@ import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { AppState } from "@/store/app.state";
 import { SelectModuleArticleCurrentArticle } from "@/store/storemodule-article/module-article.selectors";
+import { Router } from "@angular/router";
+import { AlertMessage, AlertService } from "@/services/alerts/alert.service";
 
 
-interface LoadArticleByIdParams extends ReturnType<typeof ModuleArticleActions.loadArticleById>{
-}
+interface LoadArticleByIdParams extends ReturnType<typeof ModuleArticleActions.loadArticleById>{}
+interface DeleteArticleByIdParams extends ReturnType<typeof ModuleArticleActions.deleteArticleById>{}
 
 
 @Injectable({
@@ -25,7 +27,9 @@ export class ModuleArticleEffects {
   constructor(
     private actions$: Actions,
     private store: Store<AppState>,
-    private apiArticleService: ApiArticlesService
+    private apiArticleService: ApiArticlesService,
+    private router: Router,
+    private alert: AlertService
   ) {
     this.store.select(SelectModuleArticleCurrentArticle)
       .subscribe((article?: Article) => {
@@ -49,6 +53,7 @@ export class ModuleArticleEffects {
     return this.apiArticleService.getArticleById(this.articleIdFromUrl).pipe(
       switchMap((apiResponse) => {
         if (!apiResponse.isSuccessful) {
+          this.goToBlog().then();
           return this.loadCurrentArticleEnded();
         }
         return of(ModuleArticleActions.setArticle({article: apiResponse.response}));
@@ -59,6 +64,53 @@ export class ModuleArticleEffects {
 
   private loadCurrentArticleEnded() {
     return of(ModuleArticleActions.loadArticleByIdEnds());
+  }
+
+
+  deleteArticle$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ModuleArticleActions.deleteArticleById),
+      switchMap((action: DeleteArticleByIdParams) => {
+        return this.apiArticleService.deleteArticleById(action.articleId).pipe(
+          switchMap((apiResponse) => {
+            if (!apiResponse.isSuccessful) {
+              this.ShowDeletionErrorMessage();
+              return of(ModuleArticleActions.deleteArticleByIdEnd());
+            }
+
+            this.goToBlog()
+              .then(() => this.ShowDeletionSuccessMessage(apiResponse.response.title));
+
+            return of(
+              ModuleArticleActions.setArticle({article: undefined}),
+              ModuleArticleActions.deleteArticleByIdEnd()
+            );
+          }),
+          catchError(error => of(ModuleArticleActions.deleteArticleByIdEnd()))
+        );
+      })
+    )
+  );
+
+
+  private goToBlog(): Promise<boolean> {
+    return this.router.navigate(['/blog'])
+  }
+
+  private ShowDeletionSuccessMessage(articleTitle: string = '') {
+    const alertMessage: AlertMessage = {
+      title: `Successfully deleted`,
+      content: `The Article: "${articleTitle}" was successfully deleted.`
+    }
+    this.alert.showSuccess(alertMessage);
+  }
+
+  private ShowDeletionErrorMessage() {
+    const alertMessage: AlertMessage = {
+      title: `Error by the deletion`,
+      content: `The Article could not be eliminated`
+    }
+    this.alert.showError(alertMessage);
   }
 
 

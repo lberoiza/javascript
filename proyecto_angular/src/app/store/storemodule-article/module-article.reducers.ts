@@ -18,4 +18,10 @@ export const ModuleArticleReducers = createReducer(
   on(ModuleArticleActions.loadArticleByIdEnds, (currentState) => {
     return {...currentState, isLoading: false}
   }),
+  on(ModuleArticleActions.deleteArticleById, (currentState, {articleId}) => {
+    return {...currentState, isLoading: true}
+  }),
+  on(ModuleArticleActions.deleteArticleByIdEnd, (currentState) => {
+    return {...currentState, isLoading: false, article: undefined}
+  }),
 );
