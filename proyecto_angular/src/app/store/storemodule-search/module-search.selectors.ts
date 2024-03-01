@@ -1,20 +1,20 @@
 import { AppState } from "@/store/app.state";
 import { createSelector } from "@ngrx/store";
-import { ArticleSearchState } from "@/models/store/ArticleSearchState.model";
+import { SearchState } from "@/models/store/ModuleSearch.model";
 
-export const ModuleSearchState = (state: AppState) => state.articleSearchState;
+export const ModuleSearchState = (state: AppState) => state.moduleSearch;
 
 export const SelectModuleSearchIsLoading = createSelector(
   ModuleSearchState,
-(state: ArticleSearchState) => state.isLoading
+  (state: SearchState) => state.isLoading
 )
 
 export const SelectModuleSearchLastQuery = createSelector(
   ModuleSearchState,
-(state: ArticleSearchState) => state.lastQuery
+  (state: SearchState) => state.lastQuery
 )
 
 export const SelectModuleSearchLastResults = createSelector(
   ModuleSearchState,
-(state: ArticleSearchState) => state.lastResults
+  (state: SearchState) => state.lastResults
 )
