@@ -1,5 +1,5 @@
 import { Article } from "@/models/Article.model";
 
-export interface ArticleCurrentState {
+export interface ArticleState {
   article?: Article
 }
