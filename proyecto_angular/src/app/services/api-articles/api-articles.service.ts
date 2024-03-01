@@ -31,7 +31,7 @@ export class ApiArticlesService {
     return this.http.post<ApiArticle>(ApiConstant.ARTICLE.POST_NEW_ARTICLE, formDataObject);
   }
 
-  public deleteArticle(articleId: string): Observable<ApiArticle> {
+  public deleteArticleById(articleId: string): Observable<ApiArticle> {
     return this.http.delete<ApiArticle>(`${ApiConstant.ARTICLE.DELETE_BY_ID}/${articleId}`);
   }
 
