@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { SliderComponent } from "@/components/slider/slider.component";
-import { AsideComponent } from "@/components/sidebar/aside/aside.component";
-import { PageContentComponent } from "@/components/page-content/page-content.component";
+import { AppState } from "@/store/app.state";
 import { Article } from "@/models/Article.model";
 import { ArticlePreviewComponent } from "@/components/article-preview/article-preview.component";
-import { ApiArticlesService } from "@/services/api-articles/api-articles.service";
-import { ApiListArticles } from "@/models/ApiArticleResponse.model";
+import { AsideComponent } from "@/components/sidebar/aside/aside.component";
+import { PageContentComponent } from "@/components/page-content/page-content.component";
+import { SelectHomeArticles } from "@/store/storemodule-home/module-home.selectors";
+import { SliderComponent } from "@/components/slider/slider.component";
+import { Store } from "@ngrx/store";
+import { ModuleHomeActions } from "@/store/storemodule-home/module-home.actions";
 
 @Component({
   selector: 'app-home',
@@ -19,19 +21,18 @@ import { ApiListArticles } from "@/models/ApiArticleResponse.model";
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
 
   protected articles: Article[] = []
 
-  constructor(private apiArticleService: ApiArticlesService) {
+  constructor(
+    private store: Store<AppState>
+  ) {
   }
 
   ngOnInit(): void {
-    this.apiArticleService.getLastArticles()
-      .subscribe((apiResponse: ApiListArticles) => {
-        if(apiResponse.isSuccessful) {
-          this.articles = apiResponse.response;
-        }
-      });
+    this.store.dispatch(ModuleHomeActions.loadLastArticles());
+    this.store.select(SelectHomeArticles)
+      .subscribe((articles: Article[]) => this.articles = articles);
   }
 }
