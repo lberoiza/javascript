@@ -1,4 +1,6 @@
-<article [id]="article._id" class="article-card">
+<article [id]="article._id" class="article-card"
+         [style.view-transition-name]="'article-card-' + article._id"
+>
   <figure class="article-card__imageContainer">
     <a [routerLink]="'/blog/article/' + article._id">
       <img [src]="getImageUrl(article.image)" [alt]="article.title"/>
