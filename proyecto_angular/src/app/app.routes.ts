@@ -31,4 +31,8 @@ export const routes: Routes = [
     loadComponent: () => import('@/pages/search-result/search-result.component')
       .then(chunk => chunk.SearchResultComponent)
   },
+  {
+    path: '**',
+    redirectTo: ''
+  },
 ];
