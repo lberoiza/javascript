@@ -9,6 +9,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
 import { ModuleBlogEffects } from "@/store/storemodule-blog/module-blog.effects";
 import { ModuleHomeEffects } from "@/store/storemodule-home/module-home.effects";
+import { ModuleArticleEffects } from "@/store/storemodule-article/module-article.effects";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,6 +17,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideStore(ROOT_REDUCERS),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    provideEffects([ModuleBlogEffects, ModuleHomeEffects])
+    provideEffects([ModuleBlogEffects, ModuleHomeEffects, ModuleArticleEffects])
 ]
 };
