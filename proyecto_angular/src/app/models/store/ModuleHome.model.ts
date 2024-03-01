@@ -1,6 +1,6 @@
 import { Article } from "@/models/Article.model";
 
-export interface ArticlesLastState {
+export interface HomeState {
   isLoading: boolean,
   articles: Article[]
 }

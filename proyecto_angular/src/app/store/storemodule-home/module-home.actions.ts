@@ -1,8 +1,8 @@
 import { createActionGroup, emptyProps, props } from "@ngrx/store";
 import { Article } from "@/models/Article.model";
 
-export const ModuleLastArticlesActions = createActionGroup({
-  source: "ModuleLastArticles",
+export const ModuleHomeActions = createActionGroup({
+  source: "ModuleHome",
   events: {
     'Load Last Articles': emptyProps(),
     'Set Last Articles': props<{ articles: Article[] }>(),
