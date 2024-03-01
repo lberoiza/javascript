@@ -5,7 +5,10 @@
 >
   <section class="homePage__lastArticlesContainer">
     @for (article of articles; track article._id) {
-      <app-article-preview [article]="article"/>
+      <app-article-preview
+        [article]="article"
+        [style.view-transition-name]="'article-card-' + article._id"
+      />
     }
   </section>
 </app-page-content>
