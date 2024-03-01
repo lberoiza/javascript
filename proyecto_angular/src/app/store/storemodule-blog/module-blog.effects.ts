@@ -1,14 +1,14 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { ModuleAllArticlesActions } from "@/store/storemodule-all-articles/module-allArticles.actions";
-import { catchError, map, of, switchMap } from "rxjs";
 import { ApiArticlesService } from "@/services/api-articles/api-articles.service";
 import { ApiListArticles } from "@/models/ApiArticleResponse.model";
+import { ModuleBlogActions } from "@/store/storemodule-blog/module-blog.actions";
+import { catchError, map, of, switchMap } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ModuleAllArticlesEffects {
+export class ModuleBlogEffects {
   constructor(
     private actions$: Actions,
     private articlesService: ApiArticlesService
@@ -17,7 +17,7 @@ export class ModuleAllArticlesEffects {
 
   loadAllArticles$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ModuleAllArticlesActions.loadAllArticles),
+      ofType(ModuleBlogActions.loadAllArticles),
       switchMap(() =>
         this.articlesService.getAllArticles()
           .pipe(
@@ -25,11 +25,11 @@ export class ModuleAllArticlesEffects {
               if (!articlesResponse.isSuccessful) return of();
 
               return of(
-                ModuleAllArticlesActions.setAllArticles({articles: articlesResponse.response}),
-                ModuleAllArticlesActions.loadAllArticlesEnded()
+                ModuleBlogActions.setAllArticles({articles: articlesResponse.response}),
+                ModuleBlogActions.loadAllArticlesEnded()
               )
             }),
-            catchError(() => of(ModuleAllArticlesActions.loadAllArticlesEnded()))
+            catchError(() => of(ModuleBlogActions.loadAllArticlesEnded()))
           )
       )
     )

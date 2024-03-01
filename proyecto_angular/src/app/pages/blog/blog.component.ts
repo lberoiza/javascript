@@ -3,12 +3,12 @@ import { ApiArticlesService } from "@/services/api-articles/api-articles.service
 import { AppState } from "@/store/app.state";
 import { Article } from "@/models/Article.model";
 import { ArticlePreviewComponent } from "@/components/article-preview/article-preview.component";
-import { ModuleAllArticlesActions } from "@/store/storemodule-all-articles/module-allArticles.actions";
+import { ModuleBlogActions } from "@/store/storemodule-blog/module-blog.actions";
 import { PageContentComponent } from "@/components/page-content/page-content.component";
 import { Store } from "@ngrx/store";
 import {
-  SelectModuleAllArticlesAll
-} from "@/store/storemodule-all-articles/module-allArticles.selectors";
+  SelectModuleBlogArticles
+} from "@/store/storemodule-blog/module-blog.selectors";
 
 @Component({
   selector: 'app-blog',
@@ -34,8 +34,8 @@ export class BlogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(ModuleAllArticlesActions.loadAllArticles());
-    this.store.select(SelectModuleAllArticlesAll)
+    this.store.dispatch(ModuleBlogActions.loadAllArticles());
+    this.store.select(SelectModuleBlogArticles)
       .subscribe((articles: Article[]) => this.articles = articles);
   }
 
