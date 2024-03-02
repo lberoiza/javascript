@@ -4,11 +4,10 @@ import { Article } from "@/models/Article.model";
 import { ArticleDetailsComponent } from "@/components/article-details/article-details.component";
 import { ArticlePreviewComponent } from "@/components/article-preview/article-preview.component";
 import { PageContentComponent } from "@/components/page-content/page-content.component";
-import { ApiArticlesService } from "@/services/api-articles/api-articles.service";
 import { Store } from "@ngrx/store";
 import { AppState } from "@/store/app.state";
 import { SelectModuleArticleCurrentArticle } from "@/store/storemodule-article/module-article.selectors";
-import { ModuleArticleActions } from "@/store/storemodule-article/module-article.actions";
+import { ActionLoadArticleByIdParams, ModuleArticleActions } from "@/store/storemodule-article/module-article.actions";
 
 @Component({
   selector: 'app-article',
@@ -52,12 +51,17 @@ export class ArticleShowComponent implements OnInit {
         return;
       }
 
-      this.store.dispatch(ModuleArticleActions.loadArticleById({articleId: id}));
+      const loadArticleDispatchParams: ActionLoadArticleByIdParams = {
+        articleId: id,
+        onError: () => this.goToBlog()
+      }
+
+      this.store.dispatch(ModuleArticleActions.loadArticleById(loadArticleDispatchParams));
     });
   }
 
   private goToBlog(): void {
-    this.router.navigate(['/']).then();
+    this.router.navigate(['']).then();
   }
 
 }

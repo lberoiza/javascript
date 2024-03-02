@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertMessage, AlertService } from "@/services/alerts/alert.service";
 import { ApiArticlesService } from "@/services/api-articles/api-articles.service";
 import { Article } from "@/models/Article.model";
