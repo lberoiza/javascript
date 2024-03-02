@@ -12,5 +12,8 @@
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
+    height: fit-content;
+    position: sticky;
+    top: 0;
   }
 }
