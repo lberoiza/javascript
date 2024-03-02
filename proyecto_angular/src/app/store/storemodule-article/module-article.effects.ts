@@ -7,8 +7,6 @@ import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { AppState } from "@/store/app.state";
 import { SelectModuleArticleCurrentArticle } from "@/store/storemodule-article/module-article.selectors";
-import { Router } from "@angular/router";
-import { AlertMessage, AlertService } from "@/services/alerts/alert.service";
 
 
 interface LoadArticleByIdParams extends ReturnType<typeof ModuleArticleActions.loadArticleById>{}
@@ -28,8 +26,6 @@ export class ModuleArticleEffects {
     private actions$: Actions,
     private store: Store<AppState>,
     private apiArticleService: ApiArticlesService,
-    private router: Router,
-    private alert: AlertService
   ) {
     this.store.select(SelectModuleArticleCurrentArticle)
       .subscribe((article?: Article) => {
@@ -53,7 +49,7 @@ export class ModuleArticleEffects {
     return this.apiArticleService.getArticleById(this.articleIdFromUrl).pipe(
       switchMap((apiResponse) => {
         if (!apiResponse.isSuccessful) {
-          this.goToBlog().then();
+          // this.goToBlog().then();
           return this.loadCurrentArticleEnded();
         }
         return of(ModuleArticleActions.setArticle({article: apiResponse.response}));
@@ -74,44 +70,27 @@ export class ModuleArticleEffects {
         return this.apiArticleService.deleteArticleById(action.articleId).pipe(
           switchMap((apiResponse) => {
             if (!apiResponse.isSuccessful) {
-              this.ShowDeletionErrorMessage();
-              return of(ModuleArticleActions.deleteArticleByIdEnd());
+              return this.errorByDeletion(action);
             }
-
-            this.goToBlog()
-              .then(() => this.ShowDeletionSuccessMessage(apiResponse.response.title));
-
+            action.onSuccess(apiResponse.response);
             return of(
               ModuleArticleActions.setArticle({article: undefined}),
-              ModuleArticleActions.deleteArticleByIdEnd()
+              ModuleArticleActions.deleteArticleByIdEnd({success: true})
             );
           }),
-          catchError(error => of(ModuleArticleActions.deleteArticleByIdEnd()))
+          catchError(error => {
+            console.error(error);
+            return this.errorByDeletion(action)
+          })
         );
       })
     )
   );
 
 
-  private goToBlog(): Promise<boolean> {
-    return this.router.navigate(['/blog'])
+  private errorByDeletion(deleteAction: DeleteArticleByIdParams) {
+    deleteAction.onError();
+    return of(ModuleArticleActions.deleteArticleByIdEnd({success: false}));
   }
-
-  private ShowDeletionSuccessMessage(articleTitle: string = '') {
-    const alertMessage: AlertMessage = {
-      title: `Successfully deleted`,
-      content: `The Article: "${articleTitle}" was successfully deleted.`
-    }
-    this.alert.showSuccess(alertMessage);
-  }
-
-  private ShowDeletionErrorMessage() {
-    const alertMessage: AlertMessage = {
-      title: `Error by the deletion`,
-      content: `The Article could not be eliminated`
-    }
-    this.alert.showError(alertMessage);
-  }
-
 
 }

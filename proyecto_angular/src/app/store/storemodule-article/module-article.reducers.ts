@@ -12,16 +12,17 @@ export const ModuleArticleReducers = createReducer(
   on(ModuleArticleActions.setArticle, (currentState, {article}) => {
     return {...currentState, article}
   }),
-  on(ModuleArticleActions.loadArticleById, (currentState, {articleId}) => {
+  on(ModuleArticleActions.loadArticleById, (currentState) => {
     return {...currentState, isLoading: true}
   }),
   on(ModuleArticleActions.loadArticleByIdEnds, (currentState) => {
     return {...currentState, isLoading: false}
   }),
-  on(ModuleArticleActions.deleteArticleById, (currentState, {articleId}) => {
+  on(ModuleArticleActions.deleteArticleById, (currentState) => {
     return {...currentState, isLoading: true}
   }),
-  on(ModuleArticleActions.deleteArticleByIdEnd, (currentState) => {
-    return {...currentState, isLoading: false, article: undefined}
+  on(ModuleArticleActions.deleteArticleByIdEnd, (currentState, {success}) => {
+    const article = success ? undefined : currentState.article;
+    return {...currentState, isLoading: false, article}
   }),
 );
