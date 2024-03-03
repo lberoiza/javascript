@@ -5,13 +5,21 @@
 >
 
   <div class="search-container">
-    <input type="text" placeholder="Search for an article">
+    <input
+      type="search"
+      placeholder="Search for an article"
+      value="{{searchStr}}"
+      (input)="onSearchInput($event)"
+    >
     <button class="btn">Search</button>
   </div>
 
   <section class="blog__listArticlesContainer">
     @for (article of articles; track article._id) {
-      <app-article-preview [article]="article"/>
+      <app-article-preview
+        [article]="article"
+        [style.view-transition-name]="'article-card-' + article._id"
+      />
     }
   </section>
 </app-page-content>

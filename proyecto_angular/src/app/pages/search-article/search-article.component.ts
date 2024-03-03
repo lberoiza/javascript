@@ -10,6 +10,7 @@ import { Store } from "@ngrx/store";
 import { ModuleSearchActions } from "@/store/storemodule-search/module-search.actions";
 import { considerSettingUpAutocompletion } from "@angular/cli/src/utilities/completion";
 import { SelectModuleSearchQuery, SelectModuleSearchResults } from "@/store/storemodule-search/module-search.selectors";
+import { debounceTime, Subject } from "rxjs";
 
 @Component({
   selector: 'app-blog',
@@ -28,6 +29,7 @@ export class SearchArticleComponent implements OnInit {
 
   protected articles: Article[] = [];
   protected searchStr: string = '';
+  protected searchSubject = new Subject<string>();
 
   constructor(
     private apiArticlesService: ApiArticlesService,
@@ -37,27 +39,24 @@ export class SearchArticleComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initializeSearchSubject();
     this.subscribeToSearchStrChanges();
     this.subscribeToArticlesChanges();
+  }
 
-    // this.activatedRoute.params.subscribe(params => {
-    //   this.searchStr = params['searchStr'] || '';
-    //   console.log(this.searchStr)
-    //   this.apiArticlesService.getArticlesBySearch(this.searchStr)
-    //     .subscribe((apiResponse: ApiListArticles) => {
-    //       if (apiResponse.isSuccessful) {
-    //         this.articles = apiResponse.response;
-    //         this.store.dispatch(ModuleSearchActions.setResults({ results: this.articles }));
-    //       }
-    //     });
-    // });
+  private initializeSearchSubject() {
+    this.searchSubject.pipe(
+      debounceTime(500)
+    ).subscribe(searchValue => {
+      if (searchValue.length < 3) return;
+      this.store.dispatch(ModuleSearchActions.search({ strQuery: searchValue }));
+    });
   }
 
 
   private subscribeToSearchStrChanges() {
     this.store.select(SelectModuleSearchQuery)
       .subscribe(searchStr => {
-        console.log('searchStr', searchStr);
         this.searchStr = searchStr;
       })
   }
@@ -65,11 +64,18 @@ export class SearchArticleComponent implements OnInit {
   private subscribeToArticlesChanges() {
     this.store.select(SelectModuleSearchResults)
       .subscribe(articles => {
-        console.log('articles', articles);
         this.articles = articles;
       })
   }
 
+  protected onSearchInput(event: Event) {
+    const searchValue = (event.target as HTMLInputElement).value;
+    if (searchValue) {
+      this.searchSubject.next(searchValue);
+    } else {
+      this.store.dispatch(ModuleSearchActions.setResults({ results: [] }));
+    }
+  }
 
   protected hasSearchString(): boolean {
     return this.searchStr !== ''
