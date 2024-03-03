@@ -9,6 +9,7 @@ import { AppState } from "@/store/app.state";
 import { Store } from "@ngrx/store";
 import { ModuleSearchActions } from "@/store/storemodule-search/module-search.actions";
 import { considerSettingUpAutocompletion } from "@angular/cli/src/utilities/completion";
+import { SelectModuleSearchQuery, SelectModuleSearchResults } from "@/store/storemodule-search/module-search.selectors";
 
 @Component({
   selector: 'app-blog',
@@ -36,19 +37,39 @@ export class SearchArticleComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.subscribeToSearchStrChanges();
+    this.subscribeToArticlesChanges();
 
-    this.activatedRoute.params.subscribe(params => {
-      this.searchStr = params['searchStr'] || '';
-      console.log(this.searchStr)
-      this.apiArticlesService.getArticlesBySearch(this.searchStr)
-        .subscribe((apiResponse: ApiListArticles) => {
-          if (apiResponse.isSuccessful) {
-            this.articles = apiResponse.response;
-            this.store.dispatch(ModuleSearchActions.setResults({ results: this.articles }));
-          }
-        });
-    });
+    // this.activatedRoute.params.subscribe(params => {
+    //   this.searchStr = params['searchStr'] || '';
+    //   console.log(this.searchStr)
+    //   this.apiArticlesService.getArticlesBySearch(this.searchStr)
+    //     .subscribe((apiResponse: ApiListArticles) => {
+    //       if (apiResponse.isSuccessful) {
+    //         this.articles = apiResponse.response;
+    //         this.store.dispatch(ModuleSearchActions.setResults({ results: this.articles }));
+    //       }
+    //     });
+    // });
   }
+
+
+  private subscribeToSearchStrChanges() {
+    this.store.select(SelectModuleSearchQuery)
+      .subscribe(searchStr => {
+        console.log('searchStr', searchStr);
+        this.searchStr = searchStr;
+      })
+  }
+
+  private subscribeToArticlesChanges() {
+    this.store.select(SelectModuleSearchResults)
+      .subscribe(articles => {
+        console.log('articles', articles);
+        this.articles = articles;
+      })
+  }
+
 
   protected hasSearchString(): boolean {
     return this.searchStr !== ''

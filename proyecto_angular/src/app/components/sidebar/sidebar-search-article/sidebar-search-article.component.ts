@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
+import { Store } from "@ngrx/store";
+import { AppState } from "@/store/app.state";
+import { ModuleSearchActions } from "@/store/storemodule-search/module-search.actions";
 
 @Component({
   selector: 'app-sidebar-search-article',
@@ -19,7 +22,8 @@ export class SidebarSearchArticleComponent {
   protected searchStr: string = '';
 
   constructor(
-    private router: Router
+    private router: Router,
+    private store: Store<AppState>
   ) {
   }
 
@@ -29,7 +33,8 @@ export class SidebarSearchArticleComponent {
 
   protected search(mySearchForm: NgForm): void {
     if(this.isFormValid()) {
-      this.router.navigate(['/blog/search', this.searchStr]).then();
+      this.store.dispatch(ModuleSearchActions.search({ strQuery: this.searchStr }));
+      this.router.navigate(['/blog/search']).then();
     }
   }
 

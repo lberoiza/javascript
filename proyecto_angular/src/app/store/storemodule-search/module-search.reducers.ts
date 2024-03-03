@@ -13,12 +13,12 @@ const initialState: SearchState = {
 export const ModuleSearchReducers = createReducer(
   initialState,
   on(ModuleSearchActions.search, (currentState, {strQuery}) => {
-    return {...currentState, isLoading: true, lastQuery: strQuery}
+    return {...currentState, isLoading: true, query: strQuery}
   }),
   on(ModuleSearchActions.searchEnded, (currentState) => {
     return {...currentState, isLoading: false}
   }),
   on(ModuleSearchActions.setResults, (currentState, {results}) => {
-    return {...currentState, lastResults: results}
+    return {...currentState, results: results}
   })
 )
