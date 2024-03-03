@@ -1,11 +1,14 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { getImageUrl } from "@/libs/ImageUtils";
-import { Article, ArticleFormFields, createArticleFormFieldsOf, createEmptyArticle } from "@/models/Article.model";
-import { FormsModule, NgForm } from "@angular/forms";
-import { ApiArticlesService } from "@/services/api-articles/api-articles.service";
-import { Router } from "@angular/router";
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { AlertMessage, AlertService } from "@/services/alerts/alert.service";
 import { ApiArticle } from "@/models/ApiArticleResponse.model";
+import { ApiArticlesService } from "@/services/api-articles/api-articles.service";
+import { AppState } from "@/store/app.state";
+import { Article, ArticleFormFields, createArticleFormFieldsOf, createEmptyArticle } from "@/models/Article.model";
+import { FormsModule, NgForm } from "@angular/forms";
+import { Router } from "@angular/router";
+import { Store } from "@ngrx/store";
+import { getImageUrl } from "@/libs/ImageUtils";
+import { ModuleArticleActions } from "@/store/storemodule-article/module-article.actions";
 
 @Component({
   selector: 'app-article-form',
@@ -27,9 +30,10 @@ export class ArticleFormComponent implements OnChanges {
   protected previewImageUrl?: string;
 
   constructor(
+    private alert: AlertService,
     private apiArticleService: ApiArticlesService,
     private router: Router,
-    private alert: AlertService
+    private store: Store<AppState>,
   ) {
   }
 
@@ -75,11 +79,16 @@ export class ArticleFormComponent implements OnChanges {
       .subscribe(apiResponse => {
       if (apiResponse.isSuccessful) {
         this.article = apiResponse.response;
+        this.updateStore();
         this.goBackAndShowSuccess();
       } else {
         this.showError(apiResponse);
       }
     });
+  }
+
+  private updateStore() {
+    this.store.dispatch(ModuleArticleActions.setArticle({article: this.article}));
   }
 
   private goBackToArticle(): Promise<boolean> {
