@@ -3,6 +3,7 @@
   flex-flow: row nowrap;
   gap: 1rem;
   margin-bottom: 2rem;
+  height: 2rem;
 }
 
 .search-container input {
@@ -17,6 +18,11 @@
 
 .search-container input::placeholder {
   font-style: italic;
+}
+
+.search-container__loader {
+  aspect-ratio: 1/1;
+  height: 100%;
 }
 
 .search-container button {

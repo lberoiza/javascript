@@ -11,7 +11,9 @@
       value="{{searchStr}}"
       (input)="onSearchInput($event)"
     >
-    <button class="btn">Search</button>
+    <div class="search-container__loader">
+      <app-loader [isLoading]="isLoading"/>
+    </div>
   </div>
 
   <section class="blog__listArticlesContainer">

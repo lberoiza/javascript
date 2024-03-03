@@ -9,15 +9,21 @@ import { AppState } from "@/store/app.state";
 import { Store } from "@ngrx/store";
 import { ModuleSearchActions } from "@/store/storemodule-search/module-search.actions";
 import { considerSettingUpAutocompletion } from "@angular/cli/src/utilities/completion";
-import { SelectModuleSearchQuery, SelectModuleSearchResults } from "@/store/storemodule-search/module-search.selectors";
+import {
+  SelectModuleSearchIsLoading,
+  SelectModuleSearchQuery,
+  SelectModuleSearchResults
+} from "@/store/storemodule-search/module-search.selectors";
 import { debounceTime, Subject } from "rxjs";
+import { LoaderComponent } from "@/components/loader/loader.component";
 
 @Component({
   selector: 'app-blog',
   standalone: true,
   imports: [
     ArticlePreviewComponent,
-    PageContentComponent
+    PageContentComponent,
+    LoaderComponent
   ],
   providers: [
     ApiArticlesService
@@ -29,6 +35,7 @@ export class SearchArticleComponent implements OnInit {
 
   protected articles: Article[] = [];
   protected searchStr: string = '';
+  protected isLoading: boolean = false;
   protected searchSubject = new Subject<string>();
 
   constructor(
@@ -40,6 +47,7 @@ export class SearchArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeSearchSubject();
+    this.subscribeToSearchIsLoading();
     this.subscribeToSearchStrChanges();
     this.subscribeToArticlesChanges();
   }
@@ -53,6 +61,12 @@ export class SearchArticleComponent implements OnInit {
     });
   }
 
+  private subscribeToSearchIsLoading() {
+    this.store.select(SelectModuleSearchIsLoading)
+      .subscribe(isLoading => {
+        this.isLoading = isLoading;
+      })
+  }
 
   private subscribeToSearchStrChanges() {
     this.store.select(SelectModuleSearchQuery)
