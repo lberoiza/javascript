@@ -1,6 +1,9 @@
 <aside class="sidebar">
-  @if (!isHome) {
+  @if (showBoxNewArticle) {
     <app-sidebar-new-article/>
   }
-  <app-sidebar-search-article/>
+
+  @if(showBoxSearch){
+    <app-sidebar-search-article/>
+  }
 </aside>

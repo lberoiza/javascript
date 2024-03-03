@@ -16,6 +16,6 @@ export class SliderComponent {
   public title: string = '';
 
   @Input()
-  public isHome: boolean = false;
+  public showBigSlider: boolean = false;
 
 }

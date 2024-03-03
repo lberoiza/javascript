@@ -17,5 +17,8 @@ import {
 export class AsideComponent {
 
   @Input()
-  isHome: boolean = false;
+  showBoxNewArticle: boolean = true;
+
+  @Input()
+  showBoxSearch: boolean = true;
 }

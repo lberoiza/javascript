@@ -17,9 +17,15 @@ export class PageContentComponent {
   sliderTitle: string = '';
 
   @Input()
-  isHomePage: boolean = false;
+  subheaderTitle: string = '';
 
   @Input()
-  subheaderTitle: string = '';
+  showBigSlider: boolean = false;
+
+  @Input()
+  showBoxNewArticle: boolean = true;
+
+  @Input()
+  showBoxSearch: boolean = true;
 
 }
