@@ -1,11 +1,15 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { getImageUrl } from "@/libs/ImageUtils";
+import { AlertMessage, AlertService } from "@/services/alerts/alert.service";
+import { ApiArticle } from "@/models/ApiArticleResponse.model";
+import { ApiArticlesService } from "@/services/api-articles/api-articles.service";
+import { AppState } from "@/store/app.state";
 import { Article, ArticleFormFields, createArticleFormFieldsOf, createEmptyArticle } from "@/models/Article.model";
 import { FormsModule, NgForm } from "@angular/forms";
-import { ApiArticlesService } from "@/services/api-articles/api-articles.service";
 import { Router } from "@angular/router";
-import { AlertMessage, AlertService } from "@/services/alerts/alert.service";
-import { ApiArticle } from "@/models/ApiArticleResponse";
+import { Store } from "@ngrx/store";
+import { getImageUrl } from "@/libs/ImageUtils";
+import { ModuleArticleActions } from "@/store/storemodule-article/module-article.actions";
+import { SelectModuleArticleCurrentArticle } from "@/store/storemodule-article/module-article.selectors";
 
 @Component({
   selector: 'app-article-form',
@@ -16,24 +20,36 @@ import { ApiArticle } from "@/models/ApiArticleResponse";
   templateUrl: './article-form.component.html',
   styleUrl: './article-form.component.css'
 })
-export class ArticleFormComponent implements OnChanges {
+export class ArticleFormComponent implements OnInit {
 
   protected readonly getImageUrl = getImageUrl;
 
-  @Input()
-  article: Article = createEmptyArticle();
+  protected article!: Article;
 
-  protected articleFormFields: ArticleFormFields = createArticleFormFieldsOf(this.article);
+  protected articleFormFields!: ArticleFormFields;
   protected previewImageUrl?: string;
 
   constructor(
+    private alert: AlertService,
     private apiArticleService: ApiArticlesService,
     private router: Router,
-    private alert: AlertService
+    private store: Store<AppState>,
   ) {
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnInit(): void {
+    this.subscribeToArticle();
+  }
+
+  private subscribeToArticle() {
+    this.store.select(SelectModuleArticleCurrentArticle)
+      .subscribe((article?: Article) => {
+        this.article = article || createEmptyArticle();
+        this.initFormFields();
+      });
+  }
+
+  private initFormFields(): void {
     this.articleFormFields = createArticleFormFieldsOf(this.article);
     this.previewImageUrl = getImageUrl(this.article.image);
   }
@@ -70,39 +86,22 @@ export class ArticleFormComponent implements OnChanges {
   }
 
   private saveOrUpdateArticleData() {
-    this.saveOrUpdate().subscribe(apiResponse => {
-      if (apiResponse.isSuccessful) {
-        this.article = apiResponse.response;
-        this.saveArticleImage();
-      } else {
-        this.showError(apiResponse);
-      }
-    });
+    this.apiArticleService
+      .createOrUpdateArticle(this.articleFormFields, this.article._id)
+      .subscribe(apiResponse => {
+        if (apiResponse.isSuccessful) {
+          this.article = apiResponse.response;
+          this.updateStore();
+          this.goBackAndShowSuccess();
+        } else {
+          this.showError(apiResponse);
+        }
+      });
   }
 
-  private saveOrUpdate() {
-    if (this.article._id === '') {
-      return this.apiArticleService.createArticle(this.articleFormFields);
-    }
-    return this.apiArticleService.updateArticle(this.article._id, this.articleFormFields);
+  private updateStore() {
+    this.store.dispatch(ModuleArticleActions.setArticle({article: this.article}));
   }
-
-
-  private saveArticleImage(){
-    if (this.articleFormFields.imageFile) {
-      this.apiArticleService.updateArticleImage(this.article._id, this.articleFormFields.imageFile!)
-        .subscribe(apiResponse => {
-          if (apiResponse.isSuccessful) {
-            this.goBackAndShowSuccess();
-          } else {
-            this.showError(apiResponse);
-          }
-        });
-    } else {
-      this.goBackAndShowSuccess();
-    }
-  }
-
 
   private goBackToArticle(): Promise<boolean> {
     return this.router.navigate(['/blog/article', this.article._id])
@@ -116,7 +115,8 @@ export class ArticleFormComponent implements OnChanges {
   }
 
   protected cancelEditionAndGoBack() {
-    this.goBackToArticle().then(() => {});
+    this.goBackToArticle().then(() => {
+    });
   }
 
 

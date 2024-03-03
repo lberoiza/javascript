@@ -1,13 +1,13 @@
 <article [id]="article._id" class="article-card">
   <figure class="article-card__imageContainer">
-    <a [routerLink]="'/blog/article/' + article._id">
+    <a (click)="goToArticle()">
       <img [src]="getImageUrl(article.image)" [alt]="article.title"/>
     </a>
   </figure>
   <div class="article-card__info">
     <app-dayjs class="article-card__date" [dateString]="article.date"></app-dayjs>
     <h2>{{ article.title }}</h2>
-    <a [routerLink]="'/blog/article/' + article._id" class="btn">
+    <a (click)="goToArticle()" class="btn">
       Leer más ...
     </a>
   </div>

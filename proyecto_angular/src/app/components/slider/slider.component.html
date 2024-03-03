@@ -1,6 +1,13 @@
-<div class="slider" [class]="isHome ? 'slider--big' : 'slider--small'">
+<div
+  class="slider"
+  [class]="{
+    'slider--big': showBigSlider,
+    'slider--small': !showBigSlider
+  }"
+  [style.view-transition-name]="'slider'"
+>
   <h1>{{ title }}</h1>
-  @if(isHome) {
+  @if(showBigSlider) {
     <a routerLink="/blog" class="btn-white">Go to Blog</a>
   }
 </div>

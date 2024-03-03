@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Article, createEmptyArticle } from "@/models/Article.model";
+import { Article } from "@/models/Article.model";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ApiArticlesService } from "@/services/api-articles/api-articles.service";
-import { ApiArticle } from "@/models/ApiArticleResponse";
 import { ArticleDetailsComponent } from "@/components/article-details/article-details.component";
 import { PageContentComponent } from "@/components/page-content/page-content.component";
 import { ArticleFormComponent } from "@/components/article-form/article-form.component";
+import { SelectModuleArticleCurrentArticle } from "@/store/storemodule-article/module-article.selectors";
+import { ActionLoadArticleByIdParams, ModuleArticleActions } from "@/store/storemodule-article/module-article.actions";
+import { AppState } from "@/store/app.state";
+import { Store } from "@ngrx/store";
 
 @Component({
   selector: 'app-edit-article',
@@ -20,38 +22,47 @@ import { ArticleFormComponent } from "@/components/article-form/article-form.com
 })
 export class ArticleEditComponent implements OnInit {
 
-  protected article: Article =  createEmptyArticle();
+  protected articleTitle = ''
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private apiArticlesService: ApiArticlesService
+    private store: Store<AppState>
   ) {
   }
 
+
   ngOnInit(): void {
+    this.subscribeToRouteParams();
+    this.subscribeToArticle();
+  }
+
+  private subscribeToArticle() {
+    this.store.select(SelectModuleArticleCurrentArticle)
+      .subscribe((article?: Article) => {
+        this.articleTitle = article?.title || '';
+      });
+  }
+
+  private subscribeToRouteParams(): void {
     this.activatedRoute.params.subscribe(params => {
       const id = params['id'];
-      if (id) {
-        this.loadArticleOrGoHome(id);
-      }
-    });
-  }
-
-  private loadArticleOrGoHome(id: string): void {
-    this.apiArticlesService.getArticleById(id).subscribe((apiResponse: ApiArticle) => {
-      if (apiResponse.isSuccessful) {
-        this.article = apiResponse.response;
-      } else {
-        this.goBackHome();
+      if(!id) {
+        this.goToBlog();
         return;
       }
+
+      const loadArticleDispatchParams: ActionLoadArticleByIdParams = {
+        articleId: id,
+        onError: () => this.goToBlog()
+      }
+
+      this.store.dispatch(ModuleArticleActions.loadArticleById(loadArticleDispatchParams));
     });
   }
 
-
-  private goBackHome(): void {
-    this.router.navigate(['/']).then(r => console.log('r', r));
+  private goToBlog(): void {
+    this.router.navigate(['']).then();
   }
 
 }
