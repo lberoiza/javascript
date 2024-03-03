@@ -9,12 +9,12 @@ export const SelectModuleSearchIsLoading = createSelector(
   (state: SearchState) => state.isLoading
 )
 
-export const SelectModuleSearchLastQuery = createSelector(
+export const SelectModuleSearchQuery = createSelector(
   ModuleSearchState,
-  (state: SearchState) => state.lastQuery
+  (state: SearchState) => state.query
 )
 
-export const SelectModuleSearchLastResults = createSelector(
+export const SelectModuleSearchResults = createSelector(
   ModuleSearchState,
-  (state: SearchState) => state.lastResults
+  (state: SearchState) => state.results
 )

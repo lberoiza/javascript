@@ -5,8 +5,8 @@ import { ModuleSearchActions } from "@/store/storemodule-search/module-search.ac
 
 const initialState: SearchState = {
   isLoading: false,
-  lastQuery: '',
-  lastResults: []
+  query: '',
+  results: []
 }
 
 
