@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, of, switchMap } from "rxjs";
 import ApiConstant from "@/config/ApiConstant";
 import { ApiArticle, ApiListArticles } from "@/models/ApiArticleResponse.model";
 import { ArticleFormFields } from "@/models/Article.model";
@@ -9,7 +9,8 @@ import { ArticleFormFields } from "@/models/Article.model";
   providedIn: 'root'
 })
 export class ApiArticlesService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   public getAllArticles(): Observable<ApiListArticles> {
     return this.http.get<ApiListArticles>(ApiConstant.ARTICLE.GET_ALL_ARTICLES);
@@ -43,6 +44,28 @@ export class ApiArticlesService {
     const form = new FormData();
     form.append('imagen', imageFile, imageFile.name);
     return this.http.post<ApiArticle>(`${ApiConstant.ARTICLE.POST_ADD_IMAGE_TO_ARTICLE}/${articleId}`, form);
+  }
+
+  public createOrUpdateArticle(articleFormData: ArticleFormFields, articleId: string): Observable<ApiArticle> {
+    let articleObservable: Observable<ApiArticle>;
+
+    if (articleId === '') {
+      articleObservable = this.createArticle(articleFormData);
+    } else {
+      articleObservable = this.updateArticle(articleId, articleFormData);
+    }
+
+    return articleObservable.pipe(
+      switchMap(apiResponse => this.handleArticleResponse(apiResponse, articleFormData.imageFile))
+    );
+  }
+
+  private handleArticleResponse(apiResponse: ApiArticle, imageFile?: File): Observable<ApiArticle> {
+    if (!apiResponse.isSuccessful || !imageFile) {
+      return of(apiResponse);
+    }
+
+    return this.updateArticleImage(apiResponse.response._id, imageFile);
   }
 
 
