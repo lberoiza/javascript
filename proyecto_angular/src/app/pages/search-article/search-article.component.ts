@@ -8,6 +8,7 @@ import { ActivatedRoute } from "@angular/router";
 import { AppState } from "@/store/app.state";
 import { Store } from "@ngrx/store";
 import { ModuleSearchActions } from "@/store/storemodule-search/module-search.actions";
+import { considerSettingUpAutocompletion } from "@angular/cli/src/utilities/completion";
 
 @Component({
   selector: 'app-blog',
@@ -19,10 +20,10 @@ import { ModuleSearchActions } from "@/store/storemodule-search/module-search.ac
   providers: [
     ApiArticlesService
   ],
-  templateUrl: './search-result.component.html',
-  styleUrl: './search-result.component.css'
+  templateUrl: './search-article.component.html',
+  styleUrl: './search-article.component.css'
 })
-export class SearchResultComponent implements OnInit {
+export class SearchArticleComponent implements OnInit {
 
   protected articles: Article[] = [];
   protected searchStr: string = '';
@@ -37,7 +38,8 @@ export class SearchResultComponent implements OnInit {
   ngOnInit(): void {
 
     this.activatedRoute.params.subscribe(params => {
-      this.searchStr = params['searchStr'];
+      this.searchStr = params['searchStr'] || '';
+      console.log(this.searchStr)
       this.apiArticlesService.getArticlesBySearch(this.searchStr)
         .subscribe((apiResponse: ApiListArticles) => {
           if (apiResponse.isSuccessful) {
@@ -46,8 +48,21 @@ export class SearchResultComponent implements OnInit {
           }
         });
     });
-
-
   }
+
+  protected hasSearchString(): boolean {
+    return this.searchStr !== ''
+  }
+
+  protected getHeaderTitle(){
+    if(this.hasSearchString()) {
+      return `List of Articles matching: ${this.searchStr}'`
+    }
+    return "Search an Article"
+  }
+
+
+
+
 
 }

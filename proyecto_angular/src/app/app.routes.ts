@@ -28,8 +28,8 @@ export const routes: Routes = [
   },
   {
     path: 'blog/search/:searchStr',
-    loadComponent: () => import('@/pages/search-result/search-result.component')
-      .then(chunk => chunk.SearchResultComponent)
+    loadComponent: () => import('@/pages/search-article/search-article.component')
+      .then(chunk => chunk.SearchArticleComponent)
   },
   {
     path: '**',

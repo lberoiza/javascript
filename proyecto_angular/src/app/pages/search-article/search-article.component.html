@@ -1,8 +1,14 @@
 <app-page-content
-  [isHomePage]="false"
   sliderTitle="Search Results"
-  subheaderTitle="List of Articles matching: '{{searchStr}}'"
+  [subheaderTitle]="getHeaderTitle()"
+  [showBoxSearch]="false"
 >
+
+  <div class="search-container">
+    <input type="text">
+    <button class="btn">Search</button>
+  </div>
+
   <section class="blog__listArticlesContainer">
     @for (article of articles; track article._id) {
       <app-article-preview [article]="article"/>
