@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AlertMessage, AlertService } from "@/services/alerts/alert.service";
 import { ApiArticle } from "@/models/ApiArticleResponse.model";
 import { ApiArticlesService } from "@/services/api-articles/api-articles.service";
@@ -9,6 +9,7 @@ import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { getImageUrl } from "@/libs/ImageUtils";
 import { ModuleArticleActions } from "@/store/storemodule-article/module-article.actions";
+import { SelectModuleArticleCurrentArticle } from "@/store/storemodule-article/module-article.selectors";
 
 @Component({
   selector: 'app-article-form',
@@ -19,14 +20,13 @@ import { ModuleArticleActions } from "@/store/storemodule-article/module-article
   templateUrl: './article-form.component.html',
   styleUrl: './article-form.component.css'
 })
-export class ArticleFormComponent implements OnChanges {
+export class ArticleFormComponent implements OnInit {
 
   protected readonly getImageUrl = getImageUrl;
 
-  @Input()
-  article: Article = createEmptyArticle();
+  protected article!: Article;
 
-  protected articleFormFields: ArticleFormFields = createArticleFormFieldsOf(this.article);
+  protected articleFormFields!: ArticleFormFields;
   protected previewImageUrl?: string;
 
   constructor(
@@ -37,7 +37,19 @@ export class ArticleFormComponent implements OnChanges {
   ) {
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnInit(): void {
+    this.subscribeToArticle();
+  }
+
+  private subscribeToArticle() {
+    this.store.select(SelectModuleArticleCurrentArticle)
+      .subscribe((article?: Article) => {
+        this.article = article || createEmptyArticle();
+        this.initFormFields();
+      });
+  }
+
+  private initFormFields(): void {
     this.articleFormFields = createArticleFormFieldsOf(this.article);
     this.previewImageUrl = getImageUrl(this.article.image);
   }
@@ -77,14 +89,14 @@ export class ArticleFormComponent implements OnChanges {
     this.apiArticleService
       .createOrUpdateArticle(this.articleFormFields, this.article._id)
       .subscribe(apiResponse => {
-      if (apiResponse.isSuccessful) {
-        this.article = apiResponse.response;
-        this.updateStore();
-        this.goBackAndShowSuccess();
-      } else {
-        this.showError(apiResponse);
-      }
-    });
+        if (apiResponse.isSuccessful) {
+          this.article = apiResponse.response;
+          this.updateStore();
+          this.goBackAndShowSuccess();
+        } else {
+          this.showError(apiResponse);
+        }
+      });
   }
 
   private updateStore() {
@@ -103,7 +115,8 @@ export class ArticleFormComponent implements OnChanges {
   }
 
   protected cancelEditionAndGoBack() {
-    this.goBackToArticle().then(() => {});
+    this.goBackToArticle().then(() => {
+    });
   }
 
 
