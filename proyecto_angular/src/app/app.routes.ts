@@ -27,6 +27,11 @@ export const routes: Routes = [
       .then(chunk => chunk.ArticleEditComponent)
   },
   {
+    path: 'blog/search',
+    loadComponent: () => import('@/pages/search-article/search-article.component')
+      .then(chunk => chunk.SearchArticleComponent)
+  },
+  {
     path: 'blog/search/:searchStr',
     loadComponent: () => import('@/pages/search-article/search-article.component')
       .then(chunk => chunk.SearchArticleComponent)

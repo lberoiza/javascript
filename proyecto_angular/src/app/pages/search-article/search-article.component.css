@@ -1,3 +1,29 @@
+.search-container {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.search-container input {
+  min-height: 2rem;
+  border: 1px solid var(--color-perl);
+  border-radius: 0.3rem;
+  padding: 0.3rem 0.5rem ;
+  font-size: 1rem;
+  outline: none;
+  flex-grow: 1;
+}
+
+.search-container input::placeholder {
+  font-style: italic;
+}
+
+.search-container button {
+  flex-grow: 1;
+}
+
+
 .blog__listArticlesContainer {
   display: flex;
   flex-flow: row wrap;
