@@ -12,14 +12,11 @@ import { catchError, of, switchMap } from "rxjs";
 interface LoadArticleByIdParams extends ReturnType<typeof ModuleArticleActions.loadArticleById> {
 }
 
-interface DeleteArticleByIdParams extends ReturnType<typeof ModuleArticleActions.deleteArticleById> {
-}
-
 
 @Injectable({
   providedIn: 'root'
 })
-export class ModuleArticleEffects {
+export class LoadArticleEffect {
 
   private currentArticle?: Article;
 
@@ -68,36 +65,4 @@ export class ModuleArticleEffects {
     action.onError();
     return of(ModuleArticleActions.loadArticleByIdEnds());
   }
-
-
-  deleteArticle$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ModuleArticleActions.deleteArticleById),
-      switchMap((action: DeleteArticleByIdParams) => {
-        return this.apiArticleService.deleteArticleById(action.articleId).pipe(
-          switchMap((apiResponse) => {
-            if (!apiResponse.isSuccessful) {
-              return this.errorByDeletion(action);
-            }
-            action.onSuccess(apiResponse.response);
-            return of(
-              ModuleArticleActions.setArticle({article: undefined}),
-              ModuleArticleActions.deleteArticleByIdEnd({success: true})
-            );
-          }),
-          catchError(error => {
-            console.error(error);
-            return this.errorByDeletion(action)
-          })
-        );
-      })
-    )
-  );
-
-
-  private errorByDeletion(deleteAction: DeleteArticleByIdParams) {
-    deleteAction.onError();
-    return of(ModuleArticleActions.deleteArticleByIdEnd({success: false}));
-  }
-
 }
