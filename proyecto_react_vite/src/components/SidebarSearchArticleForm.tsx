@@ -15,7 +15,9 @@ const SidebarSearchArticleForm = () => {
   };
 
   return (
-    <div id="search" className="sidebar-item">
+    <div className="sidebar-item"
+         style={{viewTransitionName: `sidebar-search-article-form`}}
+    >
       <h3>Buscador</h3>
       <p>Encuentra el articulo que buscas</p>
       <form onSubmit={handleSubmit}>

@@ -162,6 +162,7 @@ div.App::before {
 }
 
 #slider {
+  view-transition-name: sliderTransition;
   grid-area: slider;
 
   width: 100%;
@@ -233,8 +234,8 @@ div.App::before {
 }
 
 .sidebar-item .btn {
-  margin: 0px auto;
-  margin-top: 10px;
+  margin: 0 auto;
+  margin-top: 10;
 }
 
 .btn {
