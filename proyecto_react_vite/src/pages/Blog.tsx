@@ -1,5 +1,5 @@
 import ApiConstant from "../api/ApiConstant";
-import ArticleList from "@/components/ArticleList";
+import ArticleList from "@/components/ArticleList/ArticleList";
 import Sidebar from "@/components/Sidebar";
 import Slider from "@/components/Slider";
 import { AppState } from "@/store/store";

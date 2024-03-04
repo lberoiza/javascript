@@ -1,4 +1,4 @@
-import ArticleList from "@/components/ArticleList";
+import ArticleList from "@/components/ArticleList/ArticleList";
 import Error from "@/components/Error";
 import Loading from "@/components/Loading";
 import { useFetchSearchArticlesByContent } from "@/hooks/useFetchSearchArticlesByContent";
