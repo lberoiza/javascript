@@ -10,6 +10,17 @@ type ArticleProps = {
   article: ArticleResponse
 }
 
+type ContentInnerHTML = {
+  __html: string
+}
+
+
+function convertTextToHtml(text: string): ContentInnerHTML {
+  return {
+    __html: text.replace(/\n/g, '</br>')
+  };
+}
+
 
 function deleteArticle(articleId: string, useNavigationHook: Function): void {
   try {
@@ -51,9 +62,9 @@ export default function Article(props: ArticleProps): JSX.Element {
         <button
           onClick={() => navigation(`/blog/edita/${props.article._id}`)}
           className="btn btn-warning"
-        >Editar
+        >Edit
         </button>
-        <button onClick={() => confirmDeletion(props.article._id, navigation)} className="btn btn-danger">Eliminar
+        <button onClick={() => confirmDeletion(props.article._id, navigation)} className="btn btn-danger">Delete
         </button>
       </div>
       <h1 className="subheader">
@@ -62,8 +73,9 @@ export default function Article(props: ArticleProps): JSX.Element {
       <Dayjs className="date">
         {props.article.date}
       </Dayjs>
-      <div className="article-text">
-        {props.article.content}
+      <div className="article-text"
+           dangerouslySetInnerHTML={convertTextToHtml(props.article.content)}
+      >
       </div>
     </article>
   );
