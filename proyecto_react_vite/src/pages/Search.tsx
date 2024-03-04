@@ -9,7 +9,7 @@ const Search = (): JSX.Element => {
 
   return (
     <>
-      <Slider title={`Busqueda: '${search}'`}></Slider>
+      <Slider title={`Search: '${search}'`}></Slider>
       <section id="content" className="page-search-article">
         <ArticleListSearch search={search!}></ArticleListSearch>
       </section>
