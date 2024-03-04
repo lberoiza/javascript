@@ -1,13 +1,22 @@
+*::before,
+*::after,
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   --color-primary: #61dafb;
   --color-primary-darker: #3cb2d3;
+  --color-gray-light: #7A7A7AFF;
 }
 
 
 body {
   /* text-align: center; */
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 
   /*FUENTES*/
   font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -185,14 +194,16 @@ div.App::before {
   background: white;
   color: rgb(88, 88, 88);
   padding: 10px;
-  width: 100px;
-  height: 30px;
+  width: fit-content;
+  height: fit-content;
+  max-width: 9rem;
+  max-height: 3rem;
   font-size: 18px;
   text-transform: uppercase;
   text-shadow: none;
   text-decoration: none;
   line-height: 30px;
-  box-shadow: 0px 0px 5px rgb(88, 88, 88);
+  box-shadow: 0 0 0.7rem rgb(88, 88, 88);
   border-radius: 4px;
   transition: 200ms all;
 }
@@ -391,7 +402,7 @@ textarea {
 .article-item .date {
   display: block;
   width: 100%;
-  color: rgb(122, 122, 122);
+  color: var(--color-gray-light)
 }
 
 .article-item a {
@@ -443,46 +454,6 @@ textarea {
 
 }
 
-button.star-button {
-  position: relative;
-  display: inline-block;
-  padding: 15px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  background-color: #ffffff;
-  border: 1px solid var(--color-primary-darker);
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-span.star-icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  background-color: var(--color-primary-darker);
-  clip-path: polygon(50% 0%,
-      64% 36%,
-      100% 36%,
-      70% 57%,
-      82% 91%,
-      50% 72%,
-      18% 91%,
-      30% 57%,
-      0% 36%,
-      36% 36%);
-}
-
-button.star-button[disabled] {
-  border: 1px solid lightgrey;
-}
-
-button.star-button[disabled] span.star-icon {
-  background-color: lightgrey;
-}
-
 .linkWithTransition {
   cursor: pointer;
 }
@@ -521,6 +492,15 @@ button.star-button[disabled] span.star-icon {
   }
 
 }
+
+
+.article_list_container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
 
 
 @media screen and (min-width: 1300px) {

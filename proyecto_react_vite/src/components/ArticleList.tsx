@@ -13,7 +13,7 @@ type ArticleListState = {
 function showArticleList(articleList: ArticleResponse[], followArticle: (f: ArticleResponse) => void): JSX.Element {
   if (articleList.length > 0) {
     return (
-      <div id="article-container">
+      <div className="article_list_container">
         {articleList.map(article => (<ArticlePreview key={article._id} article={article} follow={followArticle}/>))}
       </div>
     );
