@@ -1,4 +1,4 @@
-import ArticlePreview from "@/components/ArticlePreview";
+import ArticlePreview from "@/components/ArticlePreview/ArticlePreview";
 import { ArticleResponse } from "@/models/ArticleResponse.model";
 import { useState } from "react";
 
