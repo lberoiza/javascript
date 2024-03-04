@@ -2,7 +2,9 @@ import LinkWithTransition from "@/components/LinkWithTransition";
 
 const Menu = (): JSX.Element => {
   return (
-    < nav id="menu">
+    < nav id="menu"
+          style={{viewTransitionName: `menu`}}
+    >
       <ul>
         <li><LinkWithTransition href="/">Inicio</LinkWithTransition></li>
         <li><LinkWithTransition href="/blog">Blog</LinkWithTransition></li>

@@ -1,16 +1,17 @@
-import React, { Component } from "react";
 import HeaderLogo from "./HeaderLogo";
+import LinkWithTransition from "@/components/LinkWithTransition";
 
-class Header extends Component {
-
-  public render(): JSX.Element {
-    return (
-      <header id="header" className="header">
+const Header = (): JSX.Element => {
+  return (
+    <header id="header" className="header"
+            style={{viewTransitionName: `header`}}
+    >
+      <LinkWithTransition href="/">
         {/* <!-- LOGO --> */}
         <HeaderLogo></HeaderLogo>
-      </header>
-    );
-  }
+      </LinkWithTransition>
+    </header>
+  );
 }
 
 export default Header;
