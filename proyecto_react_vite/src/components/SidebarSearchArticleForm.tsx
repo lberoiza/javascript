@@ -18,10 +18,17 @@ const SidebarSearchArticleForm = () => {
     <div className="sidebar-item"
          style={{viewTransitionName: `sidebar-search-article-form`}}
     >
-      <h3>Buscador</h3>
-      <p>Encuentra el articulo que buscas</p>
+      <h3>Search</h3>
+      <p>Find the article you want</p>
       <form onSubmit={handleSubmit}>
-        <input type="text" name="search" value={searchStatus} id="search-input-text" ref={searchRef} onChange={(e) => setSearchStatus(e.target.value)} />
+        <input
+          type="text"
+          name="search"
+          value={searchStatus}
+          id="search-input-text"
+          ref={searchRef}
+          placeholder="write the article title here ..."
+          onChange={(e) => setSearchStatus(e.target.value)} />
         <button type="submit" value="Buscar" name="submit" id="search-btn-submit" className="btn">Search</button>
       </form>
     </div>
