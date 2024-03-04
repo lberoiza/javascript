@@ -41,9 +41,7 @@ export default function Article(props: ArticleProps): JSX.Element {
 
   return (
     <article id={props.article._id} className="article-item article-detail">
-      <div className="image-wrap"
-           style={{viewTransitionName: `article-image-${props.article._id}`}}
-      >
+      <div className="image-wrap">
         <img
           src={ApiImage.getImageUrl(props.article.image)}
           alt="Article Image"
@@ -53,22 +51,18 @@ export default function Article(props: ArticleProps): JSX.Element {
         <button
           onClick={() => navigation(`/blog/edita/${props.article._id}`)}
           className="btn btn-warning"
-          style={{viewTransitionName: `article-button-${props.article?._id}`}}
         >Editar
         </button>
         <button onClick={() => confirmDeletion(props.article._id, navigation)} className="btn btn-danger">Eliminar
         </button>
       </div>
-      <h1 className="subheader"
-          style={{viewTransitionName: `article-title-${props.article._id}`}}
-      >{props.article.title}
+      <h1 className="subheader">
+        {props.article.title}
       </h1>
-      <Dayjs className="date"
-             style={{viewTransitionName: `article-date-${props.article._id}`}}
-      >
+      <Dayjs className="date">
         {props.article.date}
       </Dayjs>
-      <div className="article-text" style={{viewTransitionName: `article-text-${props.article._id}`}}>
+      <div className="article-text">
         {props.article.content}
       </div>
     </article>

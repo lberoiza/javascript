@@ -30,20 +30,21 @@ const ArticlePreview: React.FC<ArticlePreviewProps> = ({article, follow}) => {
   }
 
   return (
-    <article id={article._id} className={styles.article_preview_container}>
+    <article
+      id={article._id} className={styles.article_preview_container}
+      style={{viewTransitionName: `article-card-${article._id}`}}
+    >
       <figure className={styles.article_preview_container__image_container}
               onClick={gotToArticlePage}
-              style={{viewTransitionName: `article-image-${article._id}`}}
       >
         <img src={ApiImage.getImageUrl(article.image)} alt="Article Image" />
       </figure>
       <div className={styles.article_preview_container__card_info}>
         <Dayjs
-          style={{viewTransitionName: `article-date-${article._id}`}}
         >
           {article.date}
         </Dayjs>
-        <h2 style={{viewTransitionName: `article-title-${article._id}`}} >
+        <h2>
           {article.title}
         </h2>
         <p>{article.content}</p>
@@ -52,7 +53,7 @@ const ArticlePreview: React.FC<ArticlePreviewProps> = ({article, follow}) => {
             <span className={styles.star_icon}></span>
           </button>
           <a onClick={gotToArticlePage} className={styles.article_preview_container__card_info__read_more}>
-            <span style={{viewTransitionName: `article-button-${article._id}`}}>Leer más ...</span>
+            <span >Leer más ...</span>
           </a>
         </div>
 
