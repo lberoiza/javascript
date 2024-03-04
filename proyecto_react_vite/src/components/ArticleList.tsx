@@ -19,7 +19,7 @@ function showArticleList(articleList: ArticleResponse[], followArticle: (f: Arti
     );
   } else {
     return (
-      <p>Todavia no existen articulos para mostar</p>
+      <p>There are not Articles to show</p>
     );
   }
 }

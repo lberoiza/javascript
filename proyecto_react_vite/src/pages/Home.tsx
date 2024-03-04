@@ -7,7 +7,7 @@ const Home = () => {
     <>
       <Slider isHome title="Bienvenido al master der ReactJS"></Slider>
       <section id="content" className="page-home">
-        <h2 className="subheader">Últimos artículos</h2>
+        <h2 className="subheader">Last published Articles</h2>
         {/* <!-- LISTADO ULTIMOS ARTICULOS ARTICULOS --> */}
         <ArticleListLast></ArticleListLast>
       </section>
