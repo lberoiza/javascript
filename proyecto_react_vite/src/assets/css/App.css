@@ -226,23 +226,27 @@ div.App::before {
 }
 
 .sidebar-item {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.5rem;
+  align-items: center;
+
   background: #ececec;
   padding: 20px;
   margin-top: 30px;
 }
 
 .sidebar-item h3 {
+  width: 100%;
   text-transform: uppercase;
   font-size: 17px;
-  margin: 0px;
   padding-bottom: 10px;
-  margin-bottom: 10px;
+  margin: 0 0 10px;
   border-bottom: 3px solid #ccc;
 }
 
 .sidebar-item .btn {
-  margin: 0 auto;
-  margin-top: 10;
+  margin: 0.5rem auto 0;
 }
 
 .btn {
@@ -323,17 +327,25 @@ textarea {
   min-height: 30px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  padding: 3px;
+  padding: 10px;
   margin-bottom: 5px;
   transition: 200ms all;
   font-size: 16px;
+  outline: none;
 }
 
 input[type="text"]:hover,
+input[type="text"]:focus,
 input[type="file"]:hover,
 textarea:hover {
   border: 1px solid var(--color-primary);
   box-shadow: 0px 0px 5px var(--color-primary) inset;
+}
+
+input::placeholder,
+textarea::placeholder{
+  font-style: italic;
+  font-size: 0.9rem;
 }
 
 textarea {
@@ -345,14 +357,19 @@ textarea {
 }
 
 .radio-button {
-  margin-top: 10px;
-  float: left;
-  margin-bottom: 20px;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 2rem;
 }
 
+/*.radio-button li {*/
+/*  display: inline;*/
+/*  list-style: none;*/
+/*}*/
+
 #footer p {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
 
 .article-item {
