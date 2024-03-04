@@ -25,12 +25,12 @@ function convertTextToHtml(text: string): ContentInnerHTML {
 function deleteArticle(articleId: string, useNavigationHook: Function): void {
   try {
     ApiArticle.deleteArticle(articleId, (wsResult) => {
-      const text = `El Articulo: "${wsResult.response?.title}" fué eliminado correctamente.`;
+      const text = `The article: "${wsResult.response?.title}" was eliminated.`;
       useNavigationHook('/blog');
       Alert.showSuccess(text);
     });
   } catch (error) {
-    const text = `El Articulo no pudo ser eliminado`;
+    const text = `The article could not be deleted.`;
     Alert.showError(text);
   }
 }
@@ -38,7 +38,7 @@ function deleteArticle(articleId: string, useNavigationHook: Function): void {
 
 function confirmDeletion(articleId: string, useNavigationHook: Function) {
 
-  Alert.showConfirmDialog("Está seguro que desea eliminar el articulo?", "El borrado del articulo es permanente!")
+  Alert.showConfirmDialog("Are you sure, you want to delete this article?", "The deletion is permanent!")
     .then((willDelete) => {
       if (willDelete) {
         deleteArticle(articleId, useNavigationHook);
