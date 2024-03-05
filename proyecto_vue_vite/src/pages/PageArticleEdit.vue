@@ -14,7 +14,6 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import Sidebar from '../components/Sidebar.vue';
 import ArticleForm from '../components/ArticleForm.vue';
 import ApiArticle, { ArticleResponse } from '../api/ApiArticle';
 import UseFetchData from '../classes/UseFetchData';
@@ -22,7 +21,6 @@ import Error from '../components/Error.vue';
 import Loading from '../components/Loading.vue';
 import NoResults from '../components/NoResults.vue';
 import PageContent from "../components/PageContent.vue";
-import Article from "../components/Article.vue";
 
 
 const articleId = useRoute().params.articleId as string;

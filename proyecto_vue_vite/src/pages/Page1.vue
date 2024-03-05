@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import Slider from '../components/Slider.vue';
-import Sidebar from '../components/Sidebar.vue';
 import MyComponent from '../components/examples/MyComponent.vue';
 import { ref, onBeforeMount, onMounted, onUnmounted, computed } from 'vue';
 import PageContent from "../components/PageContent.vue";
-import ArticleListLast from "../components/ArticleListLast.vue";
 
 const text = ref<string>("Prop-Text from My Component");
 const buttonClicked = ref<string>();

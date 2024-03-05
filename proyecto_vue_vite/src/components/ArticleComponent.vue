@@ -7,8 +7,8 @@
       <button @click="editArticle(props.article._id)" class="btn btn-warning">Edit</button>
       <button @click="confirmDeleteArticle(props.article._id)" class="btn btn-danger">Delete</button>
     </div>
-    <h1 class="subheader">{{ props.article.title }}</h1>
     <Dayjs class="date" :dateString="props.article.date"></Dayjs>
+    <h1 class="subheader">{{ props.article.title }}</h1>
     <div class="article-text">
       {{ props.article.content }}
     </div>
@@ -61,3 +61,102 @@ Alert.showConfirmDialog(message, title)
 }
 
 </script>
+
+<style scoped>
+
+.article-item {
+  width: 100%;
+  border-bottom: 1px solid var(--color-primary-darker);
+  text-align: left;
+  display: flex;
+  flex-flow:  column nowrap;
+  gap: 1rem;
+}
+
+.article-item .subheader {
+  font-size: 38px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 10px;
+  margin-bottom: 2rem;
+}
+
+.article-item  time {
+  text-align: right;
+}
+
+.article-item .image-wrap {
+  width: 130px;
+  height: 130px;
+  overflow: hidden;
+  float: left;
+  margin-right: 15px;
+  border-radius: 0.3rem;
+}
+
+.article-item .image-wrap a,
+.article-item .image-wrap img {
+  height: 100%;
+  text-align: center;
+}
+
+.article-item h2 {
+  display: block;
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 7px;
+}
+
+.article-item .date {
+  display: block;
+  width: 100%;
+  color: rgb(122, 122, 122);
+}
+
+.article-item a {
+  display: block;
+  text-decoration: none;
+}
+
+.article-item a.btn {
+  text-transform: none;
+  margin-top: 10px;
+  max-width: 160px;
+  padding: 10px;
+  height: 20px;
+  float: left;
+}
+
+
+.article-item.article-detail {
+  border-bottom: none;
+}
+
+.article-item.article-detail .image-wrap {
+  float: none;
+  width: 100%;
+  height: 300px;
+}
+
+.article-item.article-detail .image-wrap img {
+  width: 100%;
+  height: auto;
+  float: none
+}
+
+.article-item.article-detail .article-button-bar {
+  margin-top: 10px;
+  /* display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.article-item.article-detail .subheader {
+  border: none;
+  margin-bottom: 5px;
+}
+
+</style>

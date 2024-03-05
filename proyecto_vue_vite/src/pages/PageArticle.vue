@@ -16,11 +16,10 @@ import { onMounted, onUnmounted, ref } from 'vue';
 import ApiArticle, { ArticleResponse } from '../api/ApiArticle';
 import UseFetchData from '../classes/UseFetchData';
 import { useRoute } from "vue-router";
-import Sidebar from '../components/Sidebar.vue';
 import Loading from '../components/Loading.vue'
 import NoResults from '../components/NoResults.vue'
 import Error from '../components/Error.vue'
-import Article from '../components/Article.vue'
+import Article from '../components/ArticleComponent.vue'
 import PageContent from "../components/PageContent.vue";
 
 

@@ -1,6 +1,6 @@
 <template>
   <aside class="sidebar">
-    <SidebarArticleNew v-if="showBoxNewArticle" />
+    <SidebarArticleNew v-if="showBoxNewArticle"/>
     <SidebarSearchArticleForm :searchText="searchText"></SidebarSearchArticleForm>
   </aside>
 </template>
@@ -19,19 +19,36 @@ defineProps<SidebarProps>()
 
 <style scoped>
 .sidebar {
-  max-width: 16rem;
-
   display: flex;
   flex-flow: row wrap;
-  gap: 10px;
-  justify-content: center;
+  gap: 1rem;
+  justify-content: space-evenly;
+  align-items: flex-start;
+
 }
+
+.sidebar::before {
+  content: '';
+  height: 1px;
+  width: 90%;
+  background-color: var(--color-gray-light);
+  margin-bottom: 1rem;
+}
+
 
 
 @media (width > 1000px) {
   .sidebar {
+    max-width: 16rem;
     flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
   }
+
+  .sidebar::before {
+    content: none;
+  }
+
 }
 
 

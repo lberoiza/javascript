@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import Slider from '../components/Slider.vue';
-import Sidebar from '../components/Sidebar.vue';
-import ArticleListComplete from "../components/ArticleListComplete.vue";
 import PageContent from "../components/PageContent.vue";
 
 const path = useRoute().params.pathMatch;

@@ -37,3 +37,6 @@ const searchArticleHandler = () => {
 }
 
 </script>
+
+<style scoped>
+</style>

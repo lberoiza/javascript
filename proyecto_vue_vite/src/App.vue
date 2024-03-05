@@ -14,7 +14,9 @@ import FooterComponent from './components/FooterComponent.vue';
     </nav>
     <main>
       <router-view v-slot="{Component}">
-        <transition name="fade">
+        <transition
+            name="fade"
+        >
           <component :is="Component"></component>
         </transition>
       </router-view>
@@ -29,24 +31,54 @@ import FooterComponent from './components/FooterComponent.vue';
 
 <style scoped>
 
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+
+/*Clase que se aplica mientras dura la transicion de entrada*/
+.fade-enter-active {
+  animation: slideIn 1s ease-in-out;
 }
 
-.fade-enter-active,
+/*Clase que se aplica mientras dura la transicion de salida*/
 .fade-leave-active {
-  transition: opacity .5s ease-in-out;
+  animation: slideOut 1s ease-in-out;
 }
 
+/*Clase que se aplica al primer frame del elemento que entra*/
+.fade-enter-from {
+}
+
+/*Clase que se aplica al ultimo frame del elemento que sale*/
+.fade-leave-to {
+}
+
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
 
 
 .appContainer {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
 
   display: grid;
-  grid-template-rows: 7rem 7rem auto 5rem;
+  grid-template-rows: 6rem 2rem auto 5rem;
   grid-auto-columns: auto;
   grid-template-areas:
   "header"
@@ -65,6 +97,8 @@ nav {
 
 main {
   grid-area: main;
+  position: relative;
+  overflow: auto;
 }
 
 footer {
@@ -83,9 +117,6 @@ footer {
       "footer footer";
   }
 }
-
-
-
 
 
 </style>

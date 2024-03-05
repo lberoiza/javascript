@@ -48,6 +48,8 @@ const hasSubheaderTitle = computed(() => props.subheaderTitle?.length > 0);
 <style scoped>
 .page-content {
   grid-area: page-content;
+  width: 100%;
+  position: absolute;
 
   display: grid;
   grid-template-columns: 1fr;
@@ -58,6 +60,16 @@ const hasSubheaderTitle = computed(() => props.subheaderTitle?.length > 0);
     "aside";
 }
 
+.page-content::before {
+  position: absolute;
+  top: 0;
+  left:10%;
+  content: '';
+  height: 1px;
+  width: 80%;
+  background-color: var(--color-gray-light);
+}
+
 .slider {
   grid-area: slider;
   margin-bottom: 1rem;
@@ -66,7 +78,6 @@ const hasSubheaderTitle = computed(() => props.subheaderTitle?.length > 0);
 .content {
   grid-area: content;
   width: 90%;
-  padding: 1rem 0;
   margin: 0 auto;
 }
 

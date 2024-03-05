@@ -13,8 +13,6 @@ import { onMounted, onUnmounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import UseFetchData from '../classes/UseFetchData';
 import ApiArticle, { ArticleResponse } from '../api/ApiArticle';
-import Slider from '../components/Slider.vue';
-import Sidebar from '../components/Sidebar.vue';
 import ArticleList from '../components/ArticleList.vue';
 import PageContent from "../components/PageContent.vue";
 

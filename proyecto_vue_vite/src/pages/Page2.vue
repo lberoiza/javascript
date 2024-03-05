@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from "vue-router";
 
-import Slider from '../components/Slider.vue';
-import Sidebar from '../components/Sidebar.vue';
 import { ref } from "vue";
-import MyComponent from "../components/examples/MyComponent.vue";
 import PageContent from "../components/PageContent.vue";
 
 const route = useRoute();
