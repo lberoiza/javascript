@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import Slider from '../components/Slider.vue';
-import Sidebar from '../components/Sidebar.vue';
 import ArticleListLast from '../components/ArticleListLast.vue'
+import PageContent from "../components/PageContent.vue";
 </script>
 
 
 <template>
-  <Slider isHome title='Welcome to the Blog with VueJs'></Slider>
-  <section id="content" class="page-home">
-    <h2 class="subheader">Last published Articles</h2>
+  <PageContent
+      slider-title='Welcome to the Blog with VueJs'
+      subheader-title="Last published Articles"
+      :show-big-slider="true"
+  >
     <ArticleListLast></ArticleListLast>
-  </section>
-  <Sidebar></Sidebar>
+  </PageContent>
 </template>
 

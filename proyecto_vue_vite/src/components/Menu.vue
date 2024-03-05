@@ -1,5 +1,5 @@
 <template>
-  <nav id="menu">
+  <nav class="menu">
     <ul>
       <li>
         <router-link to="/" active-class="navlink_active">Home</router-link>
@@ -20,3 +20,53 @@
     </ul>
   </nav>
 </template>
+
+<style scoped>
+.menu {
+  font-size: 18px;
+  height: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 0.7rem;
+}
+
+
+.menu li {
+  display: inline;
+  list-style: none;
+  height: 46px;
+  margin-left: 15px;
+  margin-right: 15px;
+
+}
+
+.menu a {
+  text-decoration: none;
+  color: #444;
+  transition: 300ms all;
+}
+
+.menu a:hover {
+  color: var(--color-primary-darker);
+}
+
+.menu a.navlink_active {
+  position: relative;
+  color: var(--color-primary-darker);
+  font-weight: bold;
+}
+
+.menu a.navlink_active::after {
+  position: absolute;
+  content: '';
+  height: 2px;
+  width: 100%;
+  bottom: -2px;
+  left: 0;
+  background: var(--color-primary-darker);
+  box-shadow: 0 2px 5px var(--color-primary-darker);
+}
+
+</style>
