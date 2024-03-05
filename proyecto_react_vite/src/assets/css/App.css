@@ -443,16 +443,14 @@ textarea {
   font-size: 38px;
   border-bottom: 1px solid #444;
   padding-bottom: 0.7rem;
-  margin-bottom: 1.3rem;
+  margin-bottom: 2rem;
 }
 
 .article-detail {
   display: flex;
   flex-flow: column nowrap;
   gap: 1rem;
-  /*justify-content: flex-start;*/
   align-items: flex-start;
-  /*text-align: center;*/
 }
 
 .article-detail .image-wrap {

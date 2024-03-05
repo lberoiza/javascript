@@ -53,12 +53,10 @@ const ArticlePreview: React.FC<ArticlePreviewProps> = ({article, follow}) => {
             <span className={styles.star_icon}></span>
           </button>
           <a onClick={gotToArticlePage} className={styles.article_preview_container__card_info__read_more}>
-            <span >Leer más ...</span>
+            <span >More Info ...</span>
           </a>
         </div>
-
       </div>
-
     </article>
   );
 }

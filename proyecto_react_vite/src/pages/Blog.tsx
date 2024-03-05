@@ -28,6 +28,7 @@ const Blog = (): JSX.Element => {
     <>
       <Slider title='Blog'></Slider>
       <section id="content" className="page-blog">
+        <h2 className="subheader">List of Articles</h2>
         <ArticleList articles={allArticles}/>
       </section>
       <Sidebar isBlog></Sidebar>
