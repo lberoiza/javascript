@@ -8,7 +8,7 @@ import ArticleListLast from '../components/ArticleListLast.vue'
 <template>
   <Slider isHome title='Welcome to the Blog with VueJs'></Slider>
   <section id="content" class="page-home">
-    <h2 class="subheader">Last Articles</h2>
+    <h2 class="subheader">Last published Articles</h2>
     <ArticleListLast></ArticleListLast>
   </section>
   <Sidebar></Sidebar>

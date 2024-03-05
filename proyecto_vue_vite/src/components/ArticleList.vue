@@ -36,3 +36,12 @@ const setSelectedArticle = (article: ArticleResponse) => {
 }
 
 </script>
+
+<style scoped>
+.article-container {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+}
+
+</style>

@@ -1,6 +1,16 @@
+*::before,
+*::after,
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 :root {
   --color-primary: #09a330;
   --color-primary-darker: #008d23;
+  --color-gray-light: #7A7A7AFF;
+
 }
 
 html {
@@ -111,11 +121,6 @@ div.App::before {
   justify-content: center;
 }
 
-.article-container {
-  display: flex;
-  flex-flow: column nowrap;
-}
-
 #logo {
   font-size: 30px;
   margin-top: 35px;
@@ -193,13 +198,14 @@ div.App::before {
   width: 100%;
   height: 350px;
   color: white;
-  text-shadow: 0px 0px 5px #444;
+  text-shadow: 0.2rem 0.2rem 5px #444;
 
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 
   /* Fondo en Degradado */
   background: rgba(119, 194, 81, 1);
@@ -219,15 +225,17 @@ div.App::before {
 .btn-white {
   background: white;
   color: rgb(88, 88, 88);
-  padding: 10px 20px;
-  height: 30px;
+  padding: 10px;
+  width: fit-content;
+  height: fit-content;
+  max-width: 9rem;
+  max-height: 3rem;
   font-size: 18px;
-  text-align: center;
   text-transform: uppercase;
   text-shadow: none;
   text-decoration: none;
   line-height: 30px;
-  box-shadow: 0px 0px 5px rgb(88, 88, 88);
+  box-shadow: 0.2rem 0.2rem 0.7rem rgb(88, 88, 88);
   border-radius: 4px;
   transition: 200ms all;
 }
@@ -270,7 +278,7 @@ div.App::before {
   text-transform: uppercase;
   font-size: 14px;
   text-decoration: none;
-  max-width: 120px;
+  max-width: 9rem;
   border-radius: 5px;
   transition: 200ms all;
   border: none;
@@ -443,6 +451,7 @@ textarea {
   font-size: 38px;
   border-bottom: 1px solid #444;
   padding-bottom: 10px;
+  margin-bottom: 2rem;
 }
 
 .article-item.article-detail {
