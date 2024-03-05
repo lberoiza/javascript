@@ -24,7 +24,7 @@
   text-shadow: none;
   text-decoration: none;
   line-height: 30px;
-  box-shadow: 0 0 5px #585858FF;
+  box-shadow: 0.2rem 0.2rem 0.7rem rgb(88, 88, 88);
   border-radius: 4px;
   transition: 200ms all;
 }
