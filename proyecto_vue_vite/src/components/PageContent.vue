@@ -22,11 +22,11 @@ import Sidebar from "./Sidebar.vue";
 import Slider from "./Slider.vue";
 
 interface PageContentProps {
-  sliderTitle: string,
-  subheaderTitle: string,
-  showBigSlider: boolean,
-  showBoxNewArticle: boolean,
-  searchText: string
+  sliderTitle?: string,
+  subheaderTitle?: string,
+  showBigSlider?: boolean,
+  showBoxNewArticle?: boolean,
+  searchText?: string
 }
 
 const props = withDefaults(defineProps<PageContentProps>(),
