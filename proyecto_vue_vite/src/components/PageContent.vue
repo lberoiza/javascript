@@ -5,7 +5,7 @@
     </div>
 
     <section class="content">
-      <h2 class="subheader">{{subheaderTitle}}</h2>
+      <h2 v-if="hasSubheaderTitle" class="subheader">{{subheaderTitle}}</h2>
       <slot/>
     </section>
     <div class="sidebar">
@@ -17,7 +17,7 @@
 
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
+import { computed, defineProps } from 'vue';
 import Sidebar from "./Sidebar.vue";
 import Slider from "./Slider.vue";
 
@@ -29,7 +29,7 @@ interface PageContentProps {
   searchText: string
 }
 
-withDefaults(defineProps<PageContentProps>(),
+const props = withDefaults(defineProps<PageContentProps>(),
     {
       sliderTitle: '',
       subheaderTitle: '',
@@ -38,6 +38,8 @@ withDefaults(defineProps<PageContentProps>(),
       showBoxNewArticle: false
     }
 );
+
+const hasSubheaderTitle = computed(() => props.subheaderTitle?.length > 0);
 
 
 </script>

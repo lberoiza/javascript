@@ -3,6 +3,8 @@ import Slider from '../components/Slider.vue';
 import Sidebar from '../components/Sidebar.vue';
 import MyComponent from '../components/examples/MyComponent.vue';
 import { ref, onBeforeMount, onMounted, onUnmounted, computed } from 'vue';
+import PageContent from "../components/PageContent.vue";
+import ArticleListLast from "../components/ArticleListLast.vue";
 
 const text = ref<string>("Prop-Text from My Component");
 const buttonClicked = ref<string>();
@@ -40,11 +42,13 @@ const computedValue = computed(() => {
 
 
 <template>
-  <Slider title='TestPage 1'></Slider>
-  <section id="content" class="page-1">
+
+  <PageContent
+      slider-title='Test Page1'
+  >
     <h2 class="subheader">Test Page 1</h2>
     <h4 v-if="buttonClicked">Button Clicked: {{ buttonClicked }}</h4>
-    <MyComponent :msg="text" @buttonHandler="buttonClickedFunction" ></MyComponent>
+    <MyComponent :msg="text" @buttonHandler="buttonClickedFunction"></MyComponent>
     <br>
     <span>Click to change the text of MyComponent from Parent </span>
     <button @click="click">Change Text</button>
@@ -53,7 +57,8 @@ const computedValue = computed(() => {
       {{ computedValue }}
       <div v-html="computedValue"></div>
     </div>
-  </section>
-  <Sidebar></Sidebar>
+  </PageContent>
+
+
 </template>
 

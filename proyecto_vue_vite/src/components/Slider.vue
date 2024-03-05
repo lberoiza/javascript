@@ -1,5 +1,5 @@
 <template>
-  <div class="slider" :class="showBigSlider ? 'slider-big' : 'slider-small'">
+  <div v-if="title" class="slider" :class="showBigSlider ? 'slider-big' : 'slider-small'">
     <h1>{{ title }}</h1>
     <router-link v-if="showBigSlider" to="/blog" class="btn-white">Go to Blog</router-link>
   </div>

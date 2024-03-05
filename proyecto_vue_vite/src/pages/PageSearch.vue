@@ -1,10 +1,11 @@
 <template>
-  <Slider :title="'Search: ' + searchStr"></Slider>
-  <section id="content" class="page-blog">
+  <PageContent
+      :slider-title="'Search: ' + searchStr"
+      :search-text="searchStr"
+  >
     <h2 class="subheader">List of Articles</h2>
     <ArticleList :loading="loading" :articleList="articleList"></ArticleList>
-  </section>
-  <Sidebar :searchText="searchStr"></Sidebar>
+  </PageContent>
 </template>
 
 <script setup lang="ts">
@@ -15,6 +16,7 @@ import ApiArticle, { ArticleResponse } from '../api/ApiArticle';
 import Slider from '../components/Slider.vue';
 import Sidebar from '../components/Sidebar.vue';
 import ArticleList from '../components/ArticleList.vue';
+import PageContent from "../components/PageContent.vue";
 
 
 const route = useRoute();

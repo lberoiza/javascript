@@ -1,5 +1,5 @@
 <template>
-  <section id="content" class="page-article">
+  <PageContent :show-box-new-article="true">
     <Loading v-if="loading"></Loading>
     <div v-else>
       <Error v-if="article.hasErrors()" :errors="article.errorMessages"></Error>
@@ -8,8 +8,7 @@
         <NoResults v-else></NoResults>
       </div>
     </div>
-  </section>
-  <Sidebar isBlog></Sidebar>
+  </PageContent>
 </template>
 
 <script setup lang="ts">
@@ -22,6 +21,7 @@ import Loading from '../components/Loading.vue'
 import NoResults from '../components/NoResults.vue'
 import Error from '../components/Error.vue'
 import Article from '../components/Article.vue'
+import PageContent from "../components/PageContent.vue";
 
 
 const route = useRoute();

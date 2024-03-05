@@ -1,5 +1,5 @@
 <template>
-  <section id="content" class="page-article-edit">
+  <PageContent>
     <Loading v-if="loading"></Loading>
     <div v-else>
       <Error v-if="article.hasErrors()" :errors="article.errorMessages"></Error>
@@ -8,8 +8,7 @@
         <NoResults v-else></NoResults>
       </div>
     </div>
-  </section>
-  <Sidebar></Sidebar>
+  </PageContent>
 </template>
 
 <script setup lang="ts">
@@ -22,6 +21,8 @@ import UseFetchData from '../classes/UseFetchData';
 import Error from '../components/Error.vue';
 import Loading from '../components/Loading.vue';
 import NoResults from '../components/NoResults.vue';
+import PageContent from "../components/PageContent.vue";
+import Article from "../components/Article.vue";
 
 
 const articleId = useRoute().params.articleId as string;
