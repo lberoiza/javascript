@@ -2,7 +2,7 @@
   <Loading v-if="loading"></Loading>
   <div v-else>
     <SelectedArticle v-if="selectedArticle" :title=selectedArticle></SelectedArticle>
-    <Error v-if="articleList?.hasErrors()" :errors="props.articleList?.errorMessages"></Error>
+    <Error v-if="articleList?.hasErrors()" :errors="props.articleList?.errorMessages!"></Error>
     <div v-else class="article-container">
       <ArticlePreview v-if="props.articleList?.hasResponse()" v-for="article in articleList?.response" :key="article._id"
         :article="article" @setFavorite="setSelectedArticle"></ArticlePreview>
