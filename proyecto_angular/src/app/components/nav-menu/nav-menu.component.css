@@ -1,3 +1,7 @@
+:host {
+  view-transition-name: nav-menu;
+}
+
 .nav-menu ul li {
   display: inline;
   list-style: none;
@@ -37,6 +41,10 @@
 
 .nav-menu a.nav-menu__active {
   color: var(--color-primary-darker);
+}
+
+.nav-menu a.nav-menu__active:after {
+  view-transition-name: menu-selector;
 }
 
 

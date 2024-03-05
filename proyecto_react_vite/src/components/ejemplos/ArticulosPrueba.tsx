@@ -1,5 +1,5 @@
 import React, { ChangeEvent, Component, MouseEvent } from "react";
-import ArticlePreview, { ArticlePreviewProps } from "@/components/ArticlePreview";
+import ArticlePreview, { ArticlePreviewProps } from "@/components/ArticlePreview/ArticlePreview";
 
 export type ArticulosPruebaProps = {
   totalOfArticles: number;

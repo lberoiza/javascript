@@ -10,16 +10,27 @@ type ArticleProps = {
   article: ArticleResponse
 }
 
+type ContentInnerHTML = {
+  __html: string
+}
+
+
+function convertTextToHtml(text: string): ContentInnerHTML {
+  return {
+    __html: text.replace(/\n/g, '</br>')
+  };
+}
+
 
 function deleteArticle(articleId: string, useNavigationHook: Function): void {
   try {
     ApiArticle.deleteArticle(articleId, (wsResult) => {
-      const text = `El Articulo: "${wsResult.response?.title}" fué eliminado correctamente.`;
+      const text = `The article: "${wsResult.response?.title}" was eliminated.`;
       useNavigationHook('/blog');
       Alert.showSuccess(text);
     });
   } catch (error) {
-    const text = `El Articulo no pudo ser eliminado`;
+    const text = `The article could not be deleted.`;
     Alert.showError(text);
   }
 }
@@ -27,7 +38,7 @@ function deleteArticle(articleId: string, useNavigationHook: Function): void {
 
 function confirmDeletion(articleId: string, useNavigationHook: Function) {
 
-  Alert.showConfirmDialog("Está seguro que desea eliminar el articulo?", "El borrado del articulo es permanente!")
+  Alert.showConfirmDialog("Are you sure, you want to delete this article?", "The deletion is permanent!")
     .then((willDelete) => {
       if (willDelete) {
         deleteArticle(articleId, useNavigationHook);
@@ -41,9 +52,7 @@ export default function Article(props: ArticleProps): JSX.Element {
 
   return (
     <article id={props.article._id} className="article-item article-detail">
-      <div className="image-wrap"
-           style={{viewTransitionName: `article-image-${props.article._id}`}}
-      >
+      <div className="image-wrap">
         <img
           src={ApiImage.getImageUrl(props.article.image)}
           alt="Article Image"
@@ -53,23 +62,20 @@ export default function Article(props: ArticleProps): JSX.Element {
         <button
           onClick={() => navigation(`/blog/edita/${props.article._id}`)}
           className="btn btn-warning"
-          style={{viewTransitionName: `article-button-${props.article?._id}`}}
-        >Editar
+        >Edit
         </button>
-        <button onClick={() => confirmDeletion(props.article._id, navigation)} className="btn btn-danger">Eliminar
+        <button onClick={() => confirmDeletion(props.article._id, navigation)} className="btn btn-danger">Delete
         </button>
       </div>
-      <h1 className="subheader"
-          style={{viewTransitionName: `article-title-${props.article._id}`}}
-      >{props.article.title}
+      <h1 className="subheader">
+        {props.article.title}
       </h1>
-      <Dayjs className="date"
-             style={{viewTransitionName: `article-date-${props.article._id}`}}
-      >
+      <Dayjs className="date">
         {props.article.date}
       </Dayjs>
-      <div className="article-text" style={{viewTransitionName: `article-text-${props.article._id}`}}>
-        {props.article.content}
+      <div className="article-text"
+           dangerouslySetInnerHTML={convertTextToHtml(props.article.content)}
+      >
       </div>
     </article>
   );

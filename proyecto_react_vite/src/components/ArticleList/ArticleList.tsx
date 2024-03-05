@@ -1,6 +1,7 @@
-import ArticlePreview from "@/components/ArticlePreview";
+import ArticlePreview from "@/components/ArticlePreview/ArticlePreview";
 import { ArticleResponse } from "@/models/ArticleResponse.model";
 import { useState } from "react";
+import styles from './ArticleList.module.css';
 
 type ArticleListProps = {
   articles: ArticleResponse[]
@@ -13,7 +14,7 @@ type ArticleListState = {
 function showArticleList(articleList: ArticleResponse[], followArticle: (f: ArticleResponse) => void): JSX.Element {
   if (articleList.length > 0) {
     return (
-      <div id="article-container">
+      <div className={styles.article_list_container}>
         {articleList.map(article => (<ArticlePreview key={article._id} article={article} follow={followArticle}/>))}
       </div>
     );

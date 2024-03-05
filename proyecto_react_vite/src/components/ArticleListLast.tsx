@@ -1,5 +1,5 @@
 import ApiConstant from "../api/ApiConstant";
-import ArticleList from "@/components/ArticleList";
+import ArticleList from "@/components/ArticleList/ArticleList";
 import Config from "@/config/Config";
 import { AppState } from "@/store/store";
 import { ArticleResponse } from "@/models/ArticleResponse.model";
