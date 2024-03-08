@@ -48,10 +48,11 @@ const hasSubheaderTitle = computed(() => props.subheaderTitle?.length > 0);
 <style scoped>
 .page-content {
   grid-area: page-content;
-  width: 100%;
-  position: absolute;
+  width: 100vw;
+  position: relative;
 
   display: grid;
+
   grid-template-columns: 1fr;
   grid-template-rows: repeat(3, auto);
   grid-template-areas:

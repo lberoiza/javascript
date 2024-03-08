@@ -74,12 +74,15 @@ import FooterComponent from './components/FooterComponent.vue';
 
 .appContainer {
   width: 100%;
+  min-width: 420px;
+  margin: 0 auto;
   min-height: 100vh;
   overflow: hidden;
 
   display: grid;
+  align-items: start;
   grid-template-rows: 6rem 2rem auto 5rem;
-  grid-auto-columns: auto;
+
   grid-template-areas:
   "header"
   "nav"
@@ -93,12 +96,13 @@ header {
 
 nav {
   grid-area: nav;
+  height: 100%;
 }
 
 main {
   grid-area: main;
-  position: relative;
-  overflow: auto;
+  display: grid;
+  align-items: start;
 }
 
 footer {
@@ -109,7 +113,7 @@ footer {
 @media (width > 1000px) {
   .appContainer {
     border-top: 7px solid var(--color-primary);
-    grid-template-rows: 7rem auto 5rem;
+    grid-template-rows: 7rem 1fr 5rem;
     grid-auto-columns: repeat(2, auto);
     grid-template-areas:
       "header nav"
@@ -120,8 +124,3 @@ footer {
 
 
 </style>
-
-
-<!--"slider slider  slider"-->
-<!--".      content ."-->
-<!--".      aside   ."-->
