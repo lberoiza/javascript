@@ -9,8 +9,8 @@
     </div>
     <Dayjs class="date" :dateString="props.article.date"></Dayjs>
     <h1 class="subheader">{{ props.article.title }}</h1>
-    <div class="article-text">
-      {{ props.article.content }}
+    <div class="article-text" v-html="contentAsHtml">
+
     </div>
   </article>
 </template>
@@ -21,6 +21,7 @@ import ApiImage from '../api/ApiImage';
 import { useRouter } from "vue-router";
 import Dayjs from './Dayjs.vue';
 import Alert from '../classes/Alert';
+import { computed } from "vue";
 
 const router = useRouter();
 
@@ -29,6 +30,11 @@ type ArticleProps = {
 }
 
 const props = defineProps<ArticleProps>()
+
+const contentAsHtml = computed(() => {
+  return props.article.content.replace(/\n/g, '<br/>');
+})
+
 
 const editArticle = (articleId: string) => {
   router.push({name: 'pageArticleEdit', params: {articleId: articleId}})

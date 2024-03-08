@@ -4,7 +4,7 @@
     <div v-else>
       <Error v-if="article.hasErrors()" :errors="article.errorMessages"></Error>
       <div v-else class="article-container">
-        <Article v-if="article.hasResponse()" :article="article.response!"></Article>
+        <ArticleDetails v-if="article.hasResponse()" :article="article.response!"></ArticleDetails>
         <NoResults v-else></NoResults>
       </div>
     </div>
@@ -19,7 +19,7 @@ import { useRoute } from "vue-router";
 import Loading from '../components/Loading.vue'
 import NoResults from '../components/NoResults.vue'
 import Error from '../components/Error.vue'
-import Article from '../components/ArticleComponent.vue'
+import ArticleDetails from '../components/ArticleDetails.vue'
 import PageContent from "../components/PageContent.vue";
 
 
